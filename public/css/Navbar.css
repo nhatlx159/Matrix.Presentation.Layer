@@ -1,0 +1,170 @@
+/* Thay đổi màu nền của navbar */
+.custom-navbar {
+    background-color: #ffffff;
+    /* Màu trắng */
+}
+
+/* Thay đổi màu chữ của các liên kết */
+.custom-navbar .navbar-nav .nav-link {
+    color: #007bff;
+    /* Màu xanh dương */
+}
+
+/* Chỉnh độ rộng của ô tìm kiếm */
+.custom-navbar .form-inline {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Chỉnh màu chữ và biểu tượng tìm kiếm */
+.custom-navbar .form-inline .form-control::placeholder {
+    color: #00000080;
+    /* Màu đen với độ mờ */
+}
+
+.custom-navbar .form-inline .form-control {
+    background-color: #00000020;
+    /* Màu đen với độ trong suốt */
+    color: #000000;
+    /* Màu đen */
+    border-color: #00000040;
+    /* Màu viền với độ trong suốt */
+}
+
+/* Chỉnh màu chữ và biểu tượng cho các nút trang chủ, tài khoản, giỏ hàng */
+.custom-navbar .navbar-nav .nav-link i {
+    color: #007bff;
+    /* Màu xanh dương */
+    margin-right: 5px;
+}
+
+/* Chỉnh màu cho số lượng sản phẩm trong giỏ hàng */
+.custom-navbar .badge {
+    background-color: #dc3545;
+    /* Màu đỏ */
+    position: absolute;
+    top: -12px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 12px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-navbar .fa-shopping-cart {
+    position: relative;
+    font-size: 24px;
+}
+
+/* Chỉnh màu cho nút tìm kiếm */
+.custom-navbar .form-inline .btn-outline-success {
+    color: #fff;
+    /* Màu chữ */
+    border-color: #007bff;
+    /* Màu viền */
+    background-color: #007bff;
+    /* Màu nền */
+}
+
+/* Chỉnh màu cho nút tìm kiếm khi hover */
+.custom-navbar .form-inline .btn-outline-success:hover {
+    background-color: #0056b3;
+    /* Màu xanh dương nhạt */
+    border-color: #0056b3;
+    /* Màu viền */
+}
+
+/* Chỉnh kiểu button nút tìm kiếm */
+.custom-navbar .form-inline .btn-outline-success button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+/* Chỉnh khoảng cách giữa nút tìm kiếm và input search */
+.custom-navbar .form-inline .input-group-append {
+    margin-left: -10px;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-brand {
+        order: -2;
+        /* Di chuyển logo ra bên trái */
+    }
+
+    .form-inline {
+        order: -1;
+        /* Di chuyển thanh tìm kiếm ra bên trái */
+    }
+
+    .navbar-toggler {
+        order: 1;
+        /* Di chuyển nút toggle ra bên phải */
+    }
+
+    .navbar-collapse {
+        order: 2;
+        /* Di chuyển navbar-collapse về vị trí sau nút toggle */
+    }
+}
+
+/* Canh giữa logo theo chiều dọc */
+.custom-navbar .navbar-brand img {
+    display: block;
+    margin: auto;
+}
+
+/* Ẩn dropdown menu mặc định */
+.account-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    z-index: 100000;
+}
+
+.account-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account-dropdown ul li {
+    padding: 10px;
+}
+
+.account-dropdown ul li:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.account-dropdown ul li a {
+    color: #000; /* Màu mặc định */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu */
+}
+
+.account-dropdown ul li:hover {
+    background-color: #ddd; /* Màu xám khi di chuột vào */
+    cursor: pointer; /* Thay đổi con trỏ chuột */
+}
+
+/* Thêm hiệu ứng giữ vị trí khi cuộn trang */
+.header.fixed-top {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,194 @@
+/* CSS cho phần sidebar */
+.sidebar {
+    width: 20%;
+    float: left;
+    background-color: #f2f2f2;
+    height: auto;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li a {
+    display: flex;
+    align-items: center;
+    color: #0074D9;
+    /* Màu chữ là màu xanh da trời */
+    text-decoration: none;
+    /* Loại bỏ gạch dưới */
+    padding: 10px 15px;
+    /* Tạo khoảng cách giữa các mục */
+}
+
+.sidebar li a i {
+    margin-right: 10px;
+    color: #0074D9;
+    /* Màu biểu tượng là màu xanh da trời */
+}
+
+.sidebar li a:hover {
+    color: #0074D9;
+    /* Màu chữ khi di chuột vào vẫn là màu xanh da trời */
+}
+
+/* CSS cho phần nội dung bên phải */
+.main-content {
+    width: 80%;
+    float: left;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.product-section {
+    margin-bottom: 30px;
+    text-align: center;
+    /* Canh giữa nội dung theo chiều ngang */
+    position: relative;
+    /* Thiết lập vị trí tương đối để đặt nút Xem Thêm */
+}
+
+.product-section h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.product-list {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* Ẩn thanh cuộn trên Firefox */
+    -ms-overflow-style: none;
+    /* Ẩn thanh cuộn trên IE/Edge */
+}
+
+.product-list::-webkit-scrollbar {
+    display: none;
+    /* Ẩn thanh cuộn trên Chrome/Safari */
+}
+
+.product-card {
+    margin-right: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    margin-bottom: 20px;
+    /* Styles cho product-card */
+    width: 20%;
+    /* 5 sản phẩm trên màn hình */
+    flex: 0 0 auto;
+    /* Kích thước không thay đổi */
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.product-buttons {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.product-buttons button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.product-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* Số dòng cần hiển thị */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.best-selling {
+    position: relative;
+    /* Styles khác cho phần này */
+}
+
+.for-you {
+    position: relative;
+    /* Các styles khác cho phần này */
+}
+
+.slider {
+    display: flex;
+    overflow-x: hidden;
+    /* Cho phép cuộn ngang */
+}
+
+.slider-2 {
+    display: flex;
+    overflow-x: hidden;
+    /* Cho phép cuộn ngang */
+}
+
+.prev-button,
+.next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.prev-button {
+    left: 0;
+}
+
+.next-button {
+    right: 0;
+}
+
+.product-row {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.product-section .see-more {
+    position: absolute;
+    left: 50%;
+    bottom: -30px;
+    /* Khoảng cách giữa nút và nội dung bên dưới */
+    transform: translateX(-50%);
+    /* Các thuộc tính khác cho button */
+    background-color: #007bff;
+    /* Màu nền xanh dương */
+    color: #fff;
+    /* Màu chữ trắng */
+    border: none;
+    /* Loại bỏ viền */
+    padding: 10px 20px;
+    /* Độ lớn của nút */
+    border-radius: 5px;
+    /* Bo tròn góc */
+    font-weight: bold;
+    /* Chữ đậm */
+    transition: background-color 0.3s, color 0.3s;
+    /* Hiệu ứng chuyển đổi màu sắc */
+}
+
+.product-section .see-more:hover {
+    /* Khi hover */
+    background-color: #0056b3;
+    /* Màu nền xanh dương nhạt */
+    color: #fff;
+    /* Màu chữ trắng */
+}

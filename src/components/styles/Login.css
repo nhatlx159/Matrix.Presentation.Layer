@@ -1,0 +1,33 @@
+.form-signin {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+  }
+
+  .form-signin-heading {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .btn-lg-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .forgot-password,
+  .sign-up {
+    text-align: center;
+    margin-top: 15px;
+    display: block;
+  }
+
+  .password-icon {
+    cursor: pointer;
+  }

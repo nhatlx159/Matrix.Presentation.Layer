@@ -1,0 +1,512 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    margin-top: 50px;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 20%;
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-item {
+    padding: 10px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    /* Loại bỏ gạch chân */
+    color: inherit;
+    /* Sử dụng màu sắc kế thừa */
+}
+
+.sidebar-item:hover {
+    color: inherit;
+    /* Màu sẽ không thay đổi khi rê chuột vào */
+}
+
+.sidebar a:hover {
+    text-decoration: none;
+}
+
+.sidebar-item i {
+    margin-right: 10px;
+}
+
+.user {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.user-name {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+/* Main content styles */
+.main-content {
+    width: 80%;
+    float: right;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.info {
+    display: flex;
+}
+
+.left-section {
+    width: 60%;
+    padding-right: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.gender {
+    display: flex;
+    align-items: center;
+}
+
+.gender-radio {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.save-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin: auto;
+    /* Để căn giữa theo chiều ngang */
+}
+
+.left-section .info-item {
+    display: flex;
+    align-items: center;
+}
+
+.date-dropdown {
+    display: flex;
+    gap: 5px;
+    /* Khoảng cách giữa các dropdown */
+    align-items: center;
+    /* Canh chỉnh các dropdown theo trục dọc */
+}
+
+
+.date-dropdown,
+.gender-radio {
+    margin-left: 30px;
+}
+
+.right-section {
+    width: 40%;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.info-item {
+    margin-bottom: 20px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.input,
+.select {
+    width: calc(100% - 16px);
+    padding: 8px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.update {
+    color: #777;
+    font-size: 14px;
+    display: block;
+    margin-top: 6px;
+}
+
+.update-button {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.update-button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.address-title {
+    margin-bottom: 20px;
+}
+
+.add-address-button {
+    width: 90%;
+    max-width: 600px;
+    /* Hoặc kích thước mong muốn */
+    margin: 0 auto;
+    /* Căn giữa theo chiều ngang */
+    display: block;
+    padding: 10px;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.add-address-button:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.address-item {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Các kiểu dáng khác cho chi tiết địa chỉ và số điện thoại có thể được thêm vào tùy ý */
+.address-item .address-details,
+.address-item .phone-number {
+    margin-top: 5px;
+}
+
+.address-item .address-info {
+    flex: 1;
+}
+
+.address-item .action-buttons button {
+    margin-left: 10px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.address-item .edit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    /* Loại bỏ gạch chân */
+    display: inline-block;
+    /* Hiển thị như inline-block */
+    margin-right: 5px;
+    /* Khoảng cách với nút "Xóa" */
+}
+
+.address-item .delete-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    /* Loại bỏ gạch chân */
+    display: inline-block;
+    /* Hiển thị như inline-block */
+}
+
+.address-item .name {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.default-address {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    color: green;
+}
+
+.default-address i {
+    margin-right: 5px;
+}
+
+.address-create-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.address-create-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.address-create-left {
+    flex: 15%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.address-create-right {
+    flex: 60%;
+}
+
+.address-create-label {
+    margin-right: 10px;
+    text-align: right;
+    width: 100%;
+}
+
+.address-create-input {
+    width: 60%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.address-create-update {
+    margin-top: 50px;
+    /* Các thuộc tính cần thiết để đưa nút ra giữa màn hình */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Các thuộc tính khác */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.address-create-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.address-create-checkbox {
+    justify-content: center;
+    align-items: center;
+    margin-left: 400px;
+    margin-right: 5px;
+    /* Khoảng cách giữa checkbox và label */
+}
+
+.address-create-label[for="setDefault"] {
+    margin-right: 0;
+    /* Loại bỏ margin phải */
+    text-align: center;
+    /* Căn giữa nội dung */
+    display: flex;
+    align-items: center;
+    /* Căn checkbox và label theo chiều ngang */
+}
+
+#addressDetails {
+    resize: none;
+    /* Ngăn chặn thay đổi kích thước của textarea */
+}
+
+.address-edit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.address-edit-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.address-edit-left {
+    flex: 15%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.address-edit-right {
+    flex: 60%;
+}
+
+.address-edit-label {
+    margin-right: 10px;
+    text-align: right;
+    width: 100%;
+}
+
+.address-edit-input {
+    width: 60%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.address-edit-update {
+    margin-top: 50px;
+    /* Các thuộc tính cần thiết để đưa nút ra giữa màn hình */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Các thuộc tính khác */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.address-edit-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.address-edit-checkbox {
+    justify-content: center;
+    align-items: center;
+    margin-left: 400px;
+    margin-right: 5px;
+    /* Khoảng cách giữa checkbox và label */
+}
+
+.address-edit-label[for="setDefault"] {
+    margin-right: 0;
+    /* Loại bỏ margin phải */
+    text-align: center;
+    /* Căn giữa nội dung */
+    display: flex;
+    align-items: center;
+    /* Căn checkbox và label theo chiều ngang */
+}
+
+/* Styles for order-item */
+
+.order-item {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.order-status {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: green;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.product-image {
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+.product-image img {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.product-details {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.product-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-quantity,
+.product-price {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.total-amount {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total-label {
+    margin-right: 10px;
+}
+
+.amount-value {
+    font-weight: bold;
+}
+
+.view-details {
+    margin-top: auto;
+}
+
+.view-details-button {
+    margin-left: auto;
+}
+
+.view-details-button button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}

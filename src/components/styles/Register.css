@@ -1,0 +1,104 @@
+
+
+.phu-signup-container {
+    width: 80%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+    margin-top: 5%;
+}
+
+/* Form Styles */
+.form-signup {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-signup-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-control1 {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-control1:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.btn-rgt {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-rgt {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-rgt:hover {
+    background-color: #0056b3;
+}
+
+/* Password Toggle Icon */
+
+/* Additional Classes (you can add more based on your requirements) */
+.text-center {
+    text-align: center;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+#inputPassword,
+#inputConfirmPassword {
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.password-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.input-group-append {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.password-icon i {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    /* Adjust the font size as needed */
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
