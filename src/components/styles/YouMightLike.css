@@ -1,0 +1,9 @@
+.for-you {
+    position: relative;
+    /* Các styles khác cho phần này */
+}
+.slider-2 {
+    display: flex;
+    overflow-x: hidden;
+    /* Cho phép cuộn ngang */
+}

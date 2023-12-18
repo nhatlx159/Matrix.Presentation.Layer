@@ -1,0 +1,18 @@
+.main-content1 {
+    width: 80%;
+    float: left;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.product-section1 {
+    margin-bottom: 30px;
+    text-align: center;
+    /* Canh giữa nội dung theo chiều ngang */
+    position: relative;
+    /* Thiết lập vị trí tương đối để đặt nút Xem Thêm */
+}
+
+.product-section1 h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}

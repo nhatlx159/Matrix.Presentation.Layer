@@ -1,0 +1,24 @@
+.n-customer-review-component {
+	border: none;
+}
+
+.star-active {
+	color: #FBC02D;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.star-active:hover {
+	color: #F9A825;
+	cursor: pointer;
+}
+
+.star-inactive {
+	color: #CFD8DC;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.n-review-content {
+	font-size: 18px;
+}

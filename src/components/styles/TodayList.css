@@ -1,0 +1,37 @@
+.product-row {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.product-section .see-more {
+    position: absolute;
+    left: 50%;
+    bottom: -30px;
+    /* Khoảng cách giữa nút và nội dung bên dưới */
+    transform: translateX(-50%);
+    /* Các thuộc tính khác cho button */
+    background-color: #007bff;
+    /* Màu nền xanh dương */
+    color: #fff;
+    /* Màu chữ trắng */
+    border: none;
+    /* Loại bỏ viền */
+    padding: 10px 20px;
+    /* Độ lớn của nút */
+    border-radius: 5px;
+    /* Bo tròn góc */
+    font-weight: bold;
+    /* Chữ đậm */
+    transition: background-color 0.3s, color 0.3s;
+    /* Hiệu ứng chuyển đổi màu sắc */
+}
+
+.product-section .see-more:hover {
+    /* Khi hover */
+    background-color: #0056b3;
+    /* Màu nền xanh dương nhạt */
+    color: #fff;
+    /* Màu chữ trắng */
+}
+

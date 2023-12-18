@@ -1,0 +1,37 @@
+.sidebar {
+    width: 20%;
+    float: left;
+    background-color: #f2f2f2;
+    height: auto;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li a {
+    display: flex;
+    align-items: center;
+    color: #0074D9;
+    /* Màu chữ là màu xanh da trời */
+    text-decoration: none;
+    /* Loại bỏ gạch dưới */
+    padding: 10px 15px;
+    /* Tạo khoảng cách giữa các mục */
+}
+
+.sidebar li a i {
+    margin-right: 10px;
+    color: #0074D9;
+    /* Màu biểu tượng là màu xanh da trời */
+}
+
+.sidebar li a:hover {
+    color: #0074D9;
+    /* Màu chữ khi di chuột vào vẫn là màu xanh da trời */
+}

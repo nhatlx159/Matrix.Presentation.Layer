@@ -1,16 +1,15 @@
 import Header from "./components/header/Header";
-import HomePage from "./components/sections/HomePage";
-import ForgotPassword from "./components/sections/authSection/ForgotPassword";
-import Login from "./components/sections/authSection/Login";
-import Register from "./components/sections/authSection/Register";
+import BodySection from "./components/sections/BodySection";
+import ViewProductDetails from "./components/sections/ViewProductDetails";
+
+
 
 function App() {
   return (
     <div>
       <Header />
-      {/* <ForgotPassword /> */}
-      {/* <Login /> */}
-      <Register />
+      {/* <BodySection /> */}
+      <ViewProductDetails />
     </div>
   );
 }
