@@ -25,7 +25,7 @@ function ReviewContent(props) {
                                     </div>
                                     <div className="col-6">
                                         <div className="pull-right" style={{float: 'right'}}>
-                                            <button className="btn btn-success send btn-sm">Gửi ➤</button>
+                                            <button className="btn btn-warning send btn-sm">Gửi ➤</button>
                                         </div>
                                     </div>
                                 </div>

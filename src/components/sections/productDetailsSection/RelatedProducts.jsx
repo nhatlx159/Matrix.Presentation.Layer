@@ -1,70 +1,78 @@
 import React, { useEffect } from 'react';
 import $ from 'jquery';
 import '../../styles/RelatedProducts.css';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function RelatedProducts(props) {
+    const location = useLocation();
     const sliderEffect = () => {
-        $(document).ready(function () {
-            let scrollInterval;
-            $('.prev-button-3').click(function () {
-                let slider = $('.slider3');
-                let scrollAmount = slider.find('.product-card-3').first().outerWidth(); // Chiều rộng của sản phẩm
-                let currentPosition = slider.scrollLeft();
-        
-                if (currentPosition === 0) {
-                    slider.animate({ scrollLeft: slider[0].scrollWidth - slider.outerWidth() }, 'slow');
-                } else {
-                    slider.animate({ scrollLeft: '-=' + scrollAmount }, 'slow');
-                }
-            });
-        
-            $('.next-button-3').click(function () {
-                let slider = $('.slider3');
-                let scrollAmount = slider.find('.product-card-3').first().outerWidth(); // Chiều rộng của sản phẩm
-                let currentPosition = slider.scrollLeft();
-                let totalWidth = slider[0].scrollWidth - slider.outerWidth();
-        
-                if (currentPosition >= totalWidth) {
-                    slider.animate({ scrollLeft: 0 }, 'slow');
-                } else {
-                    slider.animate({ scrollLeft: '+=' + scrollAmount }, 'slow');
-                }
-            });
-        
-            function slideNext() {
-                let slider = document.querySelector('.slider3');
-                let ww = $(window).width();
-                let scrollAmount = ww / 4; // Kích thước cuộn 4 sản phẩm
-                let currentPosition = slider.scrollLeft;
-                currentPosition += scrollAmount;
-                if (currentPosition >= slider.scrollWidth - ww) {
-                    currentPosition = 0; // Quay lại đầu danh sách nếu đang ở cuối
-                }
-         
-                slider.scrollTo({
-                    left: currentPosition,
-                    behavior: 'smooth'
+        if ($('.slider3').scrollLeft() != null && location.pathname == "/productdetails") {
+            $(document).ready(function () {
+                let scrollInterval;
+                $('.prev-button-3').click(function () {
+                    let slider = $('.slider3');
+                    let scrollAmount = slider.find('.product-card-3').first().outerWidth(); // Chiều rộng của sản phẩm
+                    let currentPosition = slider.scrollLeft();
+
+                    if (currentPosition === 0) {
+                        slider.animate({ scrollLeft: slider[0].scrollWidth - slider.outerWidth() }, 'slow');
+                    } else {
+                        slider.animate({ scrollLeft: '-=' + scrollAmount }, 'slow');
+                    }
                 });
-            }
-        
-            scrollInterval = setInterval(slideNext, 5000); // Tự động di chuyển sau mỗi 5 giây
-        
-            $('.slider3').hover(function () {
-                clearInterval(scrollInterval);
-            }, function () {
-                scrollInterval = setInterval(slideNext, 5000);
+
+                $('.next-button-3').click(function () {
+                    let slider = $('.slider3');
+                    let scrollAmount = slider.find('.product-card-3').first().outerWidth(); // Chiều rộng của sản phẩm
+                    let currentPosition = slider.scrollLeft();
+                    let totalWidth = slider[0].scrollWidth - slider.outerWidth();
+
+                    if (currentPosition >= totalWidth) {
+                        slider.animate({ scrollLeft: 0 }, 'slow');
+                    } else {
+                        slider.animate({ scrollLeft: '+=' + scrollAmount }, 'slow');
+                    }
+                });
+
+                // function slideNext() {
+                //     let slider = document.querySelector('.slider3');
+                //     let ww = $(window).width();
+                //     let scrollAmount = ww / 4; // Kích thước cuộn 4 sản phẩm
+                //     let currentPosition = slider.scrollLeft;
+                //     currentPosition += scrollAmount;
+                //     if (currentPosition >= slider.scrollWidth - ww) {
+                //         currentPosition = 0; // Quay lại đầu danh sách nếu đang ở cuối
+                //     }
+
+                //     slider.scrollTo({
+                //         left: currentPosition,
+                //         behavior: 'smooth'
+                //     });
+                // }
+
+                // scrollInterval = setInterval(slideNext, 5000); // Tự động di chuyển sau mỗi 5 giây
+
+                // $('.slider3').hover(function () {
+                //     clearInterval(scrollInterval);
+                // }, function () {
+                //     scrollInterval = setInterval(slideNext, 5000);
+                // });
             });
-        });
+        }
     }
-    useEffect(()=> {
+    useEffect(() => {
         sliderEffect()
     }, [])
+    const nav = useNavigate();
+    const redirectToDetails = ()=> {
+        window.scrollTo(0,0);
+    }
     return (
         <div className="product-section3 mt-4">
             <h2>Sản Phẩm Tương Tự</h2>
             <div className="best-selling">
                 <div className="slider3">
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 1</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -79,7 +87,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 2</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -94,7 +102,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 3</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -109,7 +117,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 4</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -124,7 +132,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 5</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -139,7 +147,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 6</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -154,7 +162,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 7</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -169,7 +177,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 8</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -184,7 +192,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 9</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -199,7 +207,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 10</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -214,7 +222,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 11</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -229,7 +237,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 12</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -244,7 +252,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 13</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -259,7 +267,7 @@ function RelatedProducts(props) {
                             <h2>50.000.000 VNĐ<p />
                             </h2></div>
                     </div>
-                    <div className="product-card product-card-3" data-url="ProductInfo.html">
+                    <div className="product-card product-card-3" onClick={redirectToDetails}>
                         <img src="https://cdn.tgdd.vn/Products/Images/42/289700/iphone-14-pro-max-purple-1.jpg" alt="Product 1" />
                         <h3>Sản Phẩm 14</h3>
                         <p className="product-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.

@@ -29,7 +29,7 @@
     color: #000000;
     /* Màu đen */
     border-color: #00000040;
-    /* Màu viền với độ trong suốt */    
+    /* Màu viền với độ trong suốt */
 }
 
 /* Chỉnh màu chữ và biểu tượng cho các nút trang chủ, tài khoản, giỏ hàng */
@@ -149,14 +149,19 @@
 }
 
 .account-dropdown ul li a {
-    color: #000; /* Màu mặc định */
-    text-decoration: none; /* Loại bỏ gạch chân */
-    transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu */
+    color: #000;
+    /* Màu mặc định */
+    text-decoration: none;
+    /* Loại bỏ gạch chân */
+    transition: color 0.3s ease;
+    /* Hiệu ứng chuyển đổi màu */
 }
 
 .account-dropdown ul li:hover {
-    background-color: #ddd; /* Màu xám khi di chuột vào */
-    cursor: pointer; /* Thay đổi con trỏ chuột */
+    background-color: #ddd;
+    /* Màu xám khi di chuột vào */
+    cursor: pointer;
+    /* Thay đổi con trỏ chuột */
 }
 
 /* Thêm hiệu ứng giữ vị trí khi cuộn trang */
@@ -167,4 +172,12 @@
     left: 0;
     z-index: 1000;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 960px) {
+    .navbar-light .navbar-nav .active>.nav-link {
+        color: rgb(255 255 255 / 90%);
+        text-align: end;
+        background-color: #005bc2;
+    }
 }

@@ -65,7 +65,7 @@ function ProductInfomation(props) {
                         <h5 className="color colors1 mt-2">Số lượng:
                             <div className="quantity-container">
                                 <button className="btn" id="decreaseBtn">-</button>
-                                <input type="text" className="form-control quantity-input" id="quantityInput" defaultValue={1} />
+                                <input type="text" className="quantity-input" id="quantityInput" defaultValue={1} />
                                 <button className="btn" id="increaseBtn">+</button>
                             </div>
                         </h5>

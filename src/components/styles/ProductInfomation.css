@@ -251,3 +251,7 @@
     text-align: center;
     margin: 0 10px;
 }
+form-control-pd {
+    margin-bottom: 0;
+    width: 0;
+}
