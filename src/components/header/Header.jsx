@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/Header.css';
 import { Link } from 'react-router-dom';
+import $ from 'jquery';
 
 
 function Header(props) {
@@ -8,6 +9,28 @@ function Header(props) {
     // const redirect = ()=> {
     //     navigate('/');
     // }
+
+    $(document).ready(function () {
+        var isHovered = false;
+
+        $("#account-link").mouseover(function () {
+            $("#account-dropdown").fadeIn(200);
+            isHovered = true;
+        });
+
+        $("#account-dropdown").mouseover(function () {
+            isHovered = true;
+        });
+
+        $("#account-link, #account-dropdown").mouseout(function () {
+            isHovered = false;
+            setTimeout(function () {
+                if (!isHovered) {
+                    $("#account-dropdown").fadeOut(200);
+                }
+            }, 500);
+        });
+    });
     return (
         <nav id="phu-navbar" className="navbar navbar-expand-lg navbar-light bg-light custom-navbar header fixed-top phu-navbar" style={{ height: '50px' }}>
             <Link className="navbar-brand" to="/" style={{ height: '100%' }}>
@@ -53,11 +76,11 @@ function Header(props) {
                         </div>
                     </li>
                     <li className="nav-item active">
-                        <a className="nav-link" href="#">
+                        <Link className="nav-link" to="/cartdetails">
                             <i className="fas fa-shopping-cart fa-lg fa-relative">
                                 <span className="badge badge-danger">3</span>
                             </i>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>

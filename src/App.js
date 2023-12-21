@@ -7,6 +7,7 @@ import Login from "./components/sections/authSection/Login";
 import Cart from "./components/sections/Cart";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CheckOut from "./components/sections/CheckOut";
 
 
 
@@ -20,14 +21,10 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
         <Route path="/productdetails" element={<ViewProductDetails />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/cartdetails" element={<Cart />}></Route>
+        <Route path="/checkout" element={<CheckOut />}></Route>
         
       </Routes>
-      {/* <BodySection /> */}
-      {/* <ViewProductDetails /> */}
-
-
-
     </BrowserRouter>
   );
 }

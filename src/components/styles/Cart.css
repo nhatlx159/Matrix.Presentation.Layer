@@ -1,0 +1,25 @@
+.form-control-cart {
+    width: 20%;
+    display: inline-block;
+}
+.n-cart {
+    margin-top: 8%;
+}
+.product-row-cart {
+    display: inline;
+}
+.instock {
+    display: inline-block;
+    margin-left: 10px;
+    font-style: italic;
+    font-size: 15px;
+}
+.image-cart {
+    width: 100px;
+}
+
+@media only screen and (max-width: 768px) {
+    .image-cart {
+        width: 50px;
+    }
+}
