@@ -1,0 +1,100 @@
+.add-address-button {
+    width: 80%;
+    display: block;
+    padding: 10px;
+    color: #007bff;
+    text-decoration: none;
+    text-align: center;
+}
+
+.add-address-button:hover {
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.address-item {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Các kiểu dáng khác cho chi tiết địa chỉ và số điện thoại có thể được thêm vào tùy ý */
+.address-item .address-details,
+.address-item .phone-number {
+    margin-top: 5px;
+}
+
+.address-item .address-info {
+    flex: 1;
+}
+
+.address-item .action-buttons button {
+    margin-left: 10px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.address-item .edit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    /* Loại bỏ gạch chân */
+    display: inline-block;
+    /* Hiển thị như inline-block */
+    margin-right: 5px;
+    /* Khoảng cách với nút "Xóa" */
+}
+
+.address-item .delete-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    /* Loại bỏ gạch chân */
+    display: inline-block;
+    /* Hiển thị như inline-block */
+}
+
+.address-item .name {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.default-address {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    color: green;
+}
+
+.default-address i {
+    margin-right: 5px;
+}
+.title-add-new-address {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+}
+.address-container, .add-new-address, .title-add-new-address {
+    width: 80%;
+}
+
+@media only screen and (max-width: 960px) {
+    .address-container, .add-new-address, .title-add-new-address {
+        width: 100%;
+    }
+}

@@ -67,7 +67,7 @@ function Header(props) {
                             <i className="fas fa-user" />
                             Tài Khoản
                         </Link>
-                        <div id="account-dropdown" className="account-dropdown">
+                        <div id="account-dropdown" className="account-dropdown"> 
                             <ul>
                                 <li><Link to="/userinfo">Thông tin tài khoản</Link></li>
                                 <li><Link to="/order">Đơn hàng của tôi</Link></li>

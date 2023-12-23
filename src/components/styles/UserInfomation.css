@@ -1,0 +1,57 @@
+.main-content-user-info {
+    width: 100%;
+    float: right;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 6px;
+}
+
+
+.section-user-info h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.info {
+    display: flex;
+}
+
+.left-section-user-info {
+    width: 100%;
+    padding-right: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.left-section-user-info .info-item {
+    display: flex;
+    align-items: center;
+}
+
+.info-item {
+    margin-bottom: 10px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.input,
+.select {
+    width: calc(100% - 16px);
+    padding: 8px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.lable-change-info {
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+.change-user-bd {
+    margin-top: 15px;
+}

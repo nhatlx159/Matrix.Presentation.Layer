@@ -19,16 +19,13 @@ function CheckOutAdresses(props) {
                 <div className="address-card">
                     <input type="radio" id="age1" name="age" defaultValue={30} checked />
                     <div className="address-field">
-                        <span className="address-label">Tên người nhận:</span>
-                        <span className="address-value">Người Nhận</span>
+                        <span className="address-label">Hoàng Nhật</span>
                     </div>
                     <div className="address-field">
-                        <span className="address-label">Số điện thoại người nhận:</span>
                         <span className="address-value">0123456789</span>
                     </div>
                     <div className="address-field">
-                        <span className="address-label">Địa chỉ người nhận:</span>
-                        <span className="address-value">123 Đường ABC, Quận XYZ, Thành phố ABC ABC, Quận XYZ, Thành phố ABCng ABC, Quận XYZ, Thành phố ABC</span>
+                        <span className="address-value">184 Lê Đại Hành, Phường 15, Quận 11, TP Hồ Chí Minh 184 Lê Đại Hành, Phường 15, Quận 11, TP Hồ Chí Minh</span>
                     </div>
                     <div className="address-field">
                         <span className="address-value text-success font-italic font-weight-light">Địa chỉ mặc định</span>
@@ -38,32 +35,26 @@ function CheckOutAdresses(props) {
                     <input type="radio" id="age1" name="age" defaultValue={30} />
                     
                     <div className="address-field">
-                        <span className="address-label">Tên người nhận:</span>
-                        <span className="address-value">Người Nhận</span>
+                        <span className="address-label">Chunpapo</span>
                     </div>
                     <div className="address-field">
-                        <span className="address-label">Số điện thoại người nhận:</span>
-                        <span className="address-value">0123456789</span>
+                        <span className="address-value">0909887665</span>
                     </div>
                     <div className="address-field">
-                        <span className="address-label">Địa chỉ người nhận:</span>
-                        <span className="address-value">123 Đường ABC, Quận XYZ, Thành phố ABC 123 Đường ABC, Quận XYZ, Thành phố ABC</span>
+                        <span className="address-value">12 Hồng Hà, Phường 2, Quận Tân Bình, TP Hồ Chí Minh</span>
                     </div>
                 </div>
                 <div className="address-card">
                     <input type="radio" id="age1" name="age" defaultValue={30} />
                     
                     <div className="address-field">
-                        <span className="address-label">Tên người nhận:</span>
-                        <span className="address-value">Người Nhận</span>
+                        <span className="address-label">Võ Hồng Phú</span>
                     </div>
                     <div className="address-field">
-                        <span className="address-label">Số điện thoại người nhận:</span>
-                        <span className="address-value">0123456789</span>
+                        <span className="address-value">0356776060</span>
                     </div>
                     <div className="address-field">
-                        <span className="address-label">Địa chỉ người nhận:</span>
-                        <span className="address-value">123 Đường ABC, Quận XYZ, Thành phố ABC 123 Đường ABC, Quận XYZ, Thành phố ABC</span>
+                        <span className="address-value">268 Lý Thường Kiệt, Phường 14, Quận 10, Hồ Chí Minh</span>
                     </div>
                 </div>
             </form>

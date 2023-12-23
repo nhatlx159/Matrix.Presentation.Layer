@@ -1,0 +1,51 @@
+
+.sidebar-user-info {
+    width: 40%;
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2%;
+}
+
+.sidebar-item {
+    padding: 10px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #0056b3;
+}
+
+.sidebar-item:hover {
+    color: inherit;
+    /* Màu sẽ không thay đổi khi rê chuột vào */
+}
+
+.sidebar-user-info a:hover {
+    text-decoration: none;
+    color: #0056b3;
+}
+
+.sidebar-item i {
+    margin-right: 10px;
+}
+
+.user {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.user-name {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+@media only screen and (max-width: 720px) {
+    .sidebar-user-info {
+        width: 70%;
+    }
+}

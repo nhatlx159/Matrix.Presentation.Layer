@@ -8,6 +8,8 @@ import Cart from "./components/sections/Cart";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CheckOut from "./components/sections/CheckOut";
+import ViewUserInfo from "./components/sections/ViewUserInfo";
+import UserOrderManagement from "./components/sections/userSection/UserOrderManagement";
 
 
 
@@ -23,7 +25,10 @@ function App() {
         <Route path="/productdetails" element={<ViewProductDetails />}></Route>
         <Route path="/cartdetails" element={<Cart />}></Route>
         <Route path="/checkout" element={<CheckOut />}></Route>
-        
+        <Route path="/userinfo" element={<ViewUserInfo />}></Route>
+        <Route path="/ordermanagement" element={<ViewUserInfo />}></Route>
+        <Route path="/useraddress" element={<ViewUserInfo />}></Route>
+
       </Routes>
     </BrowserRouter>
   );

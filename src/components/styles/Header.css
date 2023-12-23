@@ -180,4 +180,7 @@
         text-align: end;
         background-color: #005bc2;
     }
+    .account-dropdown {
+        right: 3%;
+    }
 }
