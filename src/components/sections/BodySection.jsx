@@ -3,40 +3,37 @@ import SideBarHomePage from './sideBarSection/SideBarHomePage';
 import BestSeller from './homePageSection/BestSeller';
 import '../styles/BodySection.css';
 import YouMightLike from './homePageSection/YouMightLike';
-import TodayList from './homePageSection/TodayList';
-import ProductList from './productSection/ProductList';
-import FilterBar from './productSection/FilterBar';
 
 function BodySection(props) {
 
     const homePageContent = () => {
         return (
-            <div className="product-section product-section1">
-                <h2>Sản phẩm bán chạy</h2>
+            <>
+                <div className='n-title-productlist'>Sản Phẩm bán chạy</div>
                 <BestSeller />
-                <h2>Có thể bạn thích</h2>
+                <div className='n-title-productlist mt-4'>Các sản phẩm dành cho bạn</div>
                 <YouMightLike />
-                <h2>Sản phẩm hôm nay</h2>
-                <TodayList />
-            </div>
+            </>
         )
     }
-    const productContent = () => {
-        return (
-            <div className="product-section product-section1">
-                <h2>Danh mục: Hàng điện tử</h2>
-                <FilterBar />
-                <ProductList />
-            </div>
-        )
-    }
+    // const productContent = () => {
+    //     return (
+    //         <div className="product-section product-section1">
+    //             <h2>Danh mục: Hàng điện tử</h2>
+    //             <FilterBar />
+    //             <ProductList />
+    //         </div>
+    //     )
+    // }
     const displayContent = () => {
-        return homePageContent()
+        return (
+            homePageContent()
+        )
     }
     return (
-        <div className="content" style={{ marginTop: '50px' }}>
+        <div className="row" style={{ marginTop: '100px', marginRight: '0' }}>
             <SideBarHomePage />
-            <div className="main-content main-content1">
+            <div className="col">
                 {displayContent()}
             </div>
         </div>

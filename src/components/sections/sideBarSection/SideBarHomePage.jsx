@@ -3,7 +3,7 @@ import '../../styles/SideBar.css';
 
 function SideBarHomePage(props) {
     return (
-        <div className="sidebar">
+        <div className="sidebar col-4 col-md-3 py-2">
             <ul>
                 <li><a href="./ProductCategory.html"><i className="fas fa-book" /> Sách</a></li>
                 <li><a href="./ProductCategory.html"><i className="fas fa-laptop" /> Hàng điện tử</a></li>

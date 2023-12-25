@@ -32,7 +32,7 @@ function Header(props) {
         });
     });
     return (
-        <nav id="phu-navbar" className="navbar navbar-expand-lg navbar-light bg-light custom-navbar header fixed-top phu-navbar" style={{ height: '50px' }}>
+        <nav id="phu-navbar" className="navbar navbar-expand-lg navbar-light custom-navbar header fixed-top phu-navbar" style={{ height: '50px' }}>
             <Link className="navbar-brand" to="/" style={{ height: '100%' }}>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Matrix-icon-rounded.svg" alt="Logo" style={{ height: '100%' }} />
             </Link>
@@ -70,7 +70,7 @@ function Header(props) {
                         <div id="account-dropdown" className="account-dropdown"> 
                             <ul>
                                 <li><Link to="/userinfo">Thông tin tài khoản</Link></li>
-                                <li><Link to="/order">Đơn hàng của tôi</Link></li>
+                                <li><Link to="/ordermanagement">Đơn hàng của tôi</Link></li>
                                 <li><Link to="/">Đăng xuất</Link></li>
                             </ul>
                         </div>

@@ -1,11 +1,15 @@
 .sidebar {
-    width: 20%;
-    float: left;
+    /* width: 20%;
+    float: left; */
     background-color: #f2f2f2;
-    height: auto;
+    height: 100%;
     overflow-y: auto;
     display: flex;
     justify-content: center;
+    margin-left: 50px;
+    border-radius: 10px;
+    position: sticky;
+    top: 10%;
 }
 
 .sidebar ul {
@@ -34,4 +38,10 @@
 .sidebar li a:hover {
     color: #0074D9;
     /* Màu chữ khi di chuột vào vẫn là màu xanh da trời */
+}
+
+@media only screen and (max-width: 960px) {
+    .sidebar {
+        margin-left: 0px;
+    }
 }
