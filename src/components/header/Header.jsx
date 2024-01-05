@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Header.css';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
 
 function Header(props) {
-    // const navigate = useNavigate();
-    // const redirect = ()=> {
-    //     navigate('/');
-    // }
-
+    const [isLogin, setIsLogin] = useState(true);
     $(document).ready(function () {
         var isHovered = false;
 
@@ -31,6 +27,15 @@ function Header(props) {
             }, 500);
         });
     });
+
+    const avatarIcon = () => {
+        return (
+            <div className='avt-icon'>
+                <img className='avt-image' src="https://avatars.githubusercontent.com/u/75898680?v=4" alt="avatar" />
+            </div>
+        )
+    }
+
     return (
         <nav id="phu-navbar" className="navbar navbar-expand-lg navbar-light custom-navbar header fixed-top phu-navbar" style={{ height: '50px' }}>
             <Link className="navbar-brand" to="/" style={{ height: '100%' }}>
@@ -64,10 +69,10 @@ function Header(props) {
                     </li>
                     <li className="nav-item active">
                         <Link id="account-link" className="nav-link" to="/login">
-                            <i className="fas fa-user" />
-                            Tài Khoản
+                            {isLogin ? avatarIcon() : <i className="fas fa-user" />}  
+                            <p className='d-inline ml-2'>Tài Khoản</p>
                         </Link>
-                        <div id="account-dropdown" className="account-dropdown"> 
+                        <div id="account-dropdown" className="account-dropdown">
                             <ul>
                                 <li><Link to="/userinfo">Thông tin tài khoản</Link></li>
                                 <li><Link to="/ordermanagement">Đơn hàng của tôi</Link></li>

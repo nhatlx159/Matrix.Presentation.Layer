@@ -23,3 +23,16 @@
 	font-size: 18px;
 	width: 100%;
 }
+
+.profile-pic {
+	width: 90px;
+	height: 90px;
+	border-radius: 100%;
+	margin-right: 30px;
+}
+
+.pic {
+	width: 80px;
+	height: 80px;
+	margin-right: 10px;
+}

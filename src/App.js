@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CheckOut from "./components/sections/CheckOut";
 import ViewUserInfo from "./components/sections/ViewUserInfo";
 import UserOrderManagement from "./components/sections/userSection/UserOrderManagement";
+import Footer from "./components/footer/Footer";
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/useraddress" element={<ViewUserInfo />}></Route>
 
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
