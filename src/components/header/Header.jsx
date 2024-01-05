@@ -70,7 +70,7 @@ function Header(props) {
                     <li className="nav-item active">
                         <Link id="account-link" className="nav-link" to="/login">
                             {isLogin ? avatarIcon() : <i className="fas fa-user" />}  
-                            <p className='d-inline ml-2'>Tài Khoản</p>
+                            <p className='d-inline ml-2'>Furina</p>
                         </Link>
                         <div id="account-dropdown" className="account-dropdown">
                             <ul>
