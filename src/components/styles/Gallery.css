@@ -1,0 +1,39 @@
+.left-gallery {
+    display: flex;
+    align-items: center;
+}
+
+.right-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.right-gallery>.row {
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-right-component {
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin: 5px;
+    font-size: 14px;
+    text-align: center;
+    align-items: center;
+    padding-top: 10px;
+}
+.gallery-right-component:hover {
+    border: 0px solid orange;
+    box-shadow: 1px 5px 5px orange;
+}
+
+
+.carousel-caption {
+    padding: 0;
+    color: #fff;
+    -webkit-text-stroke-width: 0.3px;
+    -webkit-text-stroke-color: #007bff;
+}

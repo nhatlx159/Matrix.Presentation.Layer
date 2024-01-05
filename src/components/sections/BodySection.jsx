@@ -3,12 +3,14 @@ import SideBarHomePage from './sideBarSection/SideBarHomePage';
 import BestSeller from './homePageSection/BestSeller';
 import '../styles/BodySection.css';
 import YouMightLike from './homePageSection/YouMightLike';
+import Gallery from './homePageSection/Gallery';
 
 function BodySection(props) {
 
     const homePageContent = () => {
         return (
             <>
+                <Gallery />
                 <div className='n-title-productlist'>Sản Phẩm bán chạy</div>
                 <BestSeller />
                 <div className='n-title-productlist mt-4'>Các sản phẩm dành cho bạn</div>

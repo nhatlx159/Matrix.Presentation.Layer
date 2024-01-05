@@ -84,6 +84,15 @@
 .default-address i {
     margin-right: 5px;
 }
+.add-new-address{
+    height: 100%;
+}
+.input-check-box{
+    margin: 0;
+    width: 6.2%;
+    margin-left: 10px;
+    margin-bottom: 11px;
+}
 .title-add-new-address {
     text-align: center;
     font-size: 20px;

@@ -12,10 +12,6 @@ function BestSeller(props) {
                 <ProductComponent />
                 <ProductComponent />
                 <ProductComponent />
-                <ProductComponent />
-                <ProductComponent />
-                <ProductComponent />
-                <ProductComponent />
             </div>
             <div className='n-btn-productlist mt-4'>
                 <button className="btn btn-primary">Xem thêm</button>

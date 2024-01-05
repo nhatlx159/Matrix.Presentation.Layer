@@ -5,14 +5,9 @@ import 'slick-carousel/slick/slick-theme.css';
 import ProductComponent from '../productSection/ProductComponent';
 
 function YouMightLike(props) {
-
     return (
         <>
             <div className="row n-row-productlist">
-                <ProductComponent />
-                <ProductComponent />
-                <ProductComponent />
-                <ProductComponent />
                 <ProductComponent />
                 <ProductComponent />
                 <ProductComponent />
