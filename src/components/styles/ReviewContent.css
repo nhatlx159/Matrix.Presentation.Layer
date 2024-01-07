@@ -39,14 +39,14 @@
 
 .send {
     color: #fff;
-    background-color: #1aaada;
-    border-color: #1aaada;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 .send:hover {
     color: #fff;
-    background-color: #05b9f5;
-    border-color: #05b9f5;
+    background-color: #0d45a5;
+    border-color: #0d45a5;
 }
 
 
@@ -87,4 +87,41 @@
 
 .rating:hover>input:checked~label:before {
     opacity: 0.4
+}
+
+.file-upload {}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #007bff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+    margin-bottom: 20px;
+}
+
+input[type=file]::file-selector-button:hover {
+    background: #0d45a5;
+}
+
+.image-file {
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+.pic-upload {
+    top: 15px;
+    position: absolute;
+}
+.remove-image-file {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 30px;
+    cursor: pointer;
 }
