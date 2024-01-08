@@ -1,68 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/Cart.css';
 import { useNavigate } from 'react-router-dom';
+import $ from 'jquery';
 
 function Cart(props) {
+    const [allChecked, setAllChecked] = useState(true);
     const nav = useNavigate();
-    const handlePayment = ()=> {
+    const handlePayment = () => {
         nav('/checkout')
+    }
+    const payAllProduct = ()=> {
+        setAllChecked(!allChecked);
+        $('.select-to-payment').prop('checked', allChecked);
     }
     return (
         <div className="container n-cart">
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th className="text-center" scope="col-1"></th>
-                        <th className="text-center" scope="col-1"></th>
-                        <th className="text-center" scope="col-2">Tên sản phẩm</th>
-                        <th className="text-center" scope="col-2">Giá</th>
-                        <th className="text-center" scope="col-2">Số lượng</th>
-                        <th className="text-center" scope="col-2">Tổng tiền</th>
-                        <th className="text-center" scope="col-1"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* Product 1 */}
-                    <tr data-price={50.00}>
-                        <td className="text-center">
-                            <input type="checkbox" className="form-check-input product-checkbox" />
-                        </td>
-                        <td className="text-center"><img src="https://3dcomputer.vn/uploads/images/products/cac-man-hinh/rtx2080-gigabyte/geforce-rtx-2080-gaming-oc-8g.png" alt="Product 1" className="image-cart" /></td>
-                        <td className="text-center">Product 1 ./node_modules/source-maptyleductInfomation.css</td>
-                        <td className="text-center">₫60.000.000</td>
-                        <td className="text-center">
-                            <input type="number" className="form-control form-control-cart quantity-input" defaultValue={1} min={1} />
-                            <p className='instock'>còn lại: 10</p>
-                        </td>
-                        <td className="total-price text-center">₫60.000.000</td>
-                        <td className="text-center"><i className="fa fa-trash"></i></td>
-                    </tr>
-                    <tr data-price={50.00}>
-                        <td className="text-center">
-                            <input type="checkbox" className="form-check-input product-checkbox" />
-                        </td>
-                        <td className="text-center"><img src="https://halinhcomputer.vn/uploads/images/products/cac-man-hinh/galax-rtx-2080-sg-edition-8gb-gddr6.jpg" alt="Product 1" className="img-thumbnail" style={{ width: '100px' }} /></td>
-                        <td className="text-center">Product 1 ./node_modules/source-maptyleductInfomation.css</td>
-                        <td className="text-center">₫60.000.000</td>
-                        <td className="text-center">
-                            <input type="number" className="form-control form-control-cart quantity-input" defaultValue={1} min={1} />
-                            <p className='instock'>còn lại: 10</p>
-                        </td>
-                        <td className="total-price text-center">₫60.000.000</td>
-                        <td className="text-center"><i className="fa fa-trash"></i></td>
-                    </tr>
-                    
-                    {/* Add more products as needed */}
-                </tbody>
-            </table>
-            {/* Total Price */}
-            <div className="text-right">
+            <div className='n-title-productlist cart-title'>Hàng của bạn ở đây nè :)))</div>
+            <span className='text-primary pay-all' onClick={()=> payAllProduct(allChecked)}>Thanh toán hết tất cả<i className="fa fa-caret-right text-primary ml-2" aria-hidden="true"></i></span>
+            <form className='row justify-content-center items-cart'>
+                {/* product */}
+                <div className="item-in-cart col-6 col-md-4">
+                    <input type="checkbox" className='select-to-payment' value={60.00} />
+                    <img src="https://pbs.twimg.com/media/GDSdw8FbIAANMY0?format=jpg&name=large" className='pic ml-2' alt="" /><br />
+                    <span className='cart-item-title'>Tên sản phẩm: <p>Mòe cỏ</p></span><br />
+                    <span className='cart-item-title'>Đơn giá: <p>$60.000</p></span><br />
+                    <span className='cart-item-title'>Số lượng:
+                        <button className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">-</button>
+                        <p>1</p>
+                        <div className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">+</div>
+                    </span>
+                </div>
+                <div className="item-in-cart col-6 col-md-4">
+                    <input type="checkbox" className='select-to-payment' value={60.00} />
+                    <img src="https://avatars.githubusercontent.com/u/75898680?v=4" className='pic ml-2' alt="" /><br />
+                    <span className='cart-item-title'>Tên sản phẩm: <p>Mòe nhà</p></span><br />
+                    <span className='cart-item-title'>Đơn giá: <p>$1.200.000</p></span><br />
+                    <span className='cart-item-title'>Số lượng:
+                        <button className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">-</button>
+                        <p>1</p>
+                        <div className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">+</div>
+                    </span>
+                </div>
+                <div className="item-in-cart col-6 col-md-4">
+                    <input type="checkbox" className='select-to-payment' value={60.00} />
+                    <img src="https://pbs.twimg.com/media/GDSdw8FbIAANMY0?format=jpg&name=large" className='pic ml-2' alt="" /><br />
+                    <span className='cart-item-title'>Tên sản phẩm: <p>Mòe cỏ</p></span><br />
+                    <span className='cart-item-title'>Đơn giá: <p>$60.000</p></span><br />
+                    <span className='cart-item-title'>Số lượng:
+                        <button className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">-</button>
+                        <p>1</p>
+                        <div className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">+</div>
+                    </span>
+                </div>
+                <div className="item-in-cart col-6 col-md-4">
+                    <input type="checkbox" className='select-to-payment' value={60.00} />
+                    <img src="https://pbs.twimg.com/media/GDSdw8FbIAANMY0?format=jpg&name=large" className='pic ml-2' alt="" /><br />
+                    <span className='cart-item-title'>Tên sản phẩm: <p>Mòe cỏ</p></span><br />
+                    <span className='cart-item-title'>Đơn giá: <p>$60.000</p></span><br />
+                    <span className='cart-item-title'>Số lượng:
+                        <button className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">-</button>
+                        <p>1</p>
+                        <div className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">+</div>
+                    </span>
+                </div>
+                
+
+            </form>
+
+            {/* <div className="text-right">
                 <h4>Tổng: <span id="total-price">₫0</span></h4>
             </div>
-            {/* Checkout Button */}
             <div className="text-right mt-3">
                 <button className="btn btn-primary" onClick={handlePayment}>Tiến hành thanh toán</button>
-            </div>
+            </div> */}
+            <div className="n-title-productlist"></div>
         </div>
     );
 }
