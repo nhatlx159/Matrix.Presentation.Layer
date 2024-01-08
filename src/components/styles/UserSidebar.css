@@ -44,8 +44,33 @@
     text-align: center;
 }
 
+.profile-avatar {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.change-avt {
+    position: absolute;
+    bottom: 0;
+    right: 30%;
+    color: gray;
+}
+
+.change-avt:hover {
+    cursor: pointer;
+}
+.profile-avatar > .profile-avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
 @media only screen and (max-width: 720px) {
     .sidebar-user-info {
         width: 70%;
+    }
+    .change-avt {
+        right: 17%;
     }
 }

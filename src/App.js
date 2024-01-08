@@ -11,6 +11,7 @@ import CheckOut from "./components/sections/CheckOut";
 import ViewUserInfo from "./components/sections/ViewUserInfo";
 import UserOrderManagement from "./components/sections/userSection/UserOrderManagement";
 import Footer from "./components/footer/Footer";
+import UserChangeAvatar from "./components/sections/userSection/UserChangeAvatar";
 
 
 
@@ -29,7 +30,7 @@ function App() {
         <Route path="/userinfo" element={<ViewUserInfo />}></Route>
         <Route path="/ordermanagement" element={<ViewUserInfo />}></Route>
         <Route path="/useraddress" element={<ViewUserInfo />}></Route>
-
+        <Route path="/changeavatar" element={<ViewUserInfo />} ></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

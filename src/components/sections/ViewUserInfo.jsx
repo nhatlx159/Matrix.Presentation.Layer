@@ -5,6 +5,7 @@ import UserAddress from './userSection/UserAddress';
 import UserInfomation from './userSection/UserInfomation';
 import { Route, useLocation } from 'react-router-dom';
 import UserOrderManagement from './userSection/UserOrderManagement';
+import UserChangeAvatar from './userSection/UserChangeAvatar';
 
 function ViewUserInfo(props) {
     const location = useLocation();
@@ -15,6 +16,8 @@ function ViewUserInfo(props) {
             return <UserOrderManagement />
         } else if (location.pathname === "/useraddress") {
             return <UserAddress />
+        } else if (location.pathname === "/changeavatar") {
+            return <UserChangeAvatar />
         }
     }
     

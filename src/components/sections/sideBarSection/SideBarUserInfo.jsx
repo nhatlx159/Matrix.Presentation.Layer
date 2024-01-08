@@ -6,6 +6,10 @@ function SideBarUserInfo(props) {
     return (
         <aside className="sidebar-user-info">
             <div className="user">
+                <div className="profile-avatar">
+                    <img className='profile-avatar-img' src="https://avatars.githubusercontent.com/u/75898680?v=4" alt="user avatar" />
+                    <Link className="change-avt" to="/changeavatar"><i className="fas fa-edit"></i></Link>
+                </div>
                 <div className="user-name">Vermillion</div>
                 <p>Hạng thành viên: Diamond</p>
                 <p>(Points: 198.675)</p>

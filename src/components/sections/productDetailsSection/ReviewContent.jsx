@@ -2,28 +2,12 @@ import React, { useEffect, useState } from 'react';
 import '../../styles/ReviewContent.css';
 
 function ReviewContent(props) {
-    const [uploadedImages, setUpdaloadedImages] = useState(new Object());
-    // const [srcImgUpload, setSrcImgUpload] = useState(new Array());
     const [imageArray, setImageArray] = useState(new Array());
     const handleUpload = () => {
-        if (!uploadedImages) {
-            console.log("no file upload!");
-            return;
-        }
         console.log(imageArray);
     }
-    const uploadImage = (value) => {
-        setUpdaloadedImages(value)
-        setImageArray(Array.from(value))
-        // Object.keys(value).forEach((k, v) => {
-        //     const src = URL.createObjectURL(value[v])
-        //     srcImgUpload.push(src)
-        // })
-        // console.log(srcImgUpload);
-    }
+
     const removeImageUpload = (src) => {
-        // const filteredImageUpload = srcImgUpload.filter(item => item !== src);
-        // setSrcImgUpload(filteredImageUpload);
         const filteredImageUpload = imageArray.filter(item => item !== src);
         setImageArray(filteredImageUpload);
     }
@@ -45,16 +29,7 @@ function ReviewContent(props) {
                                 <textarea className="form-control" placeholder="Bạn nghĩ gì về sản phẩm này?" rows={4} defaultValue={""} />
                             </div>
                             <input type="file" className='file-upload' max={3} multiple accept='image/*'
-                                onChange={(e) => uploadImage(e.target.files)} /><br />
-
-                            {/* {srcImgUpload ? srcImgUpload.map((k, v) => {
-                                return (
-                                    <div className='image-file'>
-                                        <img className='pic pic-upload' src={srcImgUpload[v]} />
-                                        <span className='remove-image-file' onClick={() => removeImageUpload(srcImgUpload[v])}>×</span>
-                                    </div>
-                                )
-                            }) : ""} */}
+                                onChange={(e) => setImageArray(Array.from(e.target.files))} /><br />
                             {imageArray ? imageArray.map((k, v) => {
                                 const src = URL.createObjectURL(imageArray[v])
                                 return (
@@ -63,7 +38,7 @@ function ReviewContent(props) {
                                         <span className='remove-image-file' onClick={() => removeImageUpload(imageArray[v])}>×</span>
                                     </div>
                                 )
-                            }) : ""}
+                            }) : "No file uploaded!!!"}
 
                             <div className="comment-btns mt-2">
                                 <div className="row">
