@@ -1,0 +1,15 @@
+.form-change-avatar{
+    border: 1px dashed black;
+    border-radius: 10px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.change-user-avatar {
+    margin-top: 25px;
+}
+
+.pic-avatar-upload {
+    border-radius: 50%;
+}
