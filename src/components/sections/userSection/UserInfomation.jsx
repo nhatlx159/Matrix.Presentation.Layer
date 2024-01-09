@@ -43,6 +43,7 @@ function UserInfomation(props) {
             phone: Yup.string()
                 .required("Required!")
                 .min(8)
+                .max(15)
                 .matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/, "Phone isn't valid!"),
             gender: Yup.string()
                 .required("Required!"),

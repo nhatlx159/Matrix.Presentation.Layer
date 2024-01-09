@@ -17,7 +17,7 @@ function CheckOutAdresses(props) {
         return (
             <form id="addressForm">
                 <div className="address-card">
-                    <input type="radio" id="age1" name="age" defaultValue={30} checked />
+                    <input type="radio" id="age1" name="age" defaultValue={30} />
                     <div className="address-field">
                         <span className="address-label">Hoàng Nhật</span>
                     </div>

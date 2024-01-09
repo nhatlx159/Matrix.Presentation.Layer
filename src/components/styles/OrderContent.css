@@ -12,6 +12,9 @@
 .p-text {
     margin-top: 10px;
 }
+.choose-payment-method:hover {
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 720px) {
     .checkout-section {

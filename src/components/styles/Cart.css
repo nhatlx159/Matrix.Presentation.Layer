@@ -25,6 +25,7 @@
     margin-left: 10px;
     font-style: italic;
     font-size: 12px;
+    margin-bottom: 10px;
 }
 .image-cart {
     width: 100px;
@@ -63,6 +64,14 @@
     text-align: center;
     border-radius: 5px;
     user-select: none;
+}
+
+.checkbox-select {
+    border: 0.5px solid gray;
+    width: 13px;
+    height: 13px;
+    border-radius: 2px;
+    display: inline-block;
 }
 
 .pay-all:hover {

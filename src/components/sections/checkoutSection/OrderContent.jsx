@@ -98,7 +98,7 @@ function OrderContent(props) {
                     </tr>
                 </thead>
                 <tbody style={{ width: '100%' }}>
-                    <tr onClick={(e)=> setPaymentMethod("cod")}>
+                    <tr className='choose-payment-method' onClick={(e)=> setPaymentMethod("cod")}>
                         <td className='col-1'></td>
                         <td className='col'>
                             <p className="p-text">Thanh toán khi nhận hàng</p>
@@ -107,7 +107,7 @@ function OrderContent(props) {
                             <img className="logo-payment-service" src="https://img.freepik.com/premium-vector/cod-icon-shipping-cash-delivery-symbol-vector-logo-template_883533-219.jpg" alt="" />
                         </td>
                     </tr>
-                    <tr onClick={(e)=> setPaymentMethod("zalo")}>
+                    <tr className='choose-payment-method' onClick={(e)=> setPaymentMethod("zalo")}>
                         <td className='col-1'></td>
                         <td className='col'>
                             <p className="p-text">Thanh toán bằng Zalo Pay</p>
@@ -116,7 +116,7 @@ function OrderContent(props) {
                             <img className="logo-payment-service" src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-ZaloPay-Square.png" alt="" />
                         </td>
                     </tr>
-                    <tr onClick={(e)=> setPaymentMethod("momo")}>
+                    <tr className='choose-payment-method' onClick={(e)=> setPaymentMethod("momo")}>
                         <td className='col-1'>
                         </td>
                         <td className='col'>
@@ -126,9 +126,9 @@ function OrderContent(props) {
                             <img className="logo-payment-service" src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square.png" alt="" />
                         </td>
                     </tr>
-                    <tr onClick={(e)=> setPaymentMethod("paypal")}>
+                    <tr className='choose-payment-method' onClick={(e)=> setPaymentMethod("paypal")}>
                         <td className='col-1'></td>
-                        <td className='col'>
+                        <td className='col choose-payment-method'>
                             <p className="p-text">Thanh toán bằng Paypal</p>
                         </td>
                         <td className='col-2'>
