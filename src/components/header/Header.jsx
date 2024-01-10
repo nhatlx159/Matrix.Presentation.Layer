@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import '../styles/Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import $ from 'jquery';
 
 
 function Header(props) {
     const [isLogin, setIsLogin] = useState(true);
+    const nav = useNavigate();
     $(document).ready(function () {
         var isHovered = false;
 
@@ -27,13 +28,17 @@ function Header(props) {
             }, 500);
         });
     });
-
+    
     const avatarIcon = () => {
         return (
             <div className='avt-icon'>
                 <img className='avt-image' src="https://avatars.githubusercontent.com/u/75898680?v=4" alt="avatar" />
             </div>
         )
+    }
+    const handleSearch = (e)=> {
+        e.preventDefault()
+        nav('/search')
     }
 
     return (
@@ -45,14 +50,14 @@ function Header(props) {
                 <span className="navbar-toggler-icon" />
             </button>
             {/* Form tìm kiếm di chuyển ra ngoài collapse */}
-            <form className="form-inline my-lg-0 ml-auto">
+            <form className="form-inline my-lg-0 ml-auto" onSubmit={(e)=>handleSearch(e)}>
                 <div className="input-group">
                     <div className="input-group-prepend">
                         <span className="input-group-text">
                             <i className="fas fa-search" />
                         </span>
                     </div>
-                    <input className="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..." aria-label="Search" />
+                    <input className="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..." aria-label="Search" required />
                     <div className="input-group-append">
                         <button className="btn btn-outline-success my-sm-0" type="submit">Tìm Kiếm</button>
                     </div>

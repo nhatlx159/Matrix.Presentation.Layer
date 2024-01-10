@@ -1,0 +1,15 @@
+.sort-bar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.sort-bar-component{
+    border: 0px solid #007bff;
+    border-radius: 10px;
+    font-size: 13px;
+}
+.sort-bar-component:hover {
+    border: 0px solid orange;
+    box-shadow: 0px 5px 5px orange;
+}
