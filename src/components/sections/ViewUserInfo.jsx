@@ -8,6 +8,7 @@ import UserOrderManagement from './userSection/UserOrderManagement';
 import UserChangeAvatar from './userSection/UserChangeAvatar';
 
 function ViewUserInfo(props) {
+    window.scrollTo(0, 0)
     const location = useLocation();
     const displayUserBody = ()=> {
         if(location.pathname === "/userinfo"){

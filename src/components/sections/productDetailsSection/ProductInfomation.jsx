@@ -3,18 +3,18 @@ import $ from 'jquery';
 import '../../styles/ProductInfomation.css';
 
 function ProductInfomation(props) {
-    const quantityChange = ()=> {
+    const quantityChange = () => {
         $(document).ready(function () {
             // Get the initial quantity value
             var quantity = parseInt($("#quantityInput").val());
-        
+
             // Increase quantity
             $("#increaseBtn").click(function () {
                 quantity++;
                 console.log(quantity);
                 $("#quantityInput").val(quantity);
             });
-        
+
             // Decrease quantity (minimum value is 1)
             $("#decreaseBtn").click(function () {
                 if (quantity > 1) {
@@ -24,7 +24,7 @@ function ProductInfomation(props) {
             });
         });
     }
-    useEffect(()=> {
+    useEffect(() => {
         quantityChange()
     }, [])
     return (
@@ -49,11 +49,11 @@ function ProductInfomation(props) {
                         <h3 className="product-title">Iphone 12 64gb bản quốc tế</h3>
                         <div className="n-product-details-rating">
                             <div className="stars">
-                                <span className="fa fa-star checked" />
-                                <span className="fa fa-star checked" />
-                                <span className="fa fa-star checked" />
-                                <span className="fa fa-star" />
-                                <span className="fa fa-star" />
+                                <span className="fa fa-star star-active" />
+                                <span className="fa fa-star star-active" />
+                                <span className="fa fa-star star-active" />
+                                <span className="fa fa-star star-active" />
+                                <span className="fa fa-star star-inactive" />
                             </div>
                             <span className="review-no">41 lượt đánh giá</span>
                         </div>

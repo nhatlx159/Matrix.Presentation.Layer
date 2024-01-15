@@ -5,6 +5,7 @@ import FilterBar from './productSection/FilterBar';
 import ProductComponent from './productSection/ProductComponent';
 
 function ViewProduct(props) {
+    window.scrollTo(0, 0)
     const location = useLocation();
     const [titleContent, setTitleContent] = useState('');
     const displayContent = () => {

@@ -6,7 +6,7 @@ import YouMightLike from './homePageSection/YouMightLike';
 import Gallery from './homePageSection/Gallery';
 
 function BodySection(props) {
-
+    window.scrollTo(0, 0)
     const homePageContent = () => {
         return (
             <>

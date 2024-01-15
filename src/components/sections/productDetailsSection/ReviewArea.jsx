@@ -44,16 +44,16 @@ function ReviewArea(props) {
                                 </div>
                             </div>
                             <div className="row text-left">
-                                <p className="n-review-content">no such file or directory, open 'C:\Users\DELL\Documents\Matrix\matrix.presentation.layer\src\components\styles\style.css.map'.</p>
+                                <p className="n-review-content">Tuyệt quáaaaaaaaaaaaaaaaaa .. Sản phẩm rất tuyệt vời, tôi sẽ không mua vì tôi đã có rồi ;;-;;</p>
                             </div>
                             <div id="myModal" className="modal">
                                 <span className="close" onClick={closeModalImg}>×</span>
                                 <img className="modal-content" id="img01" src='' alt='' />
                             </div>
                             <div className="row text-left">
-                                <img className="pic" id="myImg01" onClick={imgOpenModal} src="https://pbs.twimg.com/media/GCh7_qsbwAABxo8?format=jpg&name=4096x4096" alt='' />
-                                <img className="pic" id="myImg01" onClick={imgOpenModal} src="https://pbs.twimg.com/media/GC4PycZa0AAL-Tc?format=jpg&name=large" alt='' />
-                                <img className="pic" id="myImg01" onClick={imgOpenModal} src="https://pbs.twimg.com/media/GCruK_3XUAAzjhQ?format=jpg&name=medium" alt='' />
+                                <img className="pic" id="myImg01" onClick={imgOpenModal} src="https://www.digitaltrends.com/wp-content/uploads/2022/04/gigabyte-rtx-3090-ti-gaming-oc-review-12.jpg" alt='' />
+                                <img className="pic" id="myImg01" onClick={imgOpenModal} src="https://assets.hardwarezone.com/img/2020/11/Giga_Main.jpg" alt='' />
+                                <img className="pic" id="myImg01" onClick={imgOpenModal} src="https://news.tandoanh.vn/wp-content/uploads/2022/04/Asus-RTX-3090-Ti-TUF-2.png" alt='' />
                             </div>
 
                         </div>

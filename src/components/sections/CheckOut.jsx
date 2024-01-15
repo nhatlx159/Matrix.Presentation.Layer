@@ -3,6 +3,7 @@ import CheckOutAdresses from './checkoutSection/CheckOutAdresses';
 import OrderContent from './checkoutSection/OrderContent';
 
 function CheckOut(props) {
+    window.scrollTo(0, 0)
     return (
         <div className="container checkout-section">
             <div className="row">
