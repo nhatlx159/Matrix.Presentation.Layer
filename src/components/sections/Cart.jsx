@@ -129,7 +129,6 @@ function Cart(props) {
             <div className="text-right mt-3">
                 <button className="btn btn-primary" onClick={handlePayment}>Tiến hành thanh toán</button>
             </div>
-
         </div>
     );
 }

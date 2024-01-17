@@ -25,11 +25,9 @@ function Login(props) {
                 <input type="email" id="inputEmail" className="form-control" placeholder="Email" required autofocus />
                 <label htmlFor="inputPassword" className="sr-only">Mật khẩu</label>
                 <div className="input-group">
-                    {/* {showPw ? <input type="text" id="inputPassword" className="form-control" placeholder="Mật khẩu" required /> : <input type="text" id="inputPassword" className="form-control" placeholder="Mật khẩu" required />} */}
                     <input type="password" id="inputPassword" className="form-control" placeholder="Mật khẩu" required />
                     <div className="input-group-append">
                         <span className="input-group-text password-icon" id="showPassword" onClick={showPassword}>
-                            {/* {showPw ? <i className="fas fa-eye" id="eyeIcon" /> : <i className="fas fa-eye-slash" id="eyeIcon" />} */}
                             <i className="fas fa-eye-slash" id="eyeIcon" />
                         </span>
                     </div>

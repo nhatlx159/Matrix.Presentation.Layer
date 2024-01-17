@@ -54,7 +54,6 @@ function ForgotPassword(props) {
             $('#eyeIconForgotPasswordConfirm').removeClass('fa-eye').addClass('fa-eye-slash');
         }
     }
-
     const checkUndefinedEmailForgotPasswordError = () => {
         if (formik.errors.emailForgotPassword !== undefined || $('#inputEmailForgotPassword').val() === '') {
             $('#sendVerifyCodeEmailForgotPasswordBtn').prop('disabled', true)
@@ -69,8 +68,6 @@ function ForgotPassword(props) {
             $('#handleVerifyCodeForgotPasswordBtn').prop('disabled', false)
         }
     }
-
-
     const handleVerifyCode = () => {
         setIsVerified(true);
     }
