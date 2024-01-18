@@ -63,7 +63,7 @@ function Register(props) {
                 if (cooldownTime === 0) {
                     clearInterval(cooldown);
                     $('#sendVerifyCodeBtn').prop('disabled', false).text('Gửi mã');
-                    cooldownTime = 300; // Reset cooldown time
+                    cooldownTime = 300;
                 }
             }
         });
