@@ -21,7 +21,7 @@ function ViewUserInfo(props) {
             return <UserChangeAvatar />
         }
     }
-    
+    //aaaaaaaaaaaaaaaaaaaaaaaaaaa
     return (
         <div className='content-user-info'>
             <SideBarUserInfo />

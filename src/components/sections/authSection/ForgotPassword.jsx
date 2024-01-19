@@ -6,12 +6,13 @@ import { useFormik } from 'formik';
 import * as Yup from "yup";
 
 function ForgotPassword(props) {
+    //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     const [showPR, setShowPR] = useState(false);
     const [isVerified, setIsVerified] = useState(false);
 
     const cooldownResendCode = () => {
         let cooldown;
-        let cooldownTime = 60; // 60 seconds
+        let cooldownTime = 60;
 
         $(document).ready(function () {
             $('#sendVerifyCodeEmailForgotPasswordBtn').on('click', function () {
