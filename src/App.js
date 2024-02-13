@@ -32,8 +32,8 @@ function App() {
         <Route path="/ordermanagement" element={<ViewUserInfo />}></Route>
         <Route path="/useraddress" element={<ViewUserInfo />}></Route>
         <Route path="/changeavatar" element={<ViewUserInfo />}></Route>
-        <Route path="/search" element={<ViewProduct />}></Route>
-        <Route path="/category" element={<ViewProduct />}></Route>
+        <Route path="/search/?" element={<ViewProduct />}></Route>
+        <Route path="/category/:category" element={<ViewProduct />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

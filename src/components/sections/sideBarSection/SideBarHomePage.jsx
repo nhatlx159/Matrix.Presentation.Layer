@@ -6,13 +6,13 @@ function SideBarHomePage(props) {
     return (
         <div className="sidebar col-3 col-md-2 py-2">
             <ul style={{fontSize: 'small'}}>
-                <li><Link to="/category"><i className="fas fa-book" /> Sách</Link></li>
-                <li><Link to="/category"><i className="fas fa-laptop" /> Hàng điện tử</Link></li>
-                <li><Link to="/category"><i className="fas fa-tshirt" /> Thời trang</Link></li>
-                <li><Link to="/category"><i className="fas fa-gift" /> Quà lưu niệm</Link></li>
-                <li><Link to="/category"><i className="fas fa-bicycle" /> Xe đạp</Link></li>
-                <li><Link to="/category"><i className="fas fa-gamepad" /> Đồ chơi</Link></li>
-                <li><Link to="/category"><i className="fas fa-baby" /> Đồ dùng cho trẻ em</Link></li>
+                <li><Link to="/category/books"><i className="fas fa-book" /> Sách</Link></li>
+                <li><Link to="/category/electronics"><i className="fas fa-laptop" /> Hàng điện tử</Link></li>
+                <li><Link to="/category/fashion"><i className="fas fa-tshirt" /> Thời trang</Link></li>
+                <li><Link to="/category/souvenir"><i className="fas fa-gift" /> Quà lưu niệm</Link></li>
+                <li><Link to="/category/bicycle"><i className="fas fa-bicycle" /> Xe đạp</Link></li>
+                <li><Link to="/category/toy"><i className="fas fa-gamepad" /> Đồ chơi</Link></li>
+                {/* <li><Link to="/category"><i className="fas fa-baby" /> Đồ dùng cho trẻ em</Link></li> */}
                 {/* <li><Link to="/category"><i className="fas fa-tools" /> Công cụ</Link></li>
                 <li><Link to="/category"><i className="fas fa-heartbeat" /> Sức khỏe và làm đẹp</Link></li>
                 <li><Link to="/category"><i className="fas fa-paint-brush" /> Mỹ thuật</Link></li>

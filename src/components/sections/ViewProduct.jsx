@@ -9,7 +9,7 @@ function ViewProduct(props) {
     const location = useLocation();
     const [titleContent, setTitleContent] = useState('');
     const displayContent = () => {
-        if (location.pathname === "/search") {
+        if (location.pathname === "/search/?q=aaa") {
             return (
                 <>
                     <div className="row n-row-productlist">
@@ -27,7 +27,7 @@ function ViewProduct(props) {
                     </div>
                 </>
             )
-        } else if (location.pathname === "/category") {
+        } else if (location.pathname === "/category/book") {
             return (
                 <>
                     <div className="row n-row-productlist">
