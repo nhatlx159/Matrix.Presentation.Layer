@@ -8,6 +8,7 @@ import axios from 'axios';
 
 function Login(props) {
     const [showPw, setShowPw] = useState(false);
+    const [ipUser, setIpUser] = useState(null);
     const showPassword = () => {
         setShowPw(!showPw)
         const passwordField = $('#inputPassword');
@@ -41,22 +42,26 @@ function Login(props) {
                 email: values.email,
                 password: values.password,
                 agent: navigator.userAgent,
-                ipInfo: "ipInfo"
+                ipInfo: ipUser
             }
             console.log(data);
         }
     })
     let ipInfo = async () => {
-        const request = await fetch("https://ipinfo.io/json?token=022deb5242c70d")
+        const request = await fetch("https://ipinfo.io/json?token=022deb5242c70d", {
+            method: 'get',
+            headers: new Headers({
+                'content-type': 'application/json'
+            })
+        })
         const jsonResponse = await request.json()
-        console.log(jsonResponse)
+        setIpUser(jsonResponse)
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        
-        // console.log(ipInfo);
-        // formik.handleSubmit();
+        await ipInfo()
+        formik.handleSubmit();
     }
     return (
         <div className="container phu-signin-container" id="signInContainer">
