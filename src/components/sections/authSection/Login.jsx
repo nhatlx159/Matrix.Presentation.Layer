@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/Login.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import $ from 'jquery';
 import * as Yup from "yup";
 import axios from 'axios';
+import { loginRequest } from '../../../api_gateway/apiRequest';
 
 function Login(props) {
     const [showPw, setShowPw] = useState(false);
     const [ipUser, setIpUser] = useState(null);
+    const nav = useNavigate();
     const showPassword = () => {
         setShowPw(!showPw)
         const passwordField = $('#inputPassword');
@@ -25,8 +27,8 @@ function Login(props) {
         initialValues: {
             email: "",
             password: "",
-            agent: "",
-            ipInfo: null,
+            userAgent: "",
+            ipInfo: ipUser,
         },
         validationSchema: Yup.object({
             email: Yup.string()
@@ -41,10 +43,11 @@ function Login(props) {
             const data = {
                 email: values.email,
                 password: values.password,
-                agent: navigator.userAgent,
+                userAgent: navigator.userAgent,
                 ipInfo: ipUser
             }
             console.log(data);
+            loginRequest(data, nav)
         }
     })
     let ipInfo = async () => {
