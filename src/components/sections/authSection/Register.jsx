@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import '../../styles/Register.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import $ from 'jquery';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
+import { registerRequest, sendCodeRequest, verifyRegisterCodeRequest } from '../../../api_gateway/apiRequest';
 
 function Register(props) {
     const [showPR, setShowPR] = useState(false);
     const [isVerified, setIsVerified] = useState(false);
+    const [userData, setUserData] = useState(null);
+    const nav = useNavigate();
     let cooldownTime = 300;
     const showPasswordRegister = () => {
         setShowPR(!showPR)
@@ -68,8 +71,26 @@ function Register(props) {
             }
         });
     }
-    const handleVerifyCode = () => {
-        setIsVerified(true);
+    const handleVerifyCode = async(e) => {
+        e.preventDefault();
+        try {
+            const code = {
+                code: formik.values.verifyCode,
+                email: formik.values.email
+            }
+            console.log(code);
+            const verifyCode = await verifyRegisterCodeRequest(code);
+            console.log(verifyCode);
+            if(!verifyCode) {
+                setIsVerified(false)
+                return;
+            }
+            if(verifyCode.status == 200 || verifyCode.status != undefined) {
+                setIsVerified(true)
+            }
+        } catch (error) {
+            throw error
+        }
     }
     const displayAfterVerifiedCode = () => {
         return (
@@ -135,7 +156,7 @@ function Register(props) {
     const formik = useFormik({
         initialValues: {
             email: "",
-            verifyCode: "",
+            verifyCode: null,
             fullname: "",
             phone: "",
             password: "",
@@ -169,9 +190,11 @@ function Register(props) {
                 email: values.email,
                 fullname: values.fullname,
                 phone: values.phone,
-                password: values.password
+                password: values.password,
+                verifyCode: values.verifyCode
             }
             console.log(data);
+            registerRequest(data, nav)
         }
     })
     const handleRegister = (e) => {
@@ -179,6 +202,15 @@ function Register(props) {
         formik.handleSubmit()
     }
 
+    const handleSendcode = (e)=> {
+        e.preventDefault();
+        console.log(formik.values.email);
+        const email = {
+            email: formik.values.email
+        }
+        sendCodeRequest(email)
+        alert("please check code in your email!!")
+    }
     return (
         <div className="container phu-signup-container" id="signUpContainer">
             {cooldownResendCode()}{checkCooldownValue()}{checkUndefinedEmailError()}{checkUndefinedVerifyCodeError()}
@@ -190,7 +222,7 @@ function Register(props) {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         required />
-                    <div className="input-group-append">
+                    <div className="input-group-append" onClick={(e)=>handleSendcode(e)}>
                         <button className="btn btn-primary" type="button" id="sendVerifyCodeBtn" disabled>Gửi mã</button>
                     </div>
                 </div>
@@ -201,7 +233,7 @@ function Register(props) {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         required />
-                    <div className="input-group-append" onClick={() => handleVerifyCode()}>
+                    <div className="input-group-append" onClick={(e) => handleVerifyCode(e)}>
                         <button className="btn btn-primary" type="button" id="handleVerifyCodeBtn" disabled>Xác thực</button>
                     </div>
                 </div>

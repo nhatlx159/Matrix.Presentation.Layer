@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import $ from 'jquery';
 
 
 function Header(props) {
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(false);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")));
     const nav = useNavigate();
     $(document).ready(function () {
         var isHovered = false;
@@ -32,7 +33,7 @@ function Header(props) {
     const avatarIcon = () => {
         return (
             <div className='avt-icon'>
-                <img className='avt-image' src="https://avatars.githubusercontent.com/u/75898680?v=4" alt="avatar" />
+                <img className='avt-image' src={user.avatar} alt="avatar" />
             </div>
         )
     }
@@ -41,6 +42,13 @@ function Header(props) {
         nav('/search')
     }
 
+    useEffect(()=> {
+        if(localStorage.getItem("userData")){
+            setIsLogin(true)
+        }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [localStorage.getItem("userData")])
     return (
         <nav id="phu-navbar" className="navbar navbar-expand-lg navbar-light custom-navbar header fixed-top phu-navbar" style={{ height: '50px' }}>
             <Link className="navbar-brand" to="/" style={{ height: '100%' }}>
@@ -75,8 +83,9 @@ function Header(props) {
                     <li className="nav-item active">
                         <Link id="account-link" className="nav-link" to="/login">
                             {isLogin ? avatarIcon() : <i className="fas fa-user" />}  
-                            <p className='d-inline ml-2'>Furina</p>
+                            {isLogin ? <p className='d-inline ml-2'>{user?.fullName}</p>:<p className='d-inline ml-2'>Tài khoản</p>} 
                         </Link>
+                        
                         <div id="account-dropdown" className="account-dropdown">
                             <ul>
                                 <li><Link to="/userinfo">Thông tin tài khoản</Link></li>
