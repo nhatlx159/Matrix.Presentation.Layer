@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../../styles/UserSidebar.css";
 import { Link } from 'react-router-dom';
 
 function SideBarUserInfo(props) {
+    const [user, setUser] = useState(
+        JSON.parse(localStorage.getItem("userData"))
+      );
     return (
         <aside className="sidebar-user-info">
             <div className="user">
@@ -10,9 +13,9 @@ function SideBarUserInfo(props) {
                     <img className='profile-avatar-img' src="https://avatars.githubusercontent.com/u/75898680?v=4" alt="user avatar" />
                     <Link className="change-avt" to="/changeavatar"><i className="fas fa-edit"></i></Link>
                 </div>
-                <div className="user-name">Vermillion</div>
+                <div className="user-name">{user?.fullName}</div>
                 <p>Hạng thành viên: Diamond</p>
-                <p>(Points: 198.675)</p>
+                <p>(Points: {user?.membershipPoint})</p>
             </div>
             <Link to='/userinfo' className="sidebar-item">
                 <i className="fas fa-user" /> Thông tin tài khoản
