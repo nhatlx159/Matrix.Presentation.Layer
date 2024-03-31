@@ -12,15 +12,11 @@ function ProductComponent(props) {
     } else nav("/productdetails/1");
   };
   return (
-    <>
-      {data
-        ? data.map((key, value) => {
-            return (
               <div
                 className="n-product-component mx-2 my-2"
                 onClick={redirectToDetails}
               >
-                <img
+                {/* <img
                   src={value.productImages[0]}
                   alt=""
                   className="n-product-img"
@@ -32,12 +28,8 @@ function ProductComponent(props) {
                 <div className="n-product-bottom">
                   <div className="n-product-bottom-left">{value.price}</div>
                   <div className="n-product-bottom-right">Đã bán {value.soldQuantity}</div>
-                </div>
+                </div> */}
               </div>
-            );
-          })
-        : ""}
-    </>
   );
 }
 
