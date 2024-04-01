@@ -1,44 +1,101 @@
 import React, { useEffect, useState } from 'react';
 import SideBarHomePage from './sideBarSection/SideBarHomePage';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import FilterBar from './productSection/FilterBar';
 import ProductComponent from './productSection/ProductComponent';
+import '../styles/animatedLoader.css'
 
 function ViewProduct(props) {
     window.scrollTo(0, 0)
     const location = useLocation();
-    const [titleContent, setTitleContent] = useState('');
+    const [data, setData] = useState(JSON.parse(localStorage.getItem('target')))
+    const [dataProduct, setDataProduct] = useState(JSON.parse(localStorage.getItem('searchproduct')))
+    const price = (x) => {
+        x = x.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+        return x
+    }
+    const showTitle = ()=> {
+        if(location.pathname === "/category"){
+            return <div className='n-title-productlist cart-title mb-4'>{'Danh mục: ' + data?.categoryName}</div>
+        } else {
+            return <div className='n-title-productlist cart-title mb-4'>Kết quả tìm kiếm</div>
+        }
+    }
+    
+    useEffect(()=> {
+        setData(JSON.parse(localStorage.getItem('target')))
+    }, [])
+    useEffect(()=> {
+        setDataProduct(JSON.parse(localStorage.getItem('searchproduct')))
+    }, [])
+    useEffect(()=> {
+        setData(JSON.parse(localStorage.getItem('target')))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [localStorage.getItem('target')])
+    useEffect(()=> {
+        setDataProduct(JSON.parse(localStorage.getItem('searchproduct')))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [localStorage.getItem('searchproduct')])
+    
     const displayContent = () => {
-        if (location.pathname === "/search/?q=aaa") {
+        if (location.pathname === "/search") {
             return (
                 <>
                     <div className="row n-row-productlist">
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
+                    {dataProduct
+                        ? dataProduct?.map((value, key) => {
+                            return (
+                            <div
+                                className="n-product-component mx-2 my-2">
+                                <img
+                                src={value?.productImages[0].imageLink}
+                                alt=""
+                                className="n-product-img"
+                                />
+                                <p className="n-product-title" key={key}>
+                                {value?.productName}
+                                </p>
+                                <div className="n-product-flashsale">Flash Sale</div>
+                                <div className="n-product-bottom">
+                                <div className="n-product-bottom-left">{price(value?.price)}</div>
+                                <div className="n-product-bottom-right">Đã bán {value?.soldQuantity}</div>
+                                </div>
+                            </div>
+                            );
+                        })
+                        : <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
                     </div>
                     <div className='n-btn-productlist mt-4'>
                         <button className="btn btn-primary">Xem thêm</button>
                     </div>
                 </>
             )
-        } else if (location.pathname === "/category/book") {
+        } else if (location.pathname === "/category") {
             return (
                 <>
                     <div className="row n-row-productlist">
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
-                        <ProductComponent />
+                    {data
+                        ? data?.productList.map((value, key) => {
+                            return (
+                            <div
+                                className="n-product-component mx-2 my-2">
+                                <img
+                                src={value?.productImages[0].imageLink}
+                                alt=""
+                                className="n-product-img"
+                                />
+                                <p className="n-product-title" key={key}>
+                                {value?.productName}
+                                </p>
+                                <div className="n-product-flashsale">Flash Sale</div>
+                                <div className="n-product-bottom">
+                                <div className="n-product-bottom-left">{price(value?.price)}</div>
+                                <div className="n-product-bottom-right">Đã bán {value?.soldQuantity}</div>
+                                </div>
+                            </div>
+                            );
+                        })
+                        : <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>}
                     </div>
                     <div className='n-btn-productlist mt-4'>
                         <button className="btn btn-primary">Xem thêm</button>
@@ -47,14 +104,15 @@ function ViewProduct(props) {
             )
         }
     }
-    useEffect(() => {
-        setTitleContent(location.pathname.split('/')[1])
-    }, [location.pathname])
+    useEffect(()=> {
+        setData(JSON.parse(localStorage.getItem('target')))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [localStorage.getItem('target')])
     return (
         <div className="row" style={{ marginTop: '100px', marginRight: '0' }}>
             <SideBarHomePage />
             <div className="col">
-                <div className='n-title-productlist cart-title mb-4'>{titleContent}</div>
+                {showTitle()}
                 <FilterBar />
                 {displayContent()}
             </div>

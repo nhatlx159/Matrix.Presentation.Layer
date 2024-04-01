@@ -92,3 +92,56 @@ export const getDataForYou = async() => {
         alert(error);
     }
 }
+
+export const getAllCategories = async() => {
+    try {
+        const result = await axios.get("http://localhost:8080/api/v1/admin/categories", {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*',
+                'Accept-Encoding': 'gzip, deflate, br'
+            }
+        });
+        console.log(result.data);
+        localStorage.setItem('categories', JSON.stringify(result.data))
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+
+export const getAllProductByCategoryId = async(id) => {
+    try {
+        const result = await axios.get(`http://localhost:8080/api/v1/admin/categories/${id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*',
+                'Accept-Encoding': 'gzip, deflate, br'
+            }
+        });
+        console.log(result.data);
+        localStorage.setItem('target', JSON.stringify(result.data))
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+
+
+
+export const getAllProductByName = async(name) => {
+    try {
+        const result = await axios.get(`http://localhost:8080/api/v1/users/products/find?productName=${name}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*',
+                'Accept-Encoding': 'gzip, deflate, br'
+            }
+        });
+        console.log(result.data);
+        localStorage.setItem('searchproduct', JSON.stringify(result.data))
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}

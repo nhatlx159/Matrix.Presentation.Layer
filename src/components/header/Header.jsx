@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import "../styles/Header.css";
 import { Link, useNavigate } from "react-router-dom";
 import $ from "jquery";
+import { getAllProductByName } from "../../api_gateway/apiRequest";
 
 function Header(props) {
   const [isLogin, setIsLogin] = useState(false);
+  const [searchText, setSearchText] = useState(null);
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("userData"))
   );
@@ -38,13 +40,14 @@ function Header(props) {
       </div>
     );
   };
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
+    await getAllProductByName(searchText);
     nav("/search");
   };
 
   const handleLogout = ()=> {
-    localStorage.clear("userData")
+    localStorage.removeItem("userData")
   }
   useEffect(() => {
     if (localStorage.getItem("userData")) {
@@ -52,7 +55,6 @@ function Header(props) {
     } else {
       setIsLogin(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localStorage.getItem("userData")]);
   return (
     <nav
@@ -91,6 +93,7 @@ function Header(props) {
           </div>
           <input
             className="form-control mr-sm-2"
+            onChange={e => setSearchText(e.target.value)}
             type="search"
             placeholder="Tìm kiếm..."
             aria-label="Search"
