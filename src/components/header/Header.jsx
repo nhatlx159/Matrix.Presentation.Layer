@@ -55,6 +55,7 @@ function Header(props) {
     } else {
       setIsLogin(false);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localStorage.getItem("userData")]);
   return (
     <nav

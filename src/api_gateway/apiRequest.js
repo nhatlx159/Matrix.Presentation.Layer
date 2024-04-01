@@ -119,7 +119,6 @@ export const getAllProductByCategoryId = async(id) => {
                 'Accept-Encoding': 'gzip, deflate, br'
             }
         });
-        console.log(result.data);
         localStorage.setItem('target', JSON.stringify(result.data))
         return result
     } catch (error) {

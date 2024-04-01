@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SideBarHomePage from './sideBarSection/SideBarHomePage';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import FilterBar from './productSection/FilterBar';
-import ProductComponent from './productSection/ProductComponent';
 import '../styles/animatedLoader.css'
 
 function ViewProduct(props) {
@@ -21,22 +20,6 @@ function ViewProduct(props) {
             return <div className='n-title-productlist cart-title mb-4'>Kết quả tìm kiếm</div>
         }
     }
-    
-    useEffect(()=> {
-        setData(JSON.parse(localStorage.getItem('target')))
-    }, [])
-    useEffect(()=> {
-        setDataProduct(JSON.parse(localStorage.getItem('searchproduct')))
-    }, [])
-    useEffect(()=> {
-        setData(JSON.parse(localStorage.getItem('target')))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [localStorage.getItem('target')])
-    useEffect(()=> {
-        setDataProduct(JSON.parse(localStorage.getItem('searchproduct')))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [localStorage.getItem('searchproduct')])
-    
     const displayContent = () => {
         if (location.pathname === "/search") {
             return (
@@ -106,8 +89,20 @@ function ViewProduct(props) {
     }
     useEffect(()=> {
         setData(JSON.parse(localStorage.getItem('target')))
+        console.log(data);
+    }, [])
+    useEffect(()=> {
+        setDataProduct(JSON.parse(localStorage.getItem('searchproduct')))
+    }, [])
+    useEffect(()=> {
+        setDataProduct(JSON.parse(localStorage.getItem('searchproduct')))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [localStorage.getItem('searchproduct')])
+    useEffect(()=> {
+        setData(JSON.parse(localStorage.getItem('target')))
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [localStorage.getItem('target')])
+    
     return (
         <div className="row" style={{ marginTop: '100px', marginRight: '0' }}>
             <SideBarHomePage />
