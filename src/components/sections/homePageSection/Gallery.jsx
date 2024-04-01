@@ -1,7 +1,15 @@
-import React from 'react';
+import {React, useState} from 'react';
 import '../../styles/Gallery.css'
-
+import { getAllProductByName } from "../../../api_gateway/apiRequest";
+import { useNavigate } from "react-router-dom";
 function Gallery(props) {
+    const nav = useNavigate();
+    const redirectSearch = async(e, text)=> {
+        e.preventDefault();
+        await getAllProductByName(text);
+        nav("/search");
+    }
+
     return (
         <div className="row n-row-productlist gallery">
             <div className="col-12 col-lg-8 left-gallery">
@@ -30,38 +38,30 @@ function Gallery(props) {
             </div>
             <div className="col-12 col-lg-4 right-gallery">
                 <div className="row">
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1">
-                        <p>Sách</p>
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Tai nghe')}>
+                        <p>Tai nghe</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1">
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Đèn pin')}>
                         <p>Đèn pin</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1">
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Tivi')}>
                         <p>Tivi</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1">
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Loa')}>
                         <p>Loa</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1">
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Máy lạnh')}>
                         <p>Máy lạnh</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1">
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Máy giặt')}>
                         <p>Máy giặt</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1">
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Nồi cơm')}>
                         <p>Nồi cơm điện</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1">
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Lò vi sóng')}>
                         <p>Lò vi sóng</p>
                     </div>
-                    {/* <div className="col-3 col-sm-3 col-lg-4 gallery-right-component"><img className="d-block w-100" src="https://media.bongda.com.vn/files/tung.nguyen/2023/12/29/epl-rule-changes-2023-1459.jpg" alt="Third slide" /></div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component"><img className="d-block w-100" src="https://media.bongda.com.vn/files/tung.nguyen/2023/12/29/epl-rule-changes-2023-1459.jpg" alt="Third slide" /></div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component"><img className="d-block w-100" src="https://media.bongda.com.vn/files/tung.nguyen/2023/12/29/epl-rule-changes-2023-1459.jpg" alt="Third slide" /></div> 
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component"><img className="d-block w-100" src="https://media.bongda.com.vn/files/tung.nguyen/2023/12/29/epl-rule-changes-2023-1459.jpg" alt="Third slide" /></div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component"><img className="d-block w-100" src="https://media.bongda.com.vn/files/tung.nguyen/2023/12/29/epl-rule-changes-2023-1459.jpg" alt="Third slide" /></div> 
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component"><img className="d-block w-100" src="https://media.bongda.com.vn/files/tung.nguyen/2023/12/29/epl-rule-changes-2023-1459.jpg" alt="Third slide" /></div> 
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component"><img className="d-block w-100" src="https://media.bongda.com.vn/files/tung.nguyen/2023/12/29/epl-rule-changes-2023-1459.jpg" alt="Third slide" /></div> */}
-                    
                 </div>
             </div>
         </div>

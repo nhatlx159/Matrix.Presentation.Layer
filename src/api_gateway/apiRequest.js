@@ -132,9 +132,9 @@ export const getAllProductByName = async(name) => {
     try {
         const result = await axios.get(`http://localhost:8080/api/v1/users/products/find?productName=${name}`, {
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'text/json',
                 'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate, br'
+                'Accept-Encoding': 'gzip, deflate, br',
             }
         });
         console.log(result.data);
