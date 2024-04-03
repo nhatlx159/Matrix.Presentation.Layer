@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import "../../styles/BestSeller.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { getDataTopSelling } from "../../../api_gateway/apiRequest";
+import { getDataTopSelling, getProductDetails } from "../../../api_gateway/apiRequest";
+import { useNavigate } from "react-router-dom";
 function BestSeller(props) {
   const [data, setData] = useState(JSON.parse(localStorage.getItem('topselling')));
+  const nav = useNavigate();
     useEffect( () => {
       getDataTopSelling()
       setData(JSON.parse(localStorage.getItem('topselling')))
@@ -18,6 +20,11 @@ function BestSeller(props) {
     const price = (x) => {
       x = x.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
       return x
+    }
+  const redirectToDetails = async (e, id)=> {
+    e.preventDefault()
+    await getProductDetails(id)
+    nav('/productdetails');
   }
   getDataTopSelling()
   return (
@@ -27,6 +34,7 @@ function BestSeller(props) {
         ? data?.map((value, key) => {
             return (
               <div
+                onClick={(e)=>redirectToDetails(e, value.id)}
                 className="n-product-component mx-2 my-2">
                 <img
                   src={value?.productImages[0].imageLink}

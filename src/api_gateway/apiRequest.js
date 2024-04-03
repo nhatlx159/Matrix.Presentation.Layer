@@ -144,3 +144,21 @@ export const getAllProductByName = async(name) => {
         alert(error);
     }
 }
+
+
+export const getProductDetails = async(id) => {
+    try {
+        const result = await axios.get(`http://localhost:8080/api/v1/admin/products/${id}`, {
+            headers: {
+                'Content-Type': 'text/json',
+                'Accept': '*/*',
+                'Accept-Encoding': 'gzip, deflate, br',
+            }
+        });
+        console.log(result.data);
+        localStorage.setItem('productdetails', JSON.stringify(result.data))
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}

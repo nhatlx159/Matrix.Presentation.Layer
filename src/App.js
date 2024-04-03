@@ -25,14 +25,14 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
-        <Route path="/productdetails/:productId" element={<ViewProductDetails />}></Route>
+        <Route path="/productdetails" element={<ViewProductDetails />}></Route>
         <Route path="/cartdetails" element={<Cart />}></Route>
         <Route path="/checkout" element={<CheckOut />}></Route>
         <Route path="/userinfo" element={<ViewUserInfo />}></Route>
         <Route path="/ordermanagement" element={<ViewUserInfo />}></Route>
         <Route path="/useraddress" element={<ViewUserInfo />}></Route>
         <Route path="/changeavatar" element={<ViewUserInfo />}></Route>
-        <Route path="/search/?" element={<ViewProduct />}></Route>
+        <Route path="/search" element={<ViewProduct />}></Route>
         <Route path="/category" element={<ViewProduct />}></Route>
       </Routes>
       <Footer />

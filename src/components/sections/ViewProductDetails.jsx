@@ -5,14 +5,13 @@ import ReviewContent from './productDetailsSection/ReviewContent';
 import ReviewArea from './productDetailsSection/ReviewArea';
 
 function ViewProductDetails(props) {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+
     return (
         <div className='container'>
             <ProductInfomation />
-            <RelatedProducts />
+            {/* <RelatedProducts /> */}
             <ReviewContent />
-            <ReviewArea />
-            <ReviewArea />
             <ReviewArea />
         </div>
     );

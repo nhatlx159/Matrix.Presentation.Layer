@@ -49,6 +49,14 @@ function Header(props) {
   const handleLogout = ()=> {
     localStorage.removeItem("userData")
   }
+  const countCart = ()=> {
+    let c = 0;
+    for (let i = 0; i < user?.cartDetails.length; i++) {
+      const ele = user?.cartDetails[i]
+      c = c + ele.itemQuantity
+    }
+    return c;
+  }
   useEffect(() => {
     if (localStorage.getItem("userData")) {
       setIsLogin(true);
@@ -154,7 +162,7 @@ function Header(props) {
           <li className="nav-item active">
             <Link className="nav-link" to="/cartdetails">
               <i className="fas fa-shopping-cart fa-lg fa-relative">
-                <span className="badge badge-danger">{user?.cartDetails.length}</span>
+                <span className="badge badge-danger">{countCart()}</span>
               </i>
             </Link>
           </li>

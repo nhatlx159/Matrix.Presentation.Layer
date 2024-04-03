@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/Cart.css';
 import { useNavigate } from 'react-router-dom';
 import $ from 'jquery';
@@ -6,6 +6,7 @@ import $ from 'jquery';
 function Cart(props) {
     const [allChecked, setAllChecked] = useState(true);
     const [totalPricee, setTotalPricee] = useState(0);
+    const [data, setData] = useState(JSON.parse(localStorage.getItem('userData')).cartDetails)
     let listChecked = [];
     let totalPrice = 0;
     const nav = useNavigate();
@@ -36,12 +37,35 @@ function Cart(props) {
         x = x.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
         return x
     }
+    useEffect(()=> {
+        setData(JSON.parse(localStorage.getItem('userData')).cartDetails)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [localStorage.getItem('userData')])
     return (
         <div className="container n-cart">
             <div className='n-title-productlist cart-title'>Hàng của bạn ở đây nè :)))</div>
             <span className='text-primary pay-all' onClick={() => payAllProduct(allChecked)}>Thanh toán hết tất cả<i className="fa fa-caret-right text-primary ml-2" aria-hidden="true"></i></span>
             <form className='row justify-content-center items-cart'>
                 {/* product */}
+                {data ? data.map((key, value)=> {
+                    return (
+                        <div className="item-in-cart col-6 col-md-4">
+                            <input type="checkbox" className='select-to-payment' onClick={checkedValue} value={12000000} />
+                            {/* <span className='checkbox-select'></span> */}
+                            <img src="https://nguyencongpc.vn/media/news/1904_aumuc.jpeg" className='pic ml-2' alt="" /><br />
+                            <span className='cart-item-title'>Tên sản phẩm: <p>Nvidia RTX 3090</p></span><br />
+                            <span className='cart-item-title'>Đơn giá: <p>12.000.000 VND</p></span><br />
+                            <span className='cart-item-title'>Số lượng:
+                                <button className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">-</button>
+                                <p className='product-cart-quantity'>1</p>
+                                <div className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">+</div>
+                            </span><br />
+                            <div className="instock">chỉ còn lại 3 sản phẩm</div><br />
+                            <div className="btn btn-danger btn-sm">Remove</div>
+                        </div>
+                    )
+                }) : ""
+                }
                 <div className="item-in-cart col-6 col-md-4">
                     <input type="checkbox" className='select-to-payment' onClick={checkedValue} value={12000000} />
                     {/* <span className='checkbox-select'></span> */}
