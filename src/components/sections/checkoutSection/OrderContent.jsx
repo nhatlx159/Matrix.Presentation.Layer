@@ -65,7 +65,7 @@ function OrderContent(props) {
             </table>
             <div className="cost-section mb-4">
                 <div className="shipping-cost">Phí giao hàng: 20.000 VND</div>
-                <div className="promo">Mã giảm giá: 90% </div>
+                <div className="promo">Chiết khấu hạng thành viên: 10% </div>
                 <div className="total-price">Giá: 49.000 VNĐ</div>
             </div>
             <table className="table row">

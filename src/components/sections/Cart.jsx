@@ -9,50 +9,59 @@ function Cart(props) {
     const [data, setData] = useState(JSON.parse(localStorage.getItem('userData')).cartDetails);
     let listChecked = [];
     let idss = [];
-    let lstToOrder = [];
+    let lstorder = [];
     let totalPrice = 0;
     const nav = useNavigate();
     const payAllProduct = () => {
         setAllChecked(!allChecked);
         $('.select-to-payment').prop('checked', allChecked);
         listChecked = Array.from($(":checkbox:checked"));
-        for (let i = 0; i < listChecked.length; i++) {
-            const ele = listChecked[i];
-            idss.push(ele.id);
-            totalPrice += parseInt(ele.value)
-        }
-        console.log(idss);
-        console.log(totalPrice);
-        for (let i = 0; i < idss.length; i++) {
-            const ele = idss[i];
-            const toOrder = data.find((cart)=> cart.id = ele)
-            lstToOrder.push(toOrder);
-        }
-        console.log(lstToOrder);
-        localStorage.setItem('itemorder', JSON.stringify(lstToOrder))
-        setTotalPricee(totalPrice)
-    }
-    
-    const checkedValue = () => {
-        listChecked = Array.from($(":checkbox:checked"));
         var lstId = [];
-        var lstorder = [];
-        idss = lstId;
         for (let i = 0; i < listChecked.length; i++) {
             const ele = listChecked[i];
             lstId.push(ele.id);
             totalPrice += parseInt(ele.value)
         }
         idss = lstId;
-        for (let i = 0; i < lstId.length; i++) {
-            const ele = lstId[i];
-            const toOrder = data.find((cart)=> cart.id = ele)
-            // lstToOrder.push(toOrder);
-            lstorder.push(toOrder);
+        let lstordertimely = [];
+        for (let i = 0; i < idss.length; i++) {
+            const ele = idss[i];
+            for (let j = 0; j < data.length; j++) {
+                const crt = data[j];
+                if(crt.productId === ele){
+                    lstordertimely.push(crt);
+                }
+            }
         }
+        lstorder = lstordertimely;
         localStorage.setItem('itemorder', JSON.stringify(lstorder))
-        console.log('lstToOrder: ', lstToOrder);
-        console.log('lstId: ', lstId);
+        setTotalPricee(totalPrice)
+    }
+    const checkedValue = () => {
+        listChecked = Array.from($(":checkbox:checked"));
+        var lstId = [];
+        for (let i = 0; i < listChecked.length; i++) {
+            const ele = listChecked[i];
+            lstId.push(ele.id);
+            totalPrice += parseInt(ele.value)
+        }
+        idss = lstId;
+        let lstordertimely = []
+        console.log('idss: ', idss);
+        for (let i = 0; i < idss.length; i++) {
+            const ele = idss[i];
+            console.log('ele: ' , ele);
+            for (let j = 0; j < data.length; j++) {
+                const crt = data[j];
+                if(crt.productId === ele){
+                    lstordertimely.push(crt);
+                }
+            }
+        }
+        lstorder = lstordertimely;
+        console.log('lstorder: ', lstorder);
+        console.log('idss: ', idss);
+        localStorage.setItem('itemorder', JSON.stringify(lstorder))
         setTotalPricee(totalPrice)
     }
 
