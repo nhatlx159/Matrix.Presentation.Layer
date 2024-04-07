@@ -3,6 +3,7 @@ import '../../styles/OrderContent.css';
 
 function OrderContent(props) {
     const [paymentMethod, setPaymentMethod] = useState('');
+    const [orderItem, setOrderItem] = useState(JSON.parse(localStorage.getItem('itemorder')))
     const displayBtnPayment = () => {
         if (paymentMethod === "zalo") {
             return (
@@ -26,6 +27,10 @@ function OrderContent(props) {
     useEffect(()=> {
         
     }, [paymentMethod])
+    const price = (x) => {
+        x = x.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+        return x
+      }
     return (
         <div className="col-md-6">
             <table className="table">
@@ -38,48 +43,24 @@ function OrderContent(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <p className='text-center'>Sản phẩm 1</p>
-                        </td>
-                        <td>
-                            <p className='text-center'>60.000.000 VNĐ</p>
-                        </td>
-                        <td>
-                            <p className='text-center'>10</p>
-                        </td>
-                        <td>
-                            <p className='text-center'>600.000.000 VNĐ</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p className='text-center'>Sản phẩm 2</p>
-                        </td>
-                        <td>
-                            <p className='text-center'>60.000.000 VNĐ</p>
-                        </td>
-                        <td>
-                            <p className='text-center'>10</p>
-                        </td>
-                        <td>
-                            <p className='text-center'>600.000.000 VNĐ</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p className='text-center'>Sản phẩm 3</p>
-                        </td>
-                        <td>
-                            <p className='text-center'>60.000.000 VNĐ</p>
-                        </td>
-                        <td>
-                            <p className='text-center'>10</p>
-                        </td>
-                        <td>
-                            <p className='text-center'>600.000.000 VNĐ</p>
-                        </td>
-                    </tr>
+                    {orderItem ? orderItem?.map((value, key)=> {
+                        return (
+                            <tr key={key}>
+                                <td>
+                                    <p className='text-center'>{value?.productName}</p>
+                                </td>
+                                <td>
+                                    <p className='text-center'>{price(value?.productPrice)}</p>
+                                </td>
+                                <td>
+                                    <p className='text-center'>{value?.itemQuantity}</p>
+                                </td>
+                                <td>
+                                    <p className='text-center'>{price(value?.productPrice * value?.itemQuantity)}</p>
+                                </td>
+                            </tr>
+                        )
+                    }) : ''}
                 </tbody>
             </table>
             <div className="cost-section mb-4">

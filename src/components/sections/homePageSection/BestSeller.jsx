@@ -11,6 +11,7 @@ function BestSeller(props) {
       getDataTopSelling()
       setData(JSON.parse(localStorage.getItem('topselling')))
       console.log(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [localStorage.getItem('topselling')])
     useEffect( () => {
       getDataTopSelling()
