@@ -1,36 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/OrderContent.css';
+import { paymentProcess } from '../../../api_gateway/apiRequest';
+
 
 function OrderContent(props) {
     const [paymentMethod, setPaymentMethod] = useState('');
     const [orderItem, setOrderItem] = useState(JSON.parse(localStorage.getItem('itemorder')))
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('userData')))
+    const [receiverInfo, setReceiverInfo] = useState(JSON.parse(localStorage.getItem('userData')).receiverInfoList)
+    let lstCart = [];
+    let totalPricee = 0;
+
     const displayBtnPayment = () => {
         if (paymentMethod === "zalo") {
             return (
-                <div className="btn btn-primary d-block mt-4">Thanh toán bằng ZaloPay</div>
+                <div className="btn btn-primary d-block mt-4" onClick={()=> paymentHandler()}>Thanh toán bằng ZaloPay</div>
             )
         } else if (paymentMethod === "momo") {
             return (
-                <div className="btn btn-danger d-block mt-4">Thanh toán bằng Momo</div>
+                <div className="btn btn-danger d-block mt-4" onClick={()=> paymentHandler()}>Thanh toán bằng Momo</div>
             )
         } else if (paymentMethod === "paypal") {
             return (
-                <div className="btn btn-secondary d-block mt-4">Thanh toán bằng Paypal</div>
+                <div className="btn btn-secondary d-block mt-4" onClick={()=> paymentHandler()}>Thanh toán bằng Paypal</div>
             )
         } else if (paymentMethod === "cod") {
             return (
-                <div className="btn btn-success d-block mt-4">Thanh toán khi nhận hàng</div>
+                <div className="btn btn-success d-block mt-4" onClick={()=> paymentHandler()}>Thanh toán khi nhận hàng</div>
             )
         }
         return ''
     }
-    useEffect(()=> {
-        
-    }, [paymentMethod])
+    const paymentHandler = async ()=> {
+        const body = {
+            userId: user?.id,
+            receiverInfoId: localStorage.getItem('rcvid'),
+            totalPrice: (totalPricee * 0.05),
+            discountPercentage: 1,
+            shippingFee: 20000,
+            paymentMethod: paymentMethod,
+            paymentStatus: 'Pending',
+            cartDetailIdList: lstCart
+        }
+        console.log(body);
+        await paymentProcess(body);
+    }
     const price = (x) => {
         x = x.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
         return x
-      }
+    }
+    useEffect(()=> {
+        
+    }, [paymentMethod])
     return (
         <div className="col-md-6">
             <table className="table">
@@ -44,6 +65,8 @@ function OrderContent(props) {
                 </thead>
                 <tbody>
                     {orderItem ? orderItem?.map((value, key)=> {
+                        lstCart.push(value?.productId)
+                        totalPricee = totalPricee + value?.productPrice
                         return (
                             <tr key={key}>
                                 <td>

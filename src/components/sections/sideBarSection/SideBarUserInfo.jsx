@@ -14,7 +14,7 @@ function SideBarUserInfo(props) {
                     <Link className="change-avt" to="/changeavatar"><i className="fas fa-edit"></i></Link>
                 </div>
                 <div className="user-name">{user?.fullName}</div>
-                <p>Hạng thành viên: Diamond</p>
+                <p>Hạng thành viên: {user?.membershipRank}</p>
                 <p>(Points: {user?.membershipPoint})</p>
             </div>
             <Link to='/userinfo' className="sidebar-item">

@@ -194,3 +194,24 @@ export const paymentProcess = async(body) => {
         alert(error);
     }
 }
+export const addNewAddress = async(body) => {
+    try {
+        const result = await axios.post(`http://localhost:8080/api/v1/users/receivers`, body, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${body.userId}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        
+        console.log(result.data);
+        alert('add new address completed')
+        localStorage.setItem('userData', JSON.stringify(resultUser.data))
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}

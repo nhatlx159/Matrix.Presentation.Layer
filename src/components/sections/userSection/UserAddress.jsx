@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import "../../styles/UserAddress.css";
 import { useFormik } from 'formik';
 import * as Yup from "yup";
+import { addNewAddress } from '../../../api_gateway/apiRequest';
 
 function UserAddress(props) {
     const [isDisplay, setIsDisplay] = useState('view-user-address');
     const [isDefault, setIsDefault] = useState(false);
     const [isUpdateDefault, setIsUpdateDefault] = useState(false);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('userData')));
+    const [receiverInfo, setReceiverInfo] = useState(JSON.parse(localStorage.getItem('userData')).receiverInfoList)
+
 
     const handleSubmitNewAddress = (e) => {
         e.preventDefault()
@@ -45,14 +49,17 @@ function UserAddress(props) {
 
         }),
         onSubmit: values => {
+            let adefault = 0;
             const data = {
-                fullname: values.fullname,
-                phone: values.phone,
-                address: values.address,
-                default: isDefault
+                receiverName: values.fullname,
+                receiverPhone: values.phone,
+                receiverAddress: values.address,
+                isDefault: adefault,
+                userId: user?.id
             }
             setIsDisplay('view-user-address')
             console.log(data);
+            addNewAddress(data)
         }
     });
     const formikUpdateAddress = useFormik({
@@ -75,13 +82,15 @@ function UserAddress(props) {
         }),
         onSubmit: values => {
             const data = {
-                fullname: values.fullname,
-                phone: values.phone,
-                address: values.address,
-                default: isUpdateDefault
+                receiverName: values.fullname,
+                receiverPhone: values.phone,
+                receiverAddress: values.address,
+                default: 0,
+                userId: user?.id
             }
             setIsDisplay('view-user-address')
             console.log(data);
+            
         }
     });
 
@@ -93,54 +102,30 @@ function UserAddress(props) {
                     <div className="add-address-button" onClick={() => setIsDisplay('add-new-address')}>
                         <i className="fas fa-plus-circle" /> Thêm địa chỉ mới
                     </div>
-
-                    <div className="address-card address-container">
-                        <div className="address-field">
-                            <span className="address-label">Hoàng Nhật</span>
-                        </div>
-                        <div className="address-field">
-                            <span className="address-value">0123456789</span>
-                        </div>
-                        <div className="address-field">
-                            <span className="address-value">184 Lê Đại Hành, Phường 15, Quận 11, TP Hồ Chí Minh</span>
-                        </div>
-                        <div className="btn-group">
-                            <button className="btn btn-primary btn-sm mr-2" onClick={() => setIsDisplay('update-address')}>Chỉnh sửa</button>
-                        </div>
-                        <div className="address-field">
-                            <span className="address-value text-success font-italic font-weight-light">Địa chỉ mặc định</span>
-                        </div>
-                    </div>
-                    <div className="address-card address-container">
-                        <div className="address-field">
-                            <span className="address-label">Hoàng Nhật</span>
-                        </div>
-                        <div className="address-field">
-                            <span className="address-value">0123456789</span>
-                        </div>
-                        <div className="address-field">
-                            <span className="address-value">184 Lê Đại Hành, Phường 15, Quận 11, TP Hồ Chí Minh</span>
-                        </div>
-                        <div className="btn-group">
-                            <button className="btn btn-primary btn-sm mr-2" onClick={() => setIsDisplay('update-address')}>Chỉnh sửa</button>
-                            <button className="btn btn-danger btn-sm">Xóa</button>
-                        </div>
-                    </div>
-                    <div className="address-card address-container">
-                        <div className="address-field">
-                            <span className="address-label">Hoàng Nhật</span>
-                        </div>
-                        <div className="address-field">
-                            <span className="address-value">0123456789</span>
-                        </div>
-                        <div className="address-field">
-                            <span className="address-value">184 Lê Đại Hành, Phường 15, Quận 11, TP Hồ Chí Minh</span>
-                        </div>
-                        <div className="btn-group">
-                            <button className="btn btn-primary btn-sm mr-2" onClick={() => setIsDisplay('update-address')}>Chỉnh sửa</button>
-                            <button className="btn btn-danger btn-sm">Xóa</button>
-                        </div>
-                    </div>
+                    {receiverInfo ? receiverInfo?.map((value, key)=> {
+                        return (
+                            <div className="address-card address-container" key={key}>
+                                <div className="address-field">
+                                    <span className="address-label">{value?.receiverName}</span>
+                                </div>
+                                <div className="address-field">
+                                    <span className="address-value">{value?.receiverPhone}</span>
+                                </div>
+                                <div className="address-field">
+                                    <span className="address-value">{value?.receiverAddress}</span>
+                                </div>
+                                <div className="btn-group">
+                                    <button className="btn btn-primary btn-sm mr-2" onClick={() => setIsDisplay('update-address')}>Chỉnh sửa</button>
+                                    {value?.isDefault === 1 ? '' : <button className="btn btn-danger btn-sm">Xóa</button>}
+                                </div>
+                                {value?.isDefault === 1 ? 
+                                <div className="address-field">
+                                    <span className="address-value text-success font-italic font-weight-light">Địa chỉ mặc định</span>
+                                </div>
+                                : ""}
+                            </div>
+                        )
+                    }): ''}
                 </>
             )
         } else if (isDisplay === 'add-new-address') {
@@ -148,7 +133,7 @@ function UserAddress(props) {
                 <>
                     <div className='title-add-new-address'>Thêm địa chỉ mới</div>
                     <div className="form-add-address add-new-address">
-                        <form onSubmit={(e) => handleSubmitNewAddress(e)}>
+                        <form>
                             <input type='text' placeholder='Họ tên người nhận' name='fullname' className='input-add-address'
                                 value={formikNewAddress.values.fullname}
                                 onChange={formikNewAddress.handleChange}
@@ -170,10 +155,10 @@ function UserAddress(props) {
                                 required
                             />
                             {formikNewAddress.errors.address && formikNewAddress.touched.address ? (<p className='text-formik-error ml-4'>{formikNewAddress.errors.address}</p>) : null}
-                            <input type="checkbox" className='input-check-box' name='check-default-address' />
+                            <input type="checkbox" className='input-check-box' name='check-default-address'/>
                             <label htmlFor="check-default-address" className='float-end'>Đặt làm địa chỉ mặc định</label>
                             <div>
-                                <button className="btn btn-primary btn-add-address btn-sm" type='submit'>Thêm địa chỉ</button>
+                                <button className="btn btn-primary btn-add-address btn-sm" type='submit' onClick={(e) => handleSubmitNewAddress(e)}>Thêm địa chỉ</button>
                                 <button className="btn btn-danger btn-add-address btn-sm" type='submit' onClick={(e) => handleCancelNewAddress(e)}>Hủy</button>
                             </div>
                         </form>

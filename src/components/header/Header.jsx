@@ -49,7 +49,7 @@ function Header(props) {
   }
   const countCart = ()=> {
     let c = 0;
-    for (let i = 0; i < user?.cartDetails.length; i++) {
+    for (let i = 0; i < user?.cartDetails?.length; i++) {
       const ele = user?.cartDetails[i]
       c = c + ele.itemQuantity
     }

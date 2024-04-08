@@ -96,7 +96,7 @@ function ProductInfomation(props) {
                                 {/* <span className="fa fa-star star-inactive" /> */}
                                 <span className="fa fa-star star-active" />
                             </div>
-                            <span className="review-no">{data?.productReviews.length} lượt đánh giá</span>
+                            <span className="review-no">{data?.productReviews?.length} lượt đánh giá</span>
                         </div>
                         <h5>Thương hiệu: {data?.brand}</h5>
                         <p className="product-description">{data?.productDescription}</p>

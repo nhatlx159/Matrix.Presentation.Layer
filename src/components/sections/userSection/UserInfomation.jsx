@@ -111,10 +111,10 @@ function UserInfomation(props) {
                 <p>Địa chỉ email: {user?.email}</p>
               </div>
               <div className="info-item birthday">
-                <p>Ngày sinh: 13/10/????</p>
+                <p>Ngày sinh: {user?.dob}</p>
               </div>
               <div className="info-item gender">
-                <p>Giới tính: gmail</p>
+                <p>Giới tính: {user?.gender}</p>
               </div>
               <div className="info-item gender">
                 <p>Số điện thoại: {user?.userPhone}</p>

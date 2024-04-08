@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import '../../styles/CheckOutAdresses.css';
-import { paymentProcess } from '../../../api_gateway/apiRequest';
 
 function CheckOutAdresses(props) {
     const [openAddressList, setOpenAddressList] = useState(false);
     const [openFormAddAddress, setOpenFormAddAddress] = useState(false);
     const [receiverInfo, setReceiverInfo] = useState(JSON.parse(localStorage.getItem('userData')).receiverInfoList)
+    const handleReceiverId = (value)=> {
+        localStorage.setItem('rcvid', value)
+        console.log(localStorage.getItem('rcvid'));
+    }
 
     const handleOpenAddressList = ()=> {
         setOpenFormAddAddress(false);
@@ -15,19 +18,7 @@ function CheckOutAdresses(props) {
         setOpenAddressList(false);
         setOpenFormAddAddress(!openFormAddAddress);
     }
-    const paymentHandler = async ()=> {
-        const body = {
-            userId: '',
-            receiverInfoId: '',
-            totalPrice: '',
-            discountPercentage: '',
-            shippingFee: 20000,
-            paymentMethod: '',
-            paymentStatus: '',
-            cartDetailIdList: ''
-        }
-        await paymentProcess(body);
-    }
+    
     const displayAddressList = ()=> {
         
         return (
@@ -35,7 +26,7 @@ function CheckOutAdresses(props) {
                 {receiverInfo ? receiverInfo?.map((value, key)=> {
                     return (
                         <div className="address-card" key={key}>
-                            <input type="radio" id={value?.id} name="age" defaultValue={30} />
+                            <input type="radio" id={value?.id} name="age" onClick={()=>handleReceiverId(value?.id)} />
                             <div className="address-field">
                                 <span className="address-label">{value?.receiverName}</span>
                             </div>
