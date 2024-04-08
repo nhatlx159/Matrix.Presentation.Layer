@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import '../../styles/CheckOutAdresses.css';
+import { paymentProcess } from '../../../api_gateway/apiRequest';
 
 function CheckOutAdresses(props) {
     const [openAddressList, setOpenAddressList] = useState(false);
     const [openFormAddAddress, setOpenFormAddAddress] = useState(false);
+    const [receiverInfo, setReceiverInfo] = useState(JSON.parse(localStorage.getItem('userData')).receiverInfoList)
 
     const handleOpenAddressList = ()=> {
         setOpenFormAddAddress(false);
@@ -13,50 +15,47 @@ function CheckOutAdresses(props) {
         setOpenAddressList(false);
         setOpenFormAddAddress(!openFormAddAddress);
     }
+    const paymentHandler = async ()=> {
+        const body = {
+            userId: '',
+            receiverInfoId: '',
+            totalPrice: '',
+            discountPercentage: '',
+            shippingFee: 20000,
+            paymentMethod: '',
+            paymentStatus: '',
+            cartDetailIdList: ''
+        }
+        await paymentProcess(body);
+    }
     const displayAddressList = ()=> {
+        
         return (
             <form id="addressForm">
-                <div className="address-card">
-                    <input type="radio" id="age1" name="age" defaultValue={30} />
-                    <div className="address-field">
-                        <span className="address-label">Hoàng Nhật</span>
-                    </div>
-                    <div className="address-field">
-                        <span className="address-value">0123456789</span>
-                    </div>
-                    <div className="address-field">
-                        <span className="address-value">184 Lê Đại Hành, Phường 15, Quận 11, TP Hồ Chí Minh 184 Lê Đại Hành, Phường 15, Quận 11, TP Hồ Chí Minh</span>
-                    </div>
-                    <div className="address-field">
-                        <span className="address-value text-success font-italic font-weight-light">Địa chỉ mặc định</span>
-                    </div>
-                </div>
-                <div className="address-card">
-                    <input type="radio" id="age1" name="age" defaultValue={30} />
-                    
-                    <div className="address-field">
-                        <span className="address-label">Chunpapo</span>
-                    </div>
-                    <div className="address-field">
-                        <span className="address-value">0909887665</span>
-                    </div>
-                    <div className="address-field">
-                        <span className="address-value">12 Hồng Hà, Phường 2, Quận Tân Bình, TP Hồ Chí Minh</span>
-                    </div>
-                </div>
-                <div className="address-card">
-                    <input type="radio" id="age1" name="age" defaultValue={30} />
-                    
-                    <div className="address-field">
-                        <span className="address-label">Võ Hồng Phú</span>
-                    </div>
-                    <div className="address-field">
-                        <span className="address-value">0356776060</span>
-                    </div>
-                    <div className="address-field">
-                        <span className="address-value">268 Lý Thường Kiệt, Phường 14, Quận 10, Hồ Chí Minh</span>
-                    </div>
-                </div>
+                {receiverInfo ? receiverInfo?.map((value, key)=> {
+                    return (
+                        <div className="address-card" key={key}>
+                            <input type="radio" id={value?.id} name="age" defaultValue={30} />
+                            <div className="address-field">
+                                <span className="address-label">{value?.receiverName}</span>
+                            </div>
+                            <div className="address-field">
+                                <span className="address-value">{value?.receiverPhone}</span>
+                            </div>
+                            <div className="address-field">
+                                <span className="address-value">{value?.receiverAddress}</span>
+                            </div>
+                            {value?.isDefault === 1 ? 
+                            <div className="address-field">
+                                <span className="address-value text-success font-italic font-weight-light">Địa chỉ mặc định</span>
+                            </div>
+                            : ""}
+
+                        </div>
+                    )
+                }) : ''}
+                
+                
             </form>
         )
     }

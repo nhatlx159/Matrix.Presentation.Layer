@@ -162,3 +162,35 @@ export const getProductDetails = async(id) => {
         alert(error);
     }
 }
+
+
+export const addToCart = async(body) => {
+    try {
+        const result = await axios.post(`http://localhost:8080/api/v1/users/carts`, body, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        console.log(result.data);
+        alert('add to cart completed')
+        localStorage.setItem('userData', JSON.stringify(result.data))
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+export const paymentProcess = async(body) => {
+    try {
+        const result = await axios.post(`http://localhost:8080/api/v1/admin/orders`, body, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        console.log(result.data);
+        alert('add to cart completed')
+        localStorage.setItem('userData', JSON.stringify(result.data))
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}

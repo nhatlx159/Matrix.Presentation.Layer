@@ -1,34 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import $ from 'jquery';
 import '../../styles/ProductInfomation.css';
+import { addToCart } from '../../../api_gateway/apiRequest';
 
 function ProductInfomation(props) {
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('userData')))
     const [data, setData] = useState(JSON.parse(localStorage.getItem('productdetails')))
+    const [qtt, setQtt] = useState(0)
     const quantityChange = () => {
         $(document).ready(function () {
-            // Get the initial quantity value
             var quantity = parseInt($("#quantityInput").val());
-
             // Increase quantity
             $("#increaseBtn").click(function () {
                 quantity++;
-                console.log(quantity);
                 $("#quantityInput").val(quantity);
+                setQtt(quantity)
             });
 
             // Decrease quantity (minimum value is 1)
             $("#decreaseBtn").click(function () {
                 if (quantity > 1) {
                     quantity--;
-                    $("#quantityInput").val(quantity);
+                    setQtt(quantity)
                 }
             });
         });
     }
+
+    const handleAddToCart = async (product)=> {
+        const body = {
+            userId: user?.id,
+            productId: product.id,
+            productName: product.productName,
+            itemQuantity: qtt
+        }
+        console.log(body);
+        await addToCart(body)
+    }
+
     const price = (x) => {
         x = x.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
         return x
-      }
+    }
+
     useEffect(() => {
         quantityChange()
     }, [])
@@ -97,7 +111,7 @@ function ProductInfomation(props) {
                             </div>
                         </h5>
                         <div className="action mt-3">
-                            <button className="add-to-cart btn btn-default" type="button">Thêm vào giỏ hàng</button>
+                            <button className="add-to-cart btn btn-default" type="button" onClick={()=>handleAddToCart(data)}>Thêm vào giỏ hàng</button>
                         </div>
                     </div>
                 </div>

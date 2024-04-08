@@ -7,9 +7,7 @@ import { getAllProductByName } from "../../api_gateway/apiRequest";
 function Header(props) {
   const [isLogin, setIsLogin] = useState(false);
   const [searchText, setSearchText] = useState(null);
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("userData"))
-  );
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")));
   const nav = useNavigate();
   $(document).ready(function () {
     var isHovered = false;
@@ -63,6 +61,7 @@ function Header(props) {
     } else {
       setIsLogin(false);
     }
+    setUser(JSON.parse(localStorage.getItem("userData")));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localStorage.getItem("userData")]);
   return (
