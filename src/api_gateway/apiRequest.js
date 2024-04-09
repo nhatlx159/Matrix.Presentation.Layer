@@ -187,8 +187,8 @@ export const paymentProcess = async(body) => {
             }
         });
         console.log(result.data);
-        alert('add to cart completed')
-        localStorage.setItem('userData', JSON.stringify(result.data))
+        alert('order completed')
+        // localStorage.setItem('userData', JSON.stringify(result.data))
         return result
     } catch (error) {
         alert(error);

@@ -65,7 +65,7 @@ function OrderContent(props) {
                 </thead>
                 <tbody>
                     {orderItem ? orderItem?.map((value, key)=> {
-                        lstCart.push(value?.productId)
+                        lstCart.push(value?.id)
                         totalPricee = totalPricee + value?.productPrice
                         return (
                             <tr key={key}>
