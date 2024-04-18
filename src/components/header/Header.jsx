@@ -30,7 +30,6 @@ function Header(props) {
       }, 500);
     });
   });
-
   const avatarIcon = () => {
     return (
       <div className="avt-icon">
@@ -159,11 +158,18 @@ function Header(props) {
             )}
           </li>
           <li className="nav-item active">
-            <Link className="nav-link" to="/cartdetails">
+            {
+              user ? <Link className="nav-link" to="/cartdetails">
               <i className="fas fa-shopping-cart fa-lg fa-relative">
                 <span className="badge badge-danger">{countCart()}</span>
               </i>
-            </Link>
+            </Link> : <Link className="nav-link" to="/login">
+              <i className="fas fa-shopping-cart fa-lg fa-relative">
+                <span className="badge badge-danger">{countCart()}</span>
+              </i>
+            </Link> 
+            }
+            
           </li>
         </ul>
       </div>

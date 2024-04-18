@@ -11,6 +11,29 @@ function ReviewContent(props) {
         const filteredImageUpload = imageArray.filter(item => item !== src);
         setImageArray(filteredImageUpload);
     }
+
+    let lstImagesUploaded = [];
+
+    var myWidget = window.cloudinary.createUploadWidget(
+        {
+          cloudName: "dit0eba5q",
+          uploadPreset: 'kmf6t5hg',
+          apiKey: "591847415579884",
+          cropping: false,
+          folder: 'Matrix.ReviewImages'
+        },
+        (error, result) => {
+          if (!error && result && result.event === "success") {
+            console.log("Done! Here is the image info: ", result.info);
+            lstImagesUploaded.push(result.info.url);
+            setImageArray(lstImagesUploaded);
+          }
+        }
+      );
+      
+
+      console.log('lstImagesUploaded: ', lstImagesUploaded);
+      console.log('imageArray: ', imageArray);
     return (
         <div className="review-card-container">
             <div className="card n-review-card">
@@ -28,17 +51,20 @@ function ReviewContent(props) {
                             <div className="comment-area">
                                 <textarea className="form-control" placeholder="Bạn nghĩ gì về sản phẩm này?" rows={4} defaultValue={""} />
                             </div>
-                            <input type="file" className='file-upload' max={3} multiple accept='image/*'
-                                onChange={(e) => setImageArray(Array.from(e.target.files))} /><br />
-                            {imageArray ? imageArray.map((k, v) => {
-                                const src = URL.createObjectURL(imageArray[v])
+                            <button id="upload_widget" className="cloudinary-button" onClick={()=>myWidget.open()}>
+                                Upload
+                            </button>
+                                {imageArray ? imageArray.map((k, v) => {
                                 return (
-                                    <div className='image-file'>
-                                        <img className='pic pic-upload' src={src} />
+                                    <div className='image-file' key={k}>
+                                        <img className='pic pic-upload' src={imageArray[v]} />
                                         <span className='remove-image-file' onClick={() => removeImageUpload(imageArray[v])}>×</span>
                                     </div>
                                 )
-                            }) : "No file uploaded!!!"}
+                            }) : "No file uploaded!!!"} 
+
+
+                            
 
                             <div className="comment-btns mt-2">
                                 <div className="row">

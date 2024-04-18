@@ -1,6 +1,7 @@
 import axios from "axios"
 import { url } from "./baseUrl"
 
+
 export const loginRequest = async(user, nav)=> {
     try {
         const result = await axios.post(url.authLoginApi, user, {

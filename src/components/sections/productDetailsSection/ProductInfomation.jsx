@@ -7,6 +7,7 @@ function ProductInfomation(props) {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('userData')))
     const [data, setData] = useState(JSON.parse(localStorage.getItem('productdetails')))
     const [qtt, setQtt] = useState(0)
+    const [sl, setSl] = useState(1);
     const quantityChange = () => {
         $(document).ready(function () {
             var quantity = parseInt($("#quantityInput").val());
@@ -105,9 +106,11 @@ function ProductInfomation(props) {
                         </p>
                         <h5 className="color colors1 mt-2">Số lượng:
                             <div className="quantity-container">
-                                <button className="btn" id="decreaseBtn">-</button>
-                                <input type="text" className="quantity-input" id="quantityInput" defaultValue={1} />
-                                <button className="btn" id="increaseBtn">+</button>
+                                {sl <= 1 ? <button className="btn" id="decreaseBtn" onClick={()=>setSl(sl - 1)} disabled>-</button> : 
+                                <button className="btn" id="decreaseBtn" onClick={()=>setSl(sl - 1)}>-</button> 
+                                }
+                                <input type="text" className="quantity-input" id="quantityInput" value={sl} />
+                                <button className="btn" id="increaseBtn" onClick={()=>setSl(sl + 1)}>+</button>
                             </div>
                         </h5>
                         <div className="action mt-3">
