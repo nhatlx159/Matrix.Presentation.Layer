@@ -3,15 +3,16 @@ import '../../styles/ReviewArea.css';
 import { getProductDetails } from '../../../api_gateway/apiRequest';
 
 function ReviewArea(props) {
-    const [productDetails, setProductDetails] = useState(JSON.parse(localStorage.getItem('productdetails')))
+    const [productDetails] = useState(JSON.parse(localStorage.getItem('productdetails')))
     const [sort, setSort] = useState(false)
+    const [displayedReviews, setDisplayedReviews] = useState(5);
+    const [allReviewsDisplayed, setAllReviewsDisplayed] = useState(false);
+    
     const imgOpenModal = function (id) {
         var modal = document.getElementById("myModal");
         var modalImg = document.getElementById("img01");
         var myImgId = document.getElementById(id);
         modal.style.display = "block";
-        console.log(modalImg.src);
-        console.log(myImgId.src);
         modalImg.src = myImgId.src;
     }
     const closeModalImg = function () {
@@ -62,21 +63,25 @@ function ReviewArea(props) {
         reviews = bubbleSort(productDetails?.productReviews)
     }
     useEffect(()=> {
-        
-    }, [sort])
+        getProductDetails(productDetails?.id)
+    }, [productDetails])
+
+    const loadMoreReviews = () => {
+        setTimeout(() => setDisplayedReviews(prevCount => prevCount + 5), 1000);
+    };
     return (
         <div className="n-customer-review mt-4">
             <div className="container-fluid px-1 py-3 mx-auto">
                 <div className='mb-4'>
                     <span className='d-block mb-4' style={{'fontWeight': 'bold'}}>Sắp xếp bình luận theo</span>
-                    <button className="btn btn-sm btn-primary" onClick={()=>setSort(false)}>Tích cực</button>
-                    <button className="btn btn-sm btn-danger ml-4" onClick={()=>setSort(true)}>Tiêu cực</button>
+                    <button className="btn btn-sm btn-primary" onClick={() => {setSort(false); setTimeout(() => setDisplayedReviews(5), 1000);}}>Tích cực</button>
+                    <button className="btn btn-sm btn-danger ml-4" onClick={() => {setSort(true); setTimeout(() => setDisplayedReviews(5), 1000);}}>Tiêu cực</button>
+
                 </div>
                     
                 <div className="row justify-content-center">
                     <div className="col-12 text-center">
-                        {reviews ? reviews.map((value, key) => {
-                            
+                        {reviews ? reviews.slice(0, displayedReviews).map((value, key) => {
                             return (
                                 <div className="card n-customer-review-component mb-4" key={key}> 
                                 <div className="row d-flex">
@@ -117,6 +122,11 @@ function ReviewArea(props) {
                         }) : ''}
                     </div>
                 </div>
+                {!allReviewsDisplayed && 
+                    <div className="text-center">
+                        <button className="btn btn-primary" onClick={loadMoreReviews}>Xem thêm</button>
+                    </div>
+                }
             </div>
         </div>
     );

@@ -156,7 +156,6 @@ export const getProductDetails = async(id) => {
                 'Accept-Encoding': 'gzip, deflate, br',
             }
         });
-        console.log(result.data);
         localStorage.setItem('productdetails', JSON.stringify(result.data))
         return result
     } catch (error) {
@@ -175,6 +174,28 @@ export const addToCart = async(body) => {
         console.log(result.data);
         alert('add to cart completed')
         localStorage.setItem('userData', JSON.stringify(result.data))
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+export const createReview = async(body) => {
+    try {
+        const result = await axios.post(`http://localhost:8080/api/v1/users/reviews`, body, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const result1 = await axios.get(`http://localhost:8080/api/v1/admin/products/${body.productId}`, {
+            headers: {
+                'Content-Type': 'text/json',
+                'Accept': '*/*',
+                'Accept-Encoding': 'gzip, deflate, br',
+            }
+        });
+        localStorage.setItem('productdetails', JSON.stringify(result1.data))
+        window.location.reload()
+        alert('Thêm đánh giá thành công!!!')
         return result
     } catch (error) {
         alert(error);
@@ -216,3 +237,4 @@ export const addNewAddress = async(body) => {
         alert(error);
     }
 }
+
