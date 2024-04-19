@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function ProductInfomation(props) {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('userData')) || '')
     const [data, setData] = useState(JSON.parse(localStorage.getItem('productdetails')))
-    const [qtt, setQtt] = useState(0)
+    const [qtt, setQtt] = useState(1)
     const [sl, setSl] = useState(1);
     const nav = useNavigate();
     const quantityChange = () => {

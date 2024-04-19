@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import SideBarHomePage from './sideBarSection/SideBarHomePage';
 import { useLocation } from 'react-router-dom';
 import FilterBar from './productSection/FilterBar';
+import { useNavigate } from 'react-router-dom';
 import '../styles/animatedLoader.css'
+import { getProductDetails } from '../../api_gateway/apiRequest';
 
 function ViewProduct(props) {
     window.scrollTo(0, 0)
     const location = useLocation();
+    const nav = useNavigate(); 
     const [data, setData] = useState(JSON.parse(localStorage.getItem('target')))
     const [dataProduct, setDataProduct] = useState(JSON.parse(localStorage.getItem('searchproduct')))
     const price = (x) => {
@@ -20,6 +23,12 @@ function ViewProduct(props) {
             return <div className='n-title-productlist cart-title mb-4'>Kết quả tìm kiếm</div>
         }
     }
+    const redirectToDetails = async (e, id)=> {
+        e.preventDefault()
+        await getProductDetails(id) 
+        nav('/productdetails');
+      }
+
     const displayContent = () => {
         if (location.pathname === "/search") {
             return (
@@ -29,6 +38,7 @@ function ViewProduct(props) {
                         ? dataProduct?.map((value, key) => {
                             return (
                             <div
+                                onClick={(e)=>redirectToDetails(e, value.id)}
                                 className="n-product-component mx-2 my-2">
                                 <img
                                 src={value?.productImages[0].imageLink}
@@ -61,6 +71,7 @@ function ViewProduct(props) {
                         ? data?.productList.map((value, key) => {
                             return (
                             <div
+                                onClick={(e)=>redirectToDetails(e, value.id)}
                                 className="n-product-component mx-2 my-2">
                                 <img
                                 src={value?.productImages[0].imageLink}
@@ -89,7 +100,6 @@ function ViewProduct(props) {
     }
     useEffect(()=> {
         setData(JSON.parse(localStorage.getItem('target')))
-        console.log(data);
     }, [])
     useEffect(()=> {
         setDataProduct(JSON.parse(localStorage.getItem('searchproduct')))

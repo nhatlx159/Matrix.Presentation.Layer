@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import '../styles/Cart.css';
 import { useNavigate } from 'react-router-dom';
 import $ from 'jquery';
+import { getProductDetails, minusCartItem, plusCartItem, removeCartItem } from '../../api_gateway/apiRequest';
 
 function Cart(props) {
     const [allChecked, setAllChecked] = useState(true);
     const [totalPricee, setTotalPricee] = useState(0);
     const [data, setData] = useState(JSON.parse(localStorage.getItem('userData')).cartDetails);
+    const [user] = useState(JSON.parse(localStorage.getItem('userData')));
     let listChecked = [];
     let idss = [];
     let lstorder = [];
@@ -59,8 +61,6 @@ function Cart(props) {
             }
         }
         lstorder = lstordertimely;
-        console.log('lstorder: ', lstorder);
-        console.log('idss: ', idss);
         localStorage.setItem('itemorder', JSON.stringify(lstorder))
         setTotalPricee(totalPrice)
     }
@@ -74,31 +74,37 @@ function Cart(props) {
             nav('/checkout')
         }, 1000);
     }
+    const redirectToDetails = async (e, id)=> {
+        e.preventDefault()
+        await getProductDetails(id)
+        nav('/productdetails');
+      }
     useEffect(()=> {
         setData(JSON.parse(localStorage.getItem('userData')).cartDetails)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [localStorage.getItem('userData')])
+
+    
     return (
         <div className="container n-cart">
             <div className='n-title-productlist cart-title'>Hàng của bạn ở đây nè :)))</div>
             <span className='text-primary pay-all' onClick={() => payAllProduct(allChecked)}>Thanh toán hết tất cả<i className="fa fa-caret-right text-primary ml-2" aria-hidden="true"></i></span>
             <form className='row justify-content-center items-cart'>
-                {/* product */}
                 {data ? data?.map((value, key)=> {
                     return (
                         <div className="item-in-cart col-6 col-md-4" key={key}>
                             <input type="checkbox" className='select-to-payment' name={value?.productName} id={value?.productId} onClick={checkedValue} value={value?.productPrice * value?.itemQuantity} />
                             
-                            <img src={value?.productImage} className='pic ml-2' alt="" /><br />
+                            <img src={value?.productImage} className='pic ml-2' alt="" onClick={(e)=> redirectToDetails(e, value?.productId)} /><br />
                             <span className='cart-item-title '>Tên sản phẩm: <p>{value?.productName}</p></span><br />
                             <span className='cart-item-title'>Đơn giá: <p>{pay(value?.productPrice)}</p></span><br />
                             <span className='cart-item-title'>Số lượng:
-                                <button className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">-</button>
-                                <p className='product-cart-quantity'>{value?.itemQuantity}</p>
-                                <div className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0">+</div>
+                                <div className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0" onClick={()=> minusCartItem(value?.id, user?.id)}>-</div>
+                                <p className='product-cart-quantity'>{value?.itemQuantity}</p> 
+                                <div className="btn btn-secondary btn-sm bg-white text-secondary mx-2 pt-0" onClick={()=> plusCartItem(value?.id, user?.id)}>+</div>
                             </span><br />
                             <div className="instock">chỉ còn lại {value?.productQuantity} sản phẩm</div><br />
-                            <div className="btn btn-danger btn-sm">Remove</div>
+                            <div className="btn btn-danger btn-sm" onClick={()=> removeCartItem(value?.id, user?.id)}>Remove</div>
                         </div>
                     )
                 }) : "Giỏ hàng của bạn hiện đang trống"

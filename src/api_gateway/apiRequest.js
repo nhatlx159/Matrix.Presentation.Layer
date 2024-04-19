@@ -217,6 +217,63 @@ export const paymentProcess = async(body) => {
         alert(error);
     }
 }
+export const removeCartItem = async(id, userId) => {
+    try {
+        const result = await axios.delete(`http://localhost:8080/api/v1/users/carts/${id}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${userId}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        window.location.reload();
+        localStorage.setItem('userData', JSON.stringify(resultUser.data))
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+export const minusCartItem = async(id, userId) => {
+    try {
+        const result = await axios.put(`http://localhost:8080/api/v1/users/carts/${userId}/minusone/${id}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${userId}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        window.location.reload();
+        localStorage.setItem('userData', JSON.stringify(resultUser.data))
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+export const plusCartItem = async(id, userId) => {
+    try {
+        const result = await axios.put(`http://localhost:8080/api/v1/users/carts/${userId}/plusone/${id}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${userId}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        window.location.reload();
+        localStorage.setItem('userData', JSON.stringify(resultUser.data))
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
 export const addNewAddress = async(body) => {
     try {
         const result = await axios.post(`http://localhost:8080/api/v1/users/receivers`, body, {

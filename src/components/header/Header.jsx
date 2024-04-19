@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import $ from "jquery";
 import { getAllProductByName } from "../../api_gateway/apiRequest";
 import axios from "axios";
+import ProductInfomation from "../sections/productDetailsSection/ProductInfomation";
 
 function Header(props) {
   const [isLogin, setIsLogin] = useState(false);
@@ -197,6 +198,7 @@ function Header(props) {
           </li>
         </ul>
       </div>
+      
     </nav>
   );
 }
