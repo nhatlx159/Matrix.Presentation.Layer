@@ -3,14 +3,14 @@ import "../../styles/UserSidebar.css";
 import { Link } from 'react-router-dom';
 
 function SideBarUserInfo(props) {
-    const [user, setUser] = useState(
+    const [user] = useState(
         JSON.parse(localStorage.getItem("userData"))
       );
     return (
         <aside className="sidebar-user-info">
             <div className="user">
                 <div className="profile-avatar">
-                    <img className='profile-avatar-img' src="https://avatars.githubusercontent.com/u/75898680?v=4" alt="user avatar" />
+                    <img className='profile-avatar-img' src={user?.avatar} alt="user avatar" />
                     <Link className="change-avt" to="/changeavatar"><i className="fas fa-edit"></i></Link>
                 </div>
                 <div className="user-name">{user?.fullName}</div>

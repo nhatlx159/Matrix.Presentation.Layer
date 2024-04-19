@@ -101,7 +101,7 @@ function Cart(props) {
                             <div className="btn btn-danger btn-sm">Remove</div>
                         </div>
                     )
-                }) : ""
+                }) : "Giỏ hàng của bạn hiện đang trống"
                 }
                 
                 

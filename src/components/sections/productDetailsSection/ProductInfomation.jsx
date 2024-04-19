@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import $ from 'jquery';
 import '../../styles/ProductInfomation.css';
 import { addToCart } from '../../../api_gateway/apiRequest';
+import { useNavigate } from 'react-router-dom';
 
 function ProductInfomation(props) {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('userData')))
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('userData')) || '')
     const [data, setData] = useState(JSON.parse(localStorage.getItem('productdetails')))
     const [qtt, setQtt] = useState(0)
     const [sl, setSl] = useState(1);
+    const nav = useNavigate();
     const quantityChange = () => {
         $(document).ready(function () {
             var quantity = parseInt($("#quantityInput").val());
@@ -29,10 +31,14 @@ function ProductInfomation(props) {
     }
 
     const handleAddToCart = async (product)=> {
+        if(!user){
+            nav('/login')
+            return
+        }
         const body = {
-            userId: user?.id,
-            productId: product.id,
-            productName: product.productName,
+            userId: user?.id || '',
+            productId: product?.id,
+            productName: product?.productName,
             itemQuantity: qtt
         }
         console.log(body);
@@ -73,7 +79,7 @@ function ProductInfomation(props) {
                             <div className="tab-pane" id="pic-4"><img src="https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-6.jpg" /></div> */}
                         </div>
                         <ul className="n-preview-thumbnail nav nav-tabs">
-                            <li className="active"><a data-target={`#${data?.productImages[0].id}`} data-toggle="tab"><img src={data?.productImages[0].imageLink} /></a></li>
+                            <li className="active"><a data-target={`#${data?.productImages[0]?.id}`} data-toggle="tab"><img src={data?.productImages[0].imageLink} /></a></li>
                             {
                                 data ? data?.productImages.map((key, value)=> {
                                         return (

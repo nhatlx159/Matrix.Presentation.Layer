@@ -3,6 +3,7 @@ import "../styles/Header.css";
 import { Link, useNavigate } from "react-router-dom";
 import $ from "jquery";
 import { getAllProductByName } from "../../api_gateway/apiRequest";
+import axios from "axios";
 
 function Header(props) {
   const [isLogin, setIsLogin] = useState(false);
@@ -31,6 +32,13 @@ function Header(props) {
     });
   });
   const avatarIcon = () => {
+    if(!user?.avatar){
+      return (
+        <div className="avt-icon">
+          <img className="avt-image" src="https://via.placeholder.com/150" alt="avatar" />
+        </div>
+      )
+    }
     return (
       <div className="avt-icon">
         <img className="avt-image" src={user?.avatar} alt="avatar" />
@@ -63,6 +71,22 @@ function Header(props) {
     setUser(JSON.parse(localStorage.getItem("userData")));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localStorage.getItem("userData")]);
+  useEffect(() => {
+    const fetchUserData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/v1/users/${user?.id}`, {
+                headers: {
+                    'Accept': '*/*',
+                }
+            });
+            setUser(response.data);
+            localStorage.setItem('userData', JSON.stringify(response.data))
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    };
+    fetchUserData();
+}, []);
   return (
     <nav
       id="phu-navbar"

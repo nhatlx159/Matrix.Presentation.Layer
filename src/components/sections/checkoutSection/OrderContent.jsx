@@ -10,7 +10,7 @@ function OrderContent(props) {
     const [receiverInfo, setReceiverInfo] = useState(JSON.parse(localStorage.getItem('userData')).receiverInfoList)
     let lstCart = [];
     let totalPricee = 0;
-
+    let discountprice = 0;
     const displayBtnPayment = () => {
         if (paymentMethod === "zalo") {
             return (
@@ -31,11 +31,13 @@ function OrderContent(props) {
         }
         return ''
     }
+    
     const paymentHandler = async ()=> {
+        discountprice = totalPricee * 0.05;
         const body = {
             userId: user?.id,
             receiverInfoId: localStorage.getItem('rcvid'),
-            totalPrice: (totalPricee * 0.05),
+            totalPrice: totalPricee - discountprice,
             discountPercentage: 1,
             shippingFee: 20000,
             paymentMethod: paymentMethod,
@@ -67,6 +69,7 @@ function OrderContent(props) {
                     {orderItem ? orderItem?.map((value, key)=> {
                         lstCart.push(value?.id)
                         totalPricee = totalPricee + value?.productPrice
+                        console.log(totalPricee);
                         return (
                             <tr key={key}>
                                 <td>

@@ -1,167 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../styles/UserOrderManagement.css';
 
 function UserOrderManagement(props) {
+    const [user] = useState(JSON.parse(localStorage.getItem('userData')))
+    const pay = (x) => {
+        x = x?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+        return x
+    }
     return (
         <div className='main-content-user-info'>
             <h3 className="order-title">Danh sách Đơn hàng</h3>
             <div className="row">
-                <div className="col-12">
-                    <div className="order-item">
-                        <div className="order-success-status">
-                            <i className="fas fa-shipping-fast" /> Giao hàng thành công
-                        </div>
-                        <div className="product-order-info">
-                            <span className="product-order-image">
-                                <img src="https://bizweb.dktcdn.net/100/435/502/products/1-e891fd5c-d7ec-4f7c-85b2-99f5c4ca3913.png" alt="ProductImage" style={{width: '80px', height: '80px'}} />
-                            </span>
-                            <span className="product-order-details">
-                                <span className="product-order-name col-6">Nồi cơm điện cơ 1.8L Coex CR-3411 - Trắng sứ</span>
-                                <span className="product-order-quantity col-3">Số lượng: 1</span>
-                                <span className="product-order-price col-3">30.000 ₫</span>
-                            </span>
-                        </div>
-                        <div className="product-order-info">
-                            <span className="product-order-image">
-                                <img src="https://bizweb.dktcdn.net/100/435/502/products/1-e891fd5c-d7ec-4f7c-85b2-99f5c4ca3913.png" alt="ProductImage" style={{width: '80', height: '80'}} />
-                            </span>
-                            <span className="product-order-details">
-                                <span className="product-order-name col-6">Thần Đồng Đất Việt - Tập 1</span>
-                                <span className="product-order-quantity col-3">Số lượng: 1</span>
-                                <span className="product-order-price col-3">30.000 ₫</span>
-                            </span>
-                        </div>
-                        <div className="product-order-info">
-                            <span className="product-order-image">
-                                <img src="https://bizweb.dktcdn.net/100/435/502/products/1-e891fd5c-d7ec-4f7c-85b2-99f5c4ca3913.png" alt="ProductImage" style={{width: '80px', height: '80px'}} />
-                            </span>
-                            <span className="product-order-details">
-                                <span className="product-order-name col-6">Thần Đồng Đất Việt - Tập 1</span>
-                                <span className="product-order-quantity col-3">Số lượng: 1</span>
-                                <span className="product-order-price col-3">30.000 ₫</span>
-                            </span>
-                        </div>
-                        <div className="total-order-amount">
-                            <span className="total-order-label">Tiền hàng:</span>
-                            <span>90.000 ₫</span>
-                        </div>
-                        <div className="total-order-amount">
-                            <span className="total-order-label">Phí vận chuyển:</span>
-                            <span>21.500 ₫</span>
-                        </div>
-                        <div className="total-order-amount">
-                            <span className="total-order-label">Tổng tiền:</span>
-                            <span className="amount-order-value">111.500 ₫</span>
-                        </div>
-                        <div className="view-details view-details-button">
-                            <p>Mã vận đơn: ABC123456</p>
+                {user && user.orderList ? user.orderList.map((order, index) => (
+                    <div className="col-12" key={index}>
+                        <div className="order-item">
+                            <div className="order-success-status">
+                                <i className="fas fa-shipping-fast" /> {order.paymentStatus}
+                            </div>
+                            {order.orderDetails.map((detail, idx) => (
+                                <div className="product-order-info" key={idx}>
+                                    <span className="product-order-image">
+                                        <img src={detail.productImage} alt="ProductImage" style={{width: '80px', height: '80px'}} />
+                                    </span>
+                                    <span className="product-order-details">
+                                        <span className="product-order-name col-6">{detail.productNameAtOrder}</span>
+                                        <span className="product-order-quantity col-3">Số lượng: {detail.orderQuantity}</span>
+                                        <span className="product-order-price col-3">{pay(detail.priceAtOrder)}</span>
+                                    </span>
+                                </div>
+                            ))}
+                            <div className="total-order-amount">
+                                <span className="total-order-label">Giá đã giảm:</span>
+                                <span>{pay(order.totalPrice - order.shippingFee)}</span>
+                            </div>
+                            <div className="total-order-amount">
+                                <span className="total-order-label">Phí vận chuyển:</span>
+                                <span>{pay(order.shippingFee)}</span>
+                            </div>
+                            <div className="total-order-amount">
+                                <span className="total-order-label">Tổng tiền:</span>
+                                <span className="amount-order-value">{pay(order.totalPrice)}</span>
+                            </div>
+                            <div className="view-details view-details-button">
+                                <p>Mã vận đơn: {order.id}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="col-12">
-                    <div className="order-item">
-                        <div className="order-being-status">
-                            <i className="fas fa-shipping-fast" /> Đang vận chuyển
-                        </div>
-                        <div className="product-order-info">
-                            <span className="product-order-image">
-                                <img src="https://bizweb.dktcdn.net/100/435/502/products/1-e891fd5c-d7ec-4f7c-85b2-99f5c4ca3913.png" alt="ProductImage" style={{width: '80px', height: '80px'}} />
-                            </span>
-                            <span className="product-order-details">
-                                <span className="product-order-name col-6">Nồi cơm điện cơ 1.8L Coex CR-3411 - Trắng sứ</span>
-                                <span className="product-order-quantity col-3">Số lượng: 1</span>
-                                <span className="product-order-price col-3">30.000 ₫</span>
-                            </span>
-                        </div>
-                        <div className="product-order-info">
-                            <span className="product-order-image">
-                                <img src="https://bizweb.dktcdn.net/100/435/502/products/1-e891fd5c-d7ec-4f7c-85b2-99f5c4ca3913.png" alt="ProductImage" style={{width: '80', height: '80'}} />
-                            </span>
-                            <span className="product-order-details">
-                                <span className="product-order-name col-6">Thần Đồng Đất Việt - Tập 1</span>
-                                <span className="product-order-quantity col-3">Số lượng: 1</span>
-                                <span className="product-order-price col-3">30.000 ₫</span>
-                            </span>
-                        </div>
-                        <div className="product-order-info">
-                            <span className="product-order-image">
-                                <img src="https://bizweb.dktcdn.net/100/435/502/products/1-e891fd5c-d7ec-4f7c-85b2-99f5c4ca3913.png" alt="ProductImage" style={{width: '80px', height: '80px'}} />
-                            </span>
-                            <span className="product-order-details">
-                                <span className="product-order-name col-6">Thần Đồng Đất Việt - Tập 1</span>
-                                <span className="product-order-quantity col-3">Số lượng: 1</span>
-                                <span className="product-order-price col-3">30.000 ₫</span>
-                            </span>
-                        </div>
-                        <div className="total-order-amount">
-                            <span className="total-order-label">Tiền hàng:</span>
-                            <span>90.000 ₫</span>
-                        </div>
-                        <div className="total-order-amount">
-                            <span className="total-order-label">Phí vận chuyển:</span>
-                            <span>21.500 ₫</span>
-                        </div>
-                        <div className="total-order-amount">
-                            <span className="total-order-label">Tổng tiền:</span>
-                            <span className="amount-order-value">111.500 ₫</span>
-                        </div>
-                        <div className="view-details view-details-button">
-                            <p>Mã vận đơn: ABC123456</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-12">
-                    <div className="order-item">
-                        <div className="order-reject-status">
-                            <i className="fas fa-shipping-fast" /> Đơn hàng bị từ chối
-                        </div>
-                        <div className="product-order-info">
-                            <span className="product-order-image">
-                                <img src="https://bizweb.dktcdn.net/100/435/502/products/1-e891fd5c-d7ec-4f7c-85b2-99f5c4ca3913.png" alt="ProductImage" style={{width: '80px', height: '80px'}} />
-                            </span>
-                            <span className="product-order-details">
-                                <span className="product-order-name col-6">Nồi cơm điện cơ 1.8L Coex CR-3411 - Trắng sứ</span>
-                                <span className="product-order-quantity col-3">Số lượng: 1</span>
-                                <span className="product-order-price col-3">30.000 ₫</span>
-                            </span>
-                        </div>
-                        <div className="product-order-info">
-                            <span className="product-order-image">
-                                <img src="https://bizweb.dktcdn.net/100/435/502/products/1-e891fd5c-d7ec-4f7c-85b2-99f5c4ca3913.png" alt="ProductImage" style={{width: '80', height: '80'}} />
-                            </span>
-                            <span className="product-order-details">
-                                <span className="product-order-name col-6">Thần Đồng Đất Việt - Tập 1</span>
-                                <span className="product-order-quantity col-3">Số lượng: 1</span>
-                                <span className="product-order-price col-3">30.000 ₫</span>
-                            </span>
-                        </div>
-                        <div className="product-order-info">
-                            <span className="product-order-image">
-                                <img src="https://bizweb.dktcdn.net/100/435/502/products/1-e891fd5c-d7ec-4f7c-85b2-99f5c4ca3913.png" alt="ProductImage" style={{width: '80px', height: '80px'}} />
-                            </span>
-                            <span className="product-order-details">
-                                <span className="product-order-name col-6">Thần Đồng Đất Việt - Tập 1</span>
-                                <span className="product-order-quantity col-3">Số lượng: 1</span>
-                                <span className="product-order-price col-3">30.000 ₫</span>
-                            </span>
-                        </div>
-                        <div className="total-order-amount">
-                            <span className="total-order-label">Tiền hàng:</span>
-                            <span>90.000 ₫</span>
-                        </div>
-                        <div className="total-order-amount">
-                            <span className="total-order-label">Phí vận chuyển:</span>
-                            <span>21.500 ₫</span>
-                        </div>
-                        <div className="total-order-amount">
-                            <span className="total-order-label">Tổng tiền:</span>
-                            <span className="amount-order-value">111.500 ₫</span>
-                        </div>
-                        <div className="view-details view-details-button">
-                            <p>Mã vận đơn: ABC123456</p>
-                        </div>
-                    </div>
-                </div>
+                )) : null}
             </div>
         </div>
     );

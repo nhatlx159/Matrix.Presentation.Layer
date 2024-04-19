@@ -211,6 +211,7 @@ export const paymentProcess = async(body) => {
         console.log(result.data);
         alert('order completed')
         // localStorage.setItem('userData', JSON.stringify(result.data))
+        window.location.reload();
         return result
     } catch (error) {
         alert(error);
@@ -229,9 +230,9 @@ export const addNewAddress = async(body) => {
             }
         });
         
-        console.log(result.data);
         alert('add new address completed')
         localStorage.setItem('userData', JSON.stringify(resultUser.data))
+        window.location.reload()
         return result
     } catch (error) {
         alert(error);

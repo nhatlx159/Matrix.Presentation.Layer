@@ -3,7 +3,7 @@ import '../../styles/ReviewContent.css';
 import { createReview } from '../../../api_gateway/apiRequest';
 
 function ReviewContent(props) {
-    const [userId] = useState(JSON.parse(localStorage.getItem('userData')).id)
+    const [userId] = useState(JSON.parse(localStorage.getItem('userData'))?.id)
     const [productId] = useState(JSON.parse(localStorage.getItem('productdetails')).id)
     const [imageArray, setImageArray] = useState([]);
     const [rating, setRating] = useState(null);
@@ -22,7 +22,7 @@ function ReviewContent(props) {
     const handleSend = () => {
         const body = {
             reviewContent: comment,
-            userId: userId,
+            userId: userId || '',
             productId: productId,
             reviewRating: rating,
             reviewImages: arrReviewImage
