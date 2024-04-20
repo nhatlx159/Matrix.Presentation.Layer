@@ -9,70 +9,61 @@ function Cart(props) {
     const [totalPricee, setTotalPricee] = useState(0);
     const [data, setData] = useState(JSON.parse(localStorage.getItem('userData')).cartDetails);
     const [user] = useState(JSON.parse(localStorage.getItem('userData')));
+    const [selectedProducts, setSelectedProducts] = useState([]);
     let listChecked = [];
     let idss = [];
     let lstorder = [];
-    let totalPrice = 0;
     const nav = useNavigate();
-    const payAllProduct = () => {
-        setAllChecked(!allChecked);
-        $('.select-to-payment').prop('checked', allChecked);
+    const checkedValue = (e) => {
+        const { id, checked, value } = e.target;
+        if (checked) {
+            setSelectedProducts([...selectedProducts, id]); // Thêm id sản phẩm vào danh sách đã chọn
+            setTotalPricee(totalPricee + parseInt(value)); // Cập nhật tổng giá tiền
+        } else {
+            setSelectedProducts(selectedProducts.filter(productId => productId !== id)); // Loại bỏ id sản phẩm khỏi danh sách đã chọn
+            setTotalPricee(totalPricee - parseInt(value)); // Cập nhật tổng giá tiền
+        }
         listChecked = Array.from($(":checkbox:checked"));
         var lstId = [];
+        let totalPrice = 0; // Khởi tạo totalPrice tại đây để tránh lỗi khi không khởi tạo giá trị
+    
         for (let i = 0; i < listChecked.length; i++) {
             const ele = listChecked[i];
             lstId.push(ele.id);
-            totalPrice += parseInt(ele.value)
+            totalPrice += parseInt(ele.value);
         }
+    
         idss = lstId;
         let lstordertimely = [];
+    
         for (let i = 0; i < idss.length; i++) {
             const ele = idss[i];
             for (let j = 0; j < data.length; j++) {
                 const crt = data[j];
-                if(crt.productId === ele){
+                if (crt.productId === ele) {
                     lstordertimely.push(crt);
                 }
             }
         }
         lstorder = lstordertimely;
-        localStorage.setItem('itemorder', JSON.stringify(lstorder))
-        setTotalPricee(totalPrice)
-    }
-    const checkedValue = () => {
-        listChecked = Array.from($(":checkbox:checked"));
-        var lstId = [];
-        for (let i = 0; i < listChecked.length; i++) {
-            const ele = listChecked[i];
-            lstId.push(ele.id);
-            totalPrice += parseInt(ele.value)
-        }
-        idss = lstId;
-        let lstordertimely = []
-        console.log('idss: ', idss);
-        for (let i = 0; i < idss.length; i++) {
-            const ele = idss[i];
-            console.log('ele: ' , ele);
-            for (let j = 0; j < data.length; j++) {
-                const crt = data[j];
-                if(crt.productId === ele){
-                    lstordertimely.push(crt);
-                }
-            }
-        }
-        lstorder = lstordertimely;
-        localStorage.setItem('itemorder', JSON.stringify(lstorder))
-        setTotalPricee(totalPrice)
-    }
+        localStorage.setItem('itemorder', JSON.stringify(lstorder)); // Set lại giá trị itemorder cho local storage
+        setTotalPricee(totalPrice);
+    };
+    
 
     const pay = (x) => {
         x = x?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
         return x
     }
     const handlePayment = async() => {
-        setTimeout(() => {
-            nav('/checkout')
-        }, 1000);
+        if(selectedProducts.length > 0){
+            setTimeout(() => {
+                nav('/checkout')
+            }, 1000);
+        } else {
+            alert('Chọn sản phẩm cần thanh toán')
+            localStorage.setItem('itemorder', JSON.stringify([]));
+        }
     }
     const redirectToDetails = async (e, id)=> {
         e.preventDefault()
@@ -88,12 +79,12 @@ function Cart(props) {
     return (
         <div className="container n-cart">
             <div className='n-title-productlist cart-title'>Hàng của bạn ở đây nè :)))</div>
-            <span className='text-primary pay-all' onClick={() => payAllProduct(allChecked)}>Thanh toán hết tất cả<i className="fa fa-caret-right text-primary ml-2" aria-hidden="true"></i></span>
+            <span className='text-primary pay-all' onClick={() => setAllChecked(!allChecked)}>Thanh toán hết tất cả<i className="fa fa-caret-right text-primary ml-2" aria-hidden="true"></i></span>
             <form className='row justify-content-center items-cart'>
                 {data ? data?.map((value, key)=> {
                     return (
                         <div className="item-in-cart col-6 col-md-4" key={key}>
-                            <input type="checkbox" className='select-to-payment' name={value?.productName} id={value?.productId} onClick={checkedValue} value={value?.productPrice * value?.itemQuantity} />
+                            <input type="checkbox" className='select-to-payment' name={value?.productName} id={value?.productId} onChange={checkedValue} value={value?.productPrice * value?.itemQuantity} />
                             
                             <img src={value?.productImage} className='pic ml-2' alt="" onClick={(e)=> redirectToDetails(e, value?.productId)} /><br />
                             <span className='cart-item-title '>Tên sản phẩm: <p>{value?.productName}</p></span><br />

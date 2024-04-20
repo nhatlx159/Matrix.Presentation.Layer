@@ -108,7 +108,7 @@ function UserInfomation(props) {
                 <p>Họ và tên: {user?.fullName}</p>
               </div>
               <div className="info-item gender">
-                <p>Địa chỉ email: {user?.email}</p>
+                <p>Địa chỉ email: {user?.userEmail}</p>
               </div>
               <div className="info-item birthday">
                 <p>Ngày sinh: {user?.dob}</p>

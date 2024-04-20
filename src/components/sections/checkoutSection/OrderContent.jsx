@@ -37,9 +37,9 @@ function OrderContent(props) {
         const body = {
             userId: user?.id,
             receiverInfoId: localStorage.getItem('rcvid'),
-            totalPrice: totalPricee - discountprice,
-            discountPercentage: 1,
-            shippingFee: 20000,
+            totalPrice: ttprice(totalPricee,shippingCharge(totalPricee)),
+            discountPercentage: discountpercented(),
+            shippingFee: shippingCharge(),
             paymentMethod: paymentMethod,
             paymentStatus: 'Pending',
             cartDetailIdList: lstCart
@@ -47,13 +47,32 @@ function OrderContent(props) {
         console.log(body);
         await paymentProcess(body);
     }
+    const discountpercented = ()=> {
+        if(user?.membershipId === 1){
+            return 1
+        } else if(user?.membershipId === 2){
+            return 5
+        }
+    }
     const price = (x) => {
         x = x.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
         return x
     }
-    useEffect(()=> {
+    const shippingCharge = (price)=> {
+        let spc = 0
+        if(price < 100000) {
+            spc = 30000
+        } else if(price >= 100000 && price < 500000) {
+            spc = 20000
+        } else {
+            spc = 0
+        }
+        return spc;
+    }
+    const ttprice = (price, ship)=> {
         
-    }, [paymentMethod])
+        return price * (1 - discountpercented() / 100) + ship
+    }
     return (
         <div className="col-md-6">
             <table className="table">
@@ -68,7 +87,7 @@ function OrderContent(props) {
                 <tbody>
                     {orderItem ? orderItem?.map((value, key)=> {
                         lstCart.push(value?.id)
-                        totalPricee = totalPricee + value?.productPrice
+                        totalPricee = totalPricee + (value?.productPrice * value?.itemQuantity)
                         console.log(totalPricee);
                         return (
                             <tr key={key}>
@@ -90,9 +109,10 @@ function OrderContent(props) {
                 </tbody>
             </table>
             <div className="cost-section mb-4">
-                <div className="shipping-cost">Phí giao hàng: 20.000 VND</div>
-                <div className="promo">Chiết khấu hạng thành viên: 10% </div>
-                <div className="total-price">Giá: 49.000 VNĐ</div>
+                <div className="shipping-cost">Phí giao hàng: {price(shippingCharge(totalPricee))}</div>
+                <div className="promo">Giá: {price(totalPricee)}</div>
+                <div className="promo">Chiết khấu hạng thành viên: {discountpercented()}%</div>
+                <div className="total-price">Tổng tiền: {price(ttprice(totalPricee,shippingCharge(totalPricee)))}</div>
             </div>
             <table className="table row">
                 <thead style={{ width: '100%' }}>

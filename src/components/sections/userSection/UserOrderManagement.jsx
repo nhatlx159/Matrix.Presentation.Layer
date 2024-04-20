@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import '../../styles/UserOrderManagement.css';
+import { useNavigate } from 'react-router-dom';
+import { getProductDetails } from '../../../api_gateway/apiRequest';
 
 function UserOrderManagement(props) {
     const [user] = useState(JSON.parse(localStorage.getItem('userData')))
+    const nav = useNavigate();
     const pay = (x) => {
         x = x?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
         return x
     }
+    const redirectToDetails = async (e, id)=> {
+        e.preventDefault()
+        await getProductDetails(id)
+        nav('/productdetails');
+      } 
     return (
         <div className='main-content-user-info'>
             <h3 className="order-title">Danh sách Đơn hàng</h3>
