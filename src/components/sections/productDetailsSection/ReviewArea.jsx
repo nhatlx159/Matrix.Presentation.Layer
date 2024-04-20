@@ -86,7 +86,7 @@ function ReviewArea(props) {
                                 <div className="card n-customer-review-component mb-4" key={key}> 
                                 <div className="row d-flex">
                                     <div className>
-                                        <img className="profile-pic" alt='' src="https://via.placeholder.com/150" />
+                                        <img className="profile-pic" alt='' src={value?.userAvatar} />
                                     </div>
                                     <div className="d-flex flex-column">
                                         <h4 className="mt-2 mb-0">{value.userFullName}</h4>

@@ -1,7 +1,6 @@
 import axios from "axios"
 import { url } from "./baseUrl"
 
-
 export const loginRequest = async(user, nav)=> {
     try {
         const result = await axios.post(url.authLoginApi, user, {
@@ -201,20 +200,28 @@ export const createReview = async(body) => {
         alert(error);
     }
 }
-export const paymentProcess = async(body) => {
+
+export const paymentProcess = async(body, nav) => {
+    
     try {
         const result = await axios.post(`http://localhost:8080/api/v1/admin/orders`, body, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        console.log(result.data);
-        alert('order completed')
-        // localStorage.setItem('userData', JSON.stringify(result.data))
+        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${body.userId}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        localStorage.setItem('userData', JSON.stringify(resultUser.data))
+        nav("/ordermanagement")
         window.location.reload();
         return result
     } catch (error) {
-        alert(error);
+        alert('đã có lỗi xảy ra trong quá trình thanh toán: ', error);
+        nav("/")
+        window.location.reload();
     }
 }
 export const removeCartItem = async(id, userId) => {
@@ -288,6 +295,44 @@ export const addNewAddress = async(body) => {
         });
         
         alert('add new address completed')
+        localStorage.setItem('userData', JSON.stringify(resultUser.data))
+        window.location.reload()
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+export const updateUserInfo = async(body) => {
+    try {
+        const result = await axios.put(`http://localhost:8080/api/v1/admin/users/${body.id}`, body, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${body.id}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        localStorage.setItem('userData', JSON.stringify(resultUser.data))
+        window.location.reload()
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+export const updateAvatar = async(body) => {
+    try {
+        const result = await axios.put(`http://localhost:8080/api/v1/users/${body.id}/avatar`, body, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${body.id}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
         localStorage.setItem('userData', JSON.stringify(resultUser.data))
         window.location.reload()
         return result

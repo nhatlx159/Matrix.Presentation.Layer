@@ -4,6 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import "../../styles/UserInfomation.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { updateUserInfo } from "../../../api_gateway/apiRequest";
 
 function UserInfomation(props) {
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
@@ -33,10 +34,10 @@ function UserInfomation(props) {
   };
   const formikChangeUserInfo = useFormik({
     initialValues: {
-      fullname: "",
+      fullname: user?.fullName,
       gender: "male",
-      birthday: null,
-      phone: "",
+      birthday: user?.dob,
+      phone: user?.userPhone,
     },
     validationSchema: Yup.object({
       fullname: Yup.string()
@@ -58,14 +59,21 @@ function UserInfomation(props) {
       //     .required("Required!")
       //     .test('test-valid-birthday', 'Please enter exactly your birthday!!', val => new Date().getFullYear() - parseInt(val.split("-")[0]) >= 5)
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      let strDob =`${dateCalendar.getFullYear()}-${Number(dateCalendar.getMonth()+1) < 10 ? '0' + Number(dateCalendar.getMonth()+1)
+        : Number(dateCalendar.getMonth()+1)}-${dateCalendar.getDate() < 10 ? '0' + Number(dateCalendar.getDate()) : Number(dateCalendar.getDate())}`;
+      
+      console.log(strDob);
       const data = {
-        fullname: values.fullname,
-        birthday: `${dateCalendar.getFullYear()}-${dateCalendar.getMonth()}-${dateCalendar.getDate()}`,
-        phone: values.phone,
+        id: user?.id,
+        userEmail: user?.userEmail,
+        fullName: values.fullname,
+        dob: strDob || user?.dob,
+        userPhone: values.phone,
         gender: values.gender,
       };
       console.log(data);
+      await updateUserInfo(data);
       setIsDisplay("view-user-info");
     },
   });

@@ -13,6 +13,7 @@ import UserOrderManagement from "./components/sections/userSection/UserOrderMana
 import Footer from "./components/footer/Footer";
 import UserChangeAvatar from "./components/sections/userSection/UserChangeAvatar";
 import ViewProduct from "./components/sections/ViewProduct";
+import Paypal from "./components/sections/payment/Paypal";
 
 
 

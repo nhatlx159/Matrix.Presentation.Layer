@@ -27,7 +27,7 @@ function UserOrderManagement(props) {
                             </div>
                             {order.orderDetails.map((detail, idx) => (
                                 <div className="product-order-info" key={idx}>
-                                    <span className="product-order-image">
+                                    <span className="product-order-image" onClick={(e)=> redirectToDetails(e, detail?.productId)}>
                                         <img src={detail.productImage} alt="ProductImage" style={{width: '80px', height: '80px'}} />
                                     </span>
                                     <span className="product-order-details">

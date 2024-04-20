@@ -1,29 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/OrderContent.css';
+import ReactDOM from "react-dom";
 import { paymentProcess } from '../../../api_gateway/apiRequest';
+import Paypal from '../payment/Paypal';
+import { useNavigate } from 'react-router-dom';
 
-
+const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 function OrderContent(props) {
     const [paymentMethod, setPaymentMethod] = useState('');
     const [orderItem, setOrderItem] = useState(JSON.parse(localStorage.getItem('itemorder')))
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('userData')))
     const [receiverInfo, setReceiverInfo] = useState(JSON.parse(localStorage.getItem('userData')).receiverInfoList)
+    const nav = useNavigate();
     let lstCart = [];
     let totalPricee = 0;
     let discountprice = 0;
     const displayBtnPayment = () => {
-        if (paymentMethod === "zalo") {
-            return (
-                <div className="btn btn-primary d-block mt-4" onClick={()=> paymentHandler()}>Thanh toán bằng ZaloPay</div>
-            )
-        } else if (paymentMethod === "momo") {
-            return (
-                <div className="btn btn-danger d-block mt-4" onClick={()=> paymentHandler()}>Thanh toán bằng Momo</div>
-            )
-        } else if (paymentMethod === "paypal") {
-            return (
-                <div className="btn btn-secondary d-block mt-4" onClick={()=> paymentHandler()}>Thanh toán bằng Paypal</div>
-            )
+        if (paymentMethod === "paypal") {
+            return <Paypal />
         } else if (paymentMethod === "cod") {
             return (
                 <div className="btn btn-success d-block mt-4" onClick={()=> paymentHandler()}>Thanh toán khi nhận hàng</div>
@@ -45,13 +39,33 @@ function OrderContent(props) {
             cartDetailIdList: lstCart
         }
         console.log(body);
-        await paymentProcess(body);
+        await paymentProcess(body, nav);
     }
+    const selectMethod = async (method)=> {
+        discountprice = totalPricee * 0.05;
+        const body = {
+            userId: user?.id,
+            receiverInfoId: localStorage.getItem('rcvid'),
+            totalPrice: ttprice(totalPricee,shippingCharge(totalPricee)),
+            discountPercentage: discountpercented(),
+            shippingFee: shippingCharge(),
+            paymentMethod: method,
+            paymentStatus: 'Pending',
+            cartDetailIdList: lstCart
+        }
+        localStorage.setItem('order', JSON.stringify(body))
+    }
+
+
     const discountpercented = ()=> {
         if(user?.membershipId === 1){
             return 1
         } else if(user?.membershipId === 2){
+            return 3
+        } else if(user?.membershipId === 3){
             return 5
+        } else if(user?.membershipId === 4){
+            return 10
         }
     }
     const price = (x) => {
@@ -70,9 +84,49 @@ function OrderContent(props) {
         return spc;
     }
     const ttprice = (price, ship)=> {
-        
-        return price * (1 - discountpercented() / 100) + ship
+        let totalNumber = price * (1 - discountpercented() / 100) + ship
+        localStorage.setItem('totalNumber', totalNumber)
+        return totalNumber
     }
+    // useEffect(()=> {
+    //     const dataPayment = JSON.parse(localStorage.getItem("order"));
+    //     const exchangeRate = (dataPayment.totalPrice / 25445).toString();
+    //     const even = exchangeRate.split(".")[0];
+    //     const odd1 = exchangeRate.split(".", 2)[1][0];
+    //     const odd2 = exchangeRate.split(".", 2)[1][1];
+    //     const finalValue = even + "." + odd1 + odd2;
+    //     // eslint-disable-next-line no-undef
+    //     paypal.Buttons({
+    //     createOrder: function (data, actions) {
+    //       return actions.order.create({
+    //         purchase_units: [
+    //                 {
+    //                     title: "Payment for Matrix Business",
+    //                     orderDetails: localStorage.getItem("itemorder"),
+    //                     amount: {
+    //                         currency_code: "USD",
+    //                         value: finalValue,
+    //                     },
+    //                 },
+    //             ]
+    //       });
+    //     },
+    //     onApprove: function (data, actions) {
+    //       const _data = {...dataPayment}
+    //         setTimeout(() => {
+    //             paymentProcess(_data)
+    //         }, 2000);
+    //       return actions.order.capture();
+    //     },
+    //     onError: function (err) {
+    //       console.log(err);
+    //     },
+    //     onCancel: function (data, actions) {
+    //       console.log('Canceled');
+    //     }
+    //   }).render('#paypal-button-container');
+    //   removeElementsByClass('paypal-buttons');
+    // }, [])
     return (
         <div className="col-md-6">
             <table className="table">
@@ -125,7 +179,7 @@ function OrderContent(props) {
                     </tr>
                 </thead>
                 <tbody style={{ width: '100%' }}>
-                    <tr className='choose-payment-method' onClick={(e)=> setPaymentMethod("cod")}>
+                    <tr className='choose-payment-method' onClick={()=> {setPaymentMethod("cod"); selectMethod('cod')}}>
                         <td className='col-1'></td>
                         <td className='col'>
                             <p className="p-text">Thanh toán khi nhận hàng</p>
@@ -134,26 +188,7 @@ function OrderContent(props) {
                             <img className="logo-payment-service" src="https://img.freepik.com/premium-vector/cod-icon-shipping-cash-delivery-symbol-vector-logo-template_883533-219.jpg" alt="" />
                         </td>
                     </tr>
-                    <tr className='choose-payment-method' onClick={(e)=> setPaymentMethod("zalo")}>
-                        <td className='col-1'></td>
-                        <td className='col'>
-                            <p className="p-text">Thanh toán bằng Zalo Pay</p>
-                        </td>
-                        <td className='col-2'>
-                            <img className="logo-payment-service" src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-ZaloPay-Square.png" alt="" />
-                        </td>
-                    </tr>
-                    <tr className='choose-payment-method' onClick={(e)=> setPaymentMethod("momo")}>
-                        <td className='col-1'>
-                        </td>
-                        <td className='col'>
-                            <p className="p-text">Thanh toán bằng Momo</p>
-                        </td>
-                        <td className='col-2'>
-                            <img className="logo-payment-service" src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square.png" alt="" />
-                        </td>
-                    </tr>
-                    <tr className='choose-payment-method' onClick={(e)=> setPaymentMethod("paypal")}>
+                    <tr className='choose-payment-method' onClick={()=> {setPaymentMethod("paypal"); selectMethod('Paypal');}}>
                         <td className='col-1'></td>
                         <td className='col choose-payment-method'>
                             <p className="p-text">Thanh toán bằng Paypal</p>
@@ -164,9 +199,14 @@ function OrderContent(props) {
                     </tr>
                 </tbody>
             </table>
-            {displayBtnPayment()}
+            <div style={{ width: "100%", marginTop: ".5rem", textAlign: "center", display: "block" }}>
+                {displayBtnPayment()}
+            </div>
         </div>
     );
 }
 
 export default OrderContent;
+
+
+
