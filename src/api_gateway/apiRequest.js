@@ -8,23 +8,20 @@ export const loginRequest = async(user, nav)=> {
             'Content-Type': 'application/json'
         }
     })
-        console.log(result);
         localStorage.setItem("userData", JSON.stringify(result.data))
         nav("/")
     } catch (error) {
-        alert('Login failed, error: ', error)
+        throw error
     }
 }
 
 export const registerRequest = async(user, nav) => {
     try {
-        const result = await axios.post(url.authRegisterApi, user, {
+        await axios.post(url.authRegisterApi, user, {
             headers: {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(result.data);
-        
         nav("/login")
     } catch (error) {
         throw error
@@ -51,7 +48,6 @@ export const verifyRegisterCodeRequest = async(code) => {
                 'Content-Type': 'application/json'
             }
         });
-        console.log(result);
         return result
     } catch (error) {
         alert('Verify code is invalid');
@@ -68,7 +64,6 @@ export const getDataTopSelling = async() => {
                 'Accept-Encoding': 'gzip, deflate, br'
             }
         });
-        console.log(result.data);
         localStorage.setItem('topselling', JSON.stringify(result.data))
         return result
     } catch (error) {
@@ -85,7 +80,6 @@ export const getDataForYou = async() => {
                 'Accept-Encoding': 'gzip, deflate, br'
             }
         });
-        console.log(result.data);
         localStorage.setItem('foryou', JSON.stringify(result.data))
         return result
     } catch (error) {
@@ -102,7 +96,6 @@ export const getAllCategories = async() => {
                 'Accept-Encoding': 'gzip, deflate, br'
             }
         });
-        console.log(result.data);
         localStorage.setItem('categories', JSON.stringify(result.data))
         return result
     } catch (error) {
@@ -137,7 +130,6 @@ export const getAllProductByName = async(name) => {
                 'Accept-Encoding': 'gzip, deflate, br',
             }
         });
-        console.log(result.data);
         localStorage.setItem('searchproduct', JSON.stringify(result.data))
         return result
     } catch (error) {
@@ -170,7 +162,6 @@ export const addToCart = async(body) => {
                 'Accept': '*/*',
             }
         });
-        console.log(result.data);
         alert('add to cart completed')
         localStorage.setItem('userData', JSON.stringify(result.data))
         return result
@@ -193,8 +184,8 @@ export const createReview = async(body) => {
             }
         });
         localStorage.setItem('productdetails', JSON.stringify(result1.data))
-        window.location.reload()
         alert('Thêm đánh giá thành công!!!')
+        window.location.reload()
         return result
     } catch (error) {
         alert(error);
@@ -202,7 +193,6 @@ export const createReview = async(body) => {
 }
 
 export const paymentProcess = async(body, nav) => {
-    
     try {
         const result = await axios.post(`http://localhost:8080/api/v1/admin/orders`, body, {
             headers: {
@@ -293,7 +283,6 @@ export const addNewAddress = async(body) => {
                 'Accept': '*/*',
             }
         });
-        
         alert('add new address completed')
         localStorage.setItem('userData', JSON.stringify(resultUser.data))
         window.location.reload()
