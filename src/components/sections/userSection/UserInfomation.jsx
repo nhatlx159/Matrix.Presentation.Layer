@@ -116,6 +116,12 @@ function UserInfomation(props) {
                 <p>Họ và tên: {user?.fullName}</p>
               </div>
               <div className="info-item gender">
+                <p>Ngày thăng hạng thành viên: {String(user?.membershipPromotedDay).split('T')[0]}</p>
+              </div>
+              <div className="info-item gender">
+                <p>Ngày hết hạn thành viên: {String(user?.membershipExpiredDay).split('T')[0]}</p>
+              </div>
+              <div className="info-item gender">
                 <p>Địa chỉ email: {user?.userEmail}</p>
               </div>
               <div className="info-item birthday">

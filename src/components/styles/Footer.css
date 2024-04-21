@@ -16,3 +16,8 @@
 .footer > .col-12 > ul > li {
     padding-top: 5px;
 }
+
+.modal-body-gift {
+    text-align: justify;
+    text-indent: 1.5em;
+}
