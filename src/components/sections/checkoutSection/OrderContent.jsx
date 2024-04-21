@@ -17,7 +17,11 @@ function OrderContent(props) {
     let discountprice = 0;
     const displayBtnPayment = () => {
         if (paymentMethod === "paypal") {
-            return <Paypal />
+            return (
+                <div className='half'>
+                    <Paypal />
+                </div>
+            )
         } else if (paymentMethod === "cod") {
             return (
                 <div className="btn btn-success d-block mt-4" onClick={()=> paymentHandler()}>Thanh toán khi nhận hàng</div>
@@ -199,7 +203,7 @@ function OrderContent(props) {
                     </tr>
                 </tbody>
             </table>
-            <div style={{ width: "100%", marginTop: ".5rem", textAlign: "center", display: "block" }}>
+            <div style={{ width: "100%", marginTop: ".5rem", textAlign: "center", display: "flex", justifyContent: "center" }}>
                 {displayBtnPayment()}
             </div>
         </div>

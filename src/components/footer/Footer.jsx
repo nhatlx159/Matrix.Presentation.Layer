@@ -4,7 +4,7 @@ import '../styles/Footer.css';
 function Footer(props) {
     return (
         
-        <div className='footer row px-4'>
+        <footer className='footer row px-4'>
             <div className="col-12 col-md-3">
                 <ul>
                     <li>Tích điểm Quà tặng VIP</li>
@@ -30,7 +30,7 @@ function Footer(props) {
                     <li>Chính sách bảo hành</li>
                 </ul>
             </div>
-        </div>
+        </footer>
     );
 }
 

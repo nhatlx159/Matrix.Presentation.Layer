@@ -14,6 +14,9 @@ import Footer from "./components/footer/Footer";
 import UserChangeAvatar from "./components/sections/userSection/UserChangeAvatar";
 import ViewProduct from "./components/sections/ViewProduct";
 import Paypal from "./components/sections/payment/Paypal";
+import AdminPage from "./components/sections/adminSection/AdminPage";
+import Product from "./components/sections/adminSection/Product";
+import Order from "./components/sections/adminSection/Order";
 
 
 
@@ -35,6 +38,9 @@ function App() {
         <Route path="/changeavatar" element={<ViewUserInfo />}></Route>
         <Route path="/search" element={<ViewProduct />}></Route>
         <Route path="/category" element={<ViewProduct />}></Route>
+        <Route path="/admin" element={<AdminPage />}></Route>
+        <Route path="/admin/product" element={<AdminPage />}></Route>
+        <Route path="/admin/order" element={<AdminPage />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

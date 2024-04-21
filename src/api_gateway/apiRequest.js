@@ -11,7 +11,7 @@ export const loginRequest = async(user, nav)=> {
         localStorage.setItem("userData", JSON.stringify(result.data))
         nav("/")
     } catch (error) {
-        throw error
+        console.log(error);
     }
 }
 
@@ -131,6 +131,7 @@ export const getAllProductByName = async(name) => {
             }
         });
         localStorage.setItem('searchproduct', JSON.stringify(result.data))
+
         return result
     } catch (error) {
         alert(error);
@@ -323,6 +324,57 @@ export const updateAvatar = async(body) => {
             }
         });
         localStorage.setItem('userData', JSON.stringify(resultUser.data))
+        window.location.reload()
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+export const getAllProducts = async(nav) => {
+    try {
+        const result = await axios.get(`http://localhost:8080/api/v1/admin/products`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        localStorage.setItem('products', JSON.stringify(result.data))
+        nav('/admin/product')
+        window.location.reload()
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+export const getAllOrders = async(nav) => {
+    try {
+        const result = await axios.get(`http://localhost:8080/api/v1/admin/orders`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        localStorage.setItem('orders', JSON.stringify(result.data))
+        nav('/admin/order')
+        window.location.reload()
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+export const updateProduct = async(body, nav, id) => {
+    try {
+        
+        const result = await axios.put(`http://localhost:8080/api/v1/admin/products/${id}`, body, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const resultProduct = await axios.get(`http://localhost:8080/api/v1/admin/products`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        nav('/admin/product')
+        localStorage.setItem('products', JSON.stringify(resultProduct.data))
         window.location.reload()
         return result
     } catch (error) {

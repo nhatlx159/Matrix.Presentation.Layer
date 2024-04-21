@@ -15,6 +15,18 @@
 .choose-payment-method:hover {
     cursor: pointer;
 }
+.half {
+    width: 70%;
+    height: 130px; /* Đặt chiều cao cho phần tử cha */
+    display: flex; /* Sử dụng flexbox để canh chỉnh nội dung */
+    overflow: hidden;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .half > * {
+    flex: 1; /* Phần tử con chiếm toàn bộ không gian của phần tử cha */
+  }
 
 @media only screen and (max-width: 720px) {
     .checkout-section {

@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import $ from "jquery";
 import { getAllProductByName } from "../../api_gateway/apiRequest";
 import axios from "axios";
-import ProductInfomation from "../sections/productDetailsSection/ProductInfomation";
 
 function Header(props) {
   const [isLogin, setIsLogin] = useState(false);
@@ -142,10 +141,19 @@ function Header(props) {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item active">
-            <Link className="nav-link" to="/">
-              <i className="fas fa-home" />
-              Trang Chủ
-            </Link>
+
+            {
+              isLogin && user?.roleId === 2 ? (
+                <Link className="nav-link" to="/admin">
+                  <i className="fas fa-home" />
+                  Admin
+                </Link>
+              ) : (<Link className="nav-link" to="/">
+                    <i className="fas fa-home" />
+                    Trang Chủ
+                  </Link>)
+            }
+            
           </li>
           <li className="nav-item active">
             <span id="account-link" className="nav-link">
