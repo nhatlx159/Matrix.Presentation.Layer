@@ -1,16 +1,15 @@
 import React from 'react';
 import '../styles/Footer.css';
+import { Link } from 'react-router-dom';
 
 function Footer(props) {
-    const modalMembership = ()=> {
-
-    }
+    
     return (
         <footer className='footer row px-4'>
             <div className="col-12 col-md-3">
-                <ul style={{fontSize: '18px'}}>
+                <ul style={{fontSize: '18px'}}> 
                     <li type="button" data-toggle="modal" data-target="#modalMembership">Tích điểm Quà tặng VIP</li>
-                    <li>Lịch sử mua hàng</li>
+                    <li><Link to='/ordermanagement' style={{textDecoration: 'none', color: 'black'}}>Lịch sử mua hàng</Link></li> 
                     <li type="button" data-toggle="modal" data-target="#modalAbout">Về chúng tôi</li>
                     <li type="button" data-toggle="modal" data-target="#policyAbout">Chính sách bảo hành</li>
                 </ul>

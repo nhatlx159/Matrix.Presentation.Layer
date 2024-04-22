@@ -84,8 +84,7 @@ function Cart(props) {
                 {data ? data?.map((value, key)=> {
                     return (
                         <div className="item-in-cart col-6 col-md-4" key={key}>
-                            <input type="checkbox" className='select-to-payment' name={value?.productName} id={value?.productId} onChange={checkedValue} value={value?.productPrice * value?.itemQuantity} />
-                            
+                            <input type="checkbox" className='select-to-payment' name={value?.productName} id={value?.productId} onChange={checkedValue} disabled={value?.itemQuantity > value?.productQuantity ? true : false} value={value?.productPrice * value?.itemQuantity} />
                             <img src={value?.productImage} className='pic ml-2' alt="" onClick={(e)=> redirectToDetails(e, value?.productId)} /><br />
                             <span className='cart-item-title '>Tên sản phẩm: <p>{value?.productName}</p></span><br />
                             <span className='cart-item-title'>Đơn giá: <p>{pay(value?.productPrice)}</p></span><br />

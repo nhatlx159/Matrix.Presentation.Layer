@@ -35,11 +35,15 @@ function ProductInfomation(props) {
             nav('/login')
             return
         }
+        let countqtt = sl;
+        if(sl > product.productQuantity){
+            countqtt = product.productQuantity
+        }
         const body = {
             userId: user?.id || '',
             productId: product?.id,
             productName: product?.productName,
-            itemQuantity: qtt
+            itemQuantity: countqtt
         }
         console.log(body);
         await addToCart(body)
@@ -115,12 +119,12 @@ function ProductInfomation(props) {
                                 {sl <= 1 ? <button className="btn" id="decreaseBtn" onClick={()=>setSl(sl - 1)} disabled>-</button> : 
                                 <button className="btn" id="decreaseBtn" onClick={()=>setSl(sl - 1)}>-</button> 
                                 }
-                                <input type="text" className="quantity-input" id="quantityInput" value={sl} />
+                                <input type="text" className="quantity-input" id="quantityInput" value={sl > data?.productQuantity ? data?.productQuantity : sl} min={1} max={data?.productQuantity} />
                                 <button className="btn" id="increaseBtn" onClick={()=>setSl(sl + 1)}>+</button>
                             </div>
                         </h5>
                         <div className="action mt-3">
-                            <button className="add-to-cart btn btn-default" type="button" onClick={()=>handleAddToCart(data)}>Thêm vào giỏ hàng</button>
+                            <button className="add-to-cart btn btn-default" type="button" onClick={()=>handleAddToCart(data)} disabled={data?.productQuantity === 0 ? true : false}>Thêm vào giỏ hàng</button>
                         </div>
                     </div>
                 </div>

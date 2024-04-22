@@ -146,7 +146,6 @@ function OrderContent(props) {
                     {orderItem ? orderItem?.map((value, key)=> {
                         lstCart.push(value?.id)
                         totalPricee = totalPricee + (value?.productPrice * value?.itemQuantity)
-                        console.log(totalPricee);
                         return (
                             <tr key={key}>
                                 <td>

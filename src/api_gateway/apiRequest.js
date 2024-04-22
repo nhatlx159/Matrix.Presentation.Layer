@@ -200,12 +200,25 @@ export const paymentProcess = async(body, nav) => {
                 'Accept': '*/*',
             }
         });
+        const checkResult = await axios.get(`http://localhost:8080/api/v1/users/orders/info/${result.data.id}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+
         const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${body.userId}`, {
             headers: {
                 'Accept': '*/*',
             }
         });
         localStorage.setItem('userData', JSON.stringify(resultUser.data))
+
+        if(checkResult.data.orderDetails.length === 0){
+            alert('Có vẻ như món hàng bạn đang đặt đã hết hàng');
+            nav("/cartdetails")
+            return window.location.reload();
+        }
+        
         nav("/ordermanagement")
         window.location.reload();
         return result
@@ -362,8 +375,27 @@ export const getAllOrders = async(nav) => {
 }
 export const updateProduct = async(body, nav, id) => {
     try {
-        
         const result = await axios.put(`http://localhost:8080/api/v1/admin/products/${id}`, body, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const resultProduct = await axios.get(`http://localhost:8080/api/v1/admin/products`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        nav('/admin/product')
+        localStorage.setItem('products', JSON.stringify(resultProduct.data))
+        window.location.reload()
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+export const createProductApi = async(body, nav) => {
+    try {
+        const result = await axios.post(`http://localhost:8080/api/v1/admin/products`, body, {
             headers: {
                 'Accept': '*/*',
             }
