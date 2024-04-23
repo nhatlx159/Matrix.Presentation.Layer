@@ -413,6 +413,46 @@ export const createProductApi = async(body, nav) => {
         alert(error);
     }
 }
+export const deleteProduct = async(id, nav) => {
+    try {
+        const result = await axios.delete(`https://matrixx2.ddns.net/api/v1/admin/products/${id}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const resultProduct = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/products`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        nav('/admin/product')
+        localStorage.setItem('products', JSON.stringify(resultProduct.data))
+        window.location.reload()
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
+export const unDeleteProduct = async(id, nav) => {
+    try {
+        const result = await axios.patch(`https://matrixx2.ddns.net/api/v1/admin/products/${id}`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const resultProduct = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/products`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        nav('/admin/product')
+        localStorage.setItem('products', JSON.stringify(resultProduct.data))
+        window.location.reload()
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
 export const updateOrder = async(body, nav, id) => {
     try {
         const result = await axios.put(`https://matrixx2.ddns.net/api/v1/orders/${id}`, body, {

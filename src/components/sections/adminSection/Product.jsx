@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { createProductApi, updateProduct } from "../../../api_gateway/apiRequest";
+import { createProductApi, deleteProduct, unDeleteProduct, updateProduct } from "../../../api_gateway/apiRequest";
 import { useNavigate } from "react-router-dom";
 
 function Product(props) {
@@ -232,7 +232,7 @@ function Product(props) {
                                                 </div>
                                                 <div className="modal-footer">
                                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    {product.isDeleted === null ? <button type="button" className="btn btn-danger" data-dismiss="modal">Delete</button> : <button type="button" className="btn btn-success" data-dismiss="modal">Undelete</button>}
+                                                    {product.isDeleted === null ? <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={()=>deleteProduct(product.id, nav)}>Delete</button> : <button type="button" className="btn btn-success" data-dismiss="modal" onClick={()=>unDeleteProduct(product.id, nav)}>Undelete</button>}
                                                     <button type="button" className="btn btn-primary" onClick={()=> handleUpdateProduct()}>Save changes</button>
                                                 </div>
                                             </div>
