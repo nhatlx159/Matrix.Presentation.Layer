@@ -7,7 +7,7 @@ import { useLocation, Link, useNavigate } from 'react-router-dom';
 
 function AdminPage(props) {
     const products=JSON.parse(localStorage.getItem('products'));
-    const [orders, setOrders] = useState(JSON.parse(localStorage.getItem('orders')));
+    const orders = JSON.parse(localStorage.getItem('orders'));
     const user = JSON.parse(localStorage.getItem('userData'))
     const nav = useNavigate();
     window.scrollTo(0, 0)
@@ -16,7 +16,7 @@ function AdminPage(props) {
         if(location.pathname === "/admin/product"){
             return <Product products={products} />
         } else if (location.pathname === "/admin/order") {
-            return <Order />
+            return <Order orders={orders} />
         }
     }
     useEffect(()=> {

@@ -49,9 +49,28 @@ function UserOrderManagement(props) {
                                 <span className="total-order-label">Tổng tiền:</span>
                                 <span className="amount-order-value">{pay(order.totalPrice)}</span>
                             </div>
-                            <div className="view-details view-details-button">
-                                <p>Mã vận đơn: {order.id}</p>
-                            </div>
+                            {
+                                order.paymentStatus === 'Pending' ? (
+                                    <div className="view-details view-details-button">
+                                        <p>Đơn hàng của bạn đang được đóng gói</p>
+                                    </div> 
+                                ) : order.paymentStatus === 'delivering' ? order.estimatedDeliveryDate !== null (
+                                    <div className="view-details view-details-button">
+                                        <p>Mã vận đơn: {order.billOfLadingCode}</p>
+                                        <p>Ngày giao hàng dự kiến: {order.estimatedDeliveryDate}</p>
+                                    </div>
+                                ) : order.paymentStatus === 'delivering' && order.deliveryDate !== null ? (
+                                    <div className="view-details view-details-button">
+                                        <p>Mã vận đơn: {order.billOfLadingCode}</p>
+                                        <p>Ngày giao hàng dự kiến: {order.estimatedDeliveryDate}</p>
+                                        <p>Ngày giao hàng thực tế: {order.deliveryDate}</p>
+                                    </div>
+                                ) : (
+                                    <div className="view-details view-details-button">
+                                        <p>Đơn hàng bị trả về vì vi phạm chính sách của Matrix</p>
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
                 )) : null}

@@ -413,4 +413,24 @@ export const createProductApi = async(body, nav) => {
         alert(error);
     }
 }
+export const updateOrder = async(body, nav, id) => {
+    try {
+        const result = await axios.post(`http://localhost:8080/api/v1/orders/${id}`, body, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        const resultProduct = await axios.get(`http://localhost:8080/api/v1/admin/orders`, {
+            headers: {
+                'Accept': '*/*',
+            }
+        });
+        nav('/admin/order')
+        localStorage.setItem('orders', JSON.stringify(resultProduct.data))
+        window.location.reload()
+        return result
+    } catch (error) {
+        alert(error);
+    }
+}
 
