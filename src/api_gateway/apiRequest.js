@@ -57,7 +57,7 @@ export const verifyRegisterCodeRequest = async(code) => {
 
 export const getDataTopSelling = async() => {
     try {
-        const result = await axios.get("http://localhost:8080/api/v1/users/products/topselling", {
+        const result = await axios.get("https://matrixx2.ddns.net/api/v1/users/products/topselling", {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': '*/*',
@@ -73,7 +73,7 @@ export const getDataTopSelling = async() => {
 
 export const getDataForYou = async() => {
     try {
-        const result = await axios.get("http://localhost:8080/api/v1/users/products/random", {
+        const result = await axios.get("https://matrixx2.ddns.net/api/v1/users/products/random", {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': '*/*',
@@ -89,7 +89,7 @@ export const getDataForYou = async() => {
 
 export const getAllCategories = async() => {
     try {
-        const result = await axios.get("http://localhost:8080/api/v1/admin/categories", {
+        const result = await axios.get("https://matrixx2.ddns.net/api/v1/admin/categories", {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': '*/*',
@@ -105,7 +105,7 @@ export const getAllCategories = async() => {
 
 export const getAllProductByCategoryId = async(id) => {
     try {
-        const result = await axios.get(`http://localhost:8080/api/v1/admin/categories/${id}`, {
+        const result = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/categories/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': '*/*',
@@ -123,7 +123,7 @@ export const getAllProductByCategoryId = async(id) => {
 
 export const getAllProductByName = async(name) => {
     try {
-        const result = await axios.get(`http://localhost:8080/api/v1/users/products/find?productName=${name}`, {
+        const result = await axios.get(`https://matrixx2.ddns.net/api/v1/users/products/find?productName=${name}`, {
             headers: {
                 'Content-Type': 'text/json',
                 'Accept': '*/*',
@@ -141,7 +141,7 @@ export const getAllProductByName = async(name) => {
 
 export const getProductDetails = async(id) => {
     try {
-        const result = await axios.get(`http://localhost:8080/api/v1/admin/products/${id}`, {
+        const result = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/products/${id}`, {
             headers: {
                 'Content-Type': 'text/json',
                 'Accept': '*/*',
@@ -158,7 +158,7 @@ export const getProductDetails = async(id) => {
 
 export const addToCart = async(body) => {
     try {
-        const result = await axios.post(`http://localhost:8080/api/v1/users/carts`, body, {
+        const result = await axios.post(`https://matrixx2.ddns.net/api/v1/users/carts`, body, {
             headers: {
                 'Accept': '*/*',
             }
@@ -172,12 +172,12 @@ export const addToCart = async(body) => {
 }
 export const createReview = async(body) => {
     try {
-        const result = await axios.post(`http://localhost:8080/api/v1/users/reviews`, body, {
+        const result = await axios.post(`https://matrixx2.ddns.net/api/v1/users/reviews`, body, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        const result1 = await axios.get(`http://localhost:8080/api/v1/admin/products/${body.productId}`, {
+        const result1 = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/products/${body.productId}`, {
             headers: {
                 'Content-Type': 'text/json',
                 'Accept': '*/*',
@@ -195,18 +195,18 @@ export const createReview = async(body) => {
 
 export const paymentProcess = async(body, nav) => {
     try {
-        const result = await axios.post(`http://localhost:8080/api/v1/admin/orders`, body, {
+        const result = await axios.post(`https://matrixx2.ddns.net/api/v1/admin/orders`, body, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        const checkResult = await axios.get(`http://localhost:8080/api/v1/users/orders/info/${result.data.id}`, {
+        const checkResult = await axios.get(`https://matrixx2.ddns.net/api/v1/users/orders/info/${result.data.id}`, {
             headers: {
                 'Accept': '*/*',
             }
         });
 
-        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${body.userId}`, {
+        const resultUser = await axios.get(`https://matrixx2.ddns.net/api/v1/users/${body.userId}`, {
             headers: {
                 'Accept': '*/*',
             }
@@ -230,12 +230,12 @@ export const paymentProcess = async(body, nav) => {
 }
 export const removeCartItem = async(id, userId) => {
     try {
-        const result = await axios.delete(`http://localhost:8080/api/v1/users/carts/${id}`, {
+        const result = await axios.delete(`https://matrixx2.ddns.net/api/v1/users/carts/${id}`, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${userId}`, {
+        const resultUser = await axios.get(`https://matrixx2.ddns.net/api/v1/users/${userId}`, {
             headers: {
                 'Accept': '*/*',
             }
@@ -249,12 +249,12 @@ export const removeCartItem = async(id, userId) => {
 }
 export const minusCartItem = async(id, userId) => {
     try {
-        const result = await axios.put(`http://localhost:8080/api/v1/users/carts/${userId}/minusone/${id}`, {
+        const result = await axios.put(`https://matrixx2.ddns.net/api/v1/users/carts/${userId}/minusone/${id}`, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${userId}`, {
+        const resultUser = await axios.get(`https://matrixx2.ddns.net/api/v1/users/${userId}`, {
             headers: {
                 'Accept': '*/*',
             }
@@ -268,12 +268,12 @@ export const minusCartItem = async(id, userId) => {
 }
 export const plusCartItem = async(id, userId) => {
     try {
-        const result = await axios.put(`http://localhost:8080/api/v1/users/carts/${userId}/plusone/${id}`, {
+        const result = await axios.put(`https://matrixx2.ddns.net/api/v1/users/carts/${userId}/plusone/${id}`, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${userId}`, {
+        const resultUser = await axios.get(`https://matrixx2.ddns.net/api/v1/users/${userId}`, {
             headers: {
                 'Accept': '*/*',
             }
@@ -287,12 +287,12 @@ export const plusCartItem = async(id, userId) => {
 }
 export const addNewAddress = async(body) => {
     try {
-        const result = await axios.post(`http://localhost:8080/api/v1/users/receivers`, body, {
+        const result = await axios.post(`https://matrixx2.ddns.net/api/v1/users/receivers`, body, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${body.userId}`, {
+        const resultUser = await axios.get(`https://matrixx2.ddns.net/api/v1/users/${body.userId}`, {
             headers: {
                 'Accept': '*/*',
             }
@@ -307,12 +307,12 @@ export const addNewAddress = async(body) => {
 }
 export const updateUserInfo = async(body) => {
     try {
-        const result = await axios.put(`http://localhost:8080/api/v1/admin/users/${body.id}`, body, {
+        const result = await axios.put(`https://matrixx2.ddns.net/api/v1/admin/users/${body.id}`, body, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${body.id}`, {
+        const resultUser = await axios.get(`https://matrixx2.ddns.net/api/v1/users/${body.id}`, {
             headers: {
                 'Accept': '*/*',
             }
@@ -326,12 +326,12 @@ export const updateUserInfo = async(body) => {
 }
 export const updateAvatar = async(body) => {
     try {
-        const result = await axios.put(`http://localhost:8080/api/v1/users/${body.id}/avatar`, body, {
+        const result = await axios.put(`https://matrixx2.ddns.net/api/v1/users/${body.id}/avatar`, body, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        const resultUser = await axios.get(`http://localhost:8080/api/v1/users/${body.id}`, {
+        const resultUser = await axios.get(`https://matrixx2.ddns.net/api/v1/users/${body.id}`, {
             headers: {
                 'Accept': '*/*',
             }
@@ -345,7 +345,7 @@ export const updateAvatar = async(body) => {
 }
 export const getAllProducts = async(nav) => {
     try {
-        const result = await axios.get(`http://localhost:8080/api/v1/admin/products`, {
+        const result = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/products`, {
             headers: {
                 'Accept': '*/*',
             }
@@ -360,7 +360,7 @@ export const getAllProducts = async(nav) => {
 }
 export const getAllOrders = async(nav) => {
     try {
-        const result = await axios.get(`http://localhost:8080/api/v1/admin/orders`, {
+        const result = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/orders`, {
             headers: {
                 'Accept': '*/*',
             }
@@ -375,12 +375,12 @@ export const getAllOrders = async(nav) => {
 }
 export const updateProduct = async(body, nav, id) => {
     try {
-        const result = await axios.put(`http://localhost:8080/api/v1/admin/products/${id}`, body, {
+        const result = await axios.put(`https://matrixx2.ddns.net/api/v1/admin/products/${id}`, body, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        const resultProduct = await axios.get(`http://localhost:8080/api/v1/admin/products`, {
+        const resultProduct = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/products`, {
             headers: {
                 'Accept': '*/*',
             }
@@ -395,12 +395,12 @@ export const updateProduct = async(body, nav, id) => {
 }
 export const createProductApi = async(body, nav) => {
     try {
-        const result = await axios.post(`http://localhost:8080/api/v1/admin/products`, body, {
+        const result = await axios.post(`https://matrixx2.ddns.net/api/v1/admin/products`, body, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        const resultProduct = await axios.get(`http://localhost:8080/api/v1/admin/products`, {
+        const resultProduct = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/products`, {
             headers: {
                 'Accept': '*/*',
             }
@@ -415,12 +415,12 @@ export const createProductApi = async(body, nav) => {
 }
 export const updateOrder = async(body, nav, id) => {
     try {
-        const result = await axios.put(`http://localhost:8080/api/v1/orders/${id}`, body, {
+        const result = await axios.put(`https://matrixx2.ddns.net/api/v1/orders/${id}`, body, {
             headers: {
                 'Accept': '*/*',
             }
         });
-        const resultProduct = await axios.get(`http://localhost:8080/api/v1/admin/orders`, {
+        const resultProduct = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/orders`, {
             headers: {
                 'Accept': '*/*',
             }

@@ -74,7 +74,7 @@ function Header(props) {
   useEffect(() => {
     const fetchUserData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080//api/v1/users/${user?.id}`, {
+            const response = await axios.get(`https://matrixx2.ddns.net//api/v1/users/${user?.id}`, {
                 headers: {
                     'Accept': '*/*',
                 }
