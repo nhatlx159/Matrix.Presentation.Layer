@@ -415,7 +415,7 @@ export const createProductApi = async(body, nav) => {
 }
 export const updateOrder = async(body, nav, id) => {
     try {
-        const result = await axios.post(`http://localhost:8080/api/v1/orders/${id}`, body, {
+        const result = await axios.put(`http://localhost:8080/api/v1/orders/${id}`, body, {
             headers: {
                 'Accept': '*/*',
             }

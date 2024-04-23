@@ -60,8 +60,8 @@ function Order(props) {
                                 paymentStatus: order.paymentStatus,
                                 billOfLadingCode: order.billOfLadingCode,
                                 deliveryDate: order.deliveryDate,
-                                estimatedDeliveryDate: order.estimatedDeliveryDate,
-                                shippingUnit: order.shippingUnit
+                                // estimatedDeliveryDate: order.estimatedDeliveryDate,
+                                // shippingUnit: order.shippingUnit
                             };
                             const handleUpdateOrder = () => {
                                 updateOrder(data, nav, order.id);
@@ -94,22 +94,22 @@ function Order(props) {
                                                         <div>Product id: {order?.id}</div> <br/>
                                                         <div>User id: {order?.userId}</div> <br/>
 
-                                                        <select defaultValue={order?.paymentStatus} onChange={(e) => { data.paymentStatus = parseInt(e.target.value) }}>
+                                                        <select defaultValue={order?.paymentStatus} onChange={(e) => { data.paymentStatus = e.target.value }}>
                                                             <option value='Pending'>Pending</option>
                                                             <option value='Delivering'>Delivering</option>
                                                             <option value='Delivered'>Delivered</option>
-                                                        </select>
+                                                        </select><br />
 
 
 
                                                         <label htmlFor="billOfLadingCode">Bill Of Lading Code</label><br/>
                                                         <textarea type="text" name="billOfLadingCode" defaultValue={order?.billOfLadingCode} onChange={(e)=> {data.billOfLadingCode = e.target.value}}/><br/>
-                                                        <label htmlFor="estimatedDeliveryDate">Estimated Delivery Date</label><br/>
-                                                        <textarea type="text" name="estimatedDeliveryDate" defaultValue={order?.estimatedDeliveryDate} onChange={(e)=> {data.estimatedDeliveryDate = e.target.value}}/><br/>
+                                                        {/* <label htmlFor="estimatedDeliveryDate">Estimated Delivery Date</label><br/>
+                                                        <textarea type="text" name="estimatedDeliveryDate" defaultValue={order?.estimatedDeliveryDate} onChange={(e)=> {data.estimatedDeliveryDate = e.target.value}}/><br/> */}
                                                         <label htmlFor="deliveryDate">Delivery Date</label><br/>
                                                         <textarea type="text" name="deliveryDate" defaultValue={order?.deliveryDate} onChange={(e)=> {data.deliveryDate = e.target.value}}/><br/>
-                                                        <label htmlFor="shippingUnit">Delivery Date</label><br/>
-                                                        <textarea type="text" name="shippingUnit" defaultValue={order?.shippingUnit} onChange={(e)=> {data.shippingUnit = e.target.value}}/><br/>
+                                                        {/* <label htmlFor="shippingUnit">Shipping Unit</label><br/>
+                                                        <textarea type="text" name="shippingUnit" defaultValue={order?.shippingUnit} onChange={(e)=> {data.shippingUnit = e.target.value}}/><br/> */}
                                                         
                                                     </div>
                                                 </div>
