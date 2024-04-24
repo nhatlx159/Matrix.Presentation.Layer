@@ -1,0 +1,58 @@
+name: CI-CD
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  test-project:
+    runs-on: self-hosted
+    steps:
+      - name: Test project
+        run: |
+          export RUNNER_ALLOW_RUNASROOT="1"
+          echo "Testing"
+          sleep 5
+          echo "Passed"
+
+  cd-project:
+    needs: test-project
+    runs-on: self-hosted
+    steps:
+      - name: Continuous Delivery
+        env:
+          CI: ""
+        run: |
+          export RUNNER_ALLOW_RUNASROOT="1"
+          cd /root/actions-runner/_work/Matrix.Presentation.Layer/Matrix.Presentation.Layer
+          echo "Getting content"
+          git fetch
+          git pull
+          echo "Building project for production"
+          npm install
+          npm run build
+          echo "Finished"
+
+  getting-new-content:
+    needs: cd-project
+    runs-on: self-hosted
+    steps:
+      - name: Deliver New Content For NGINX To Reload
+        run: |
+
+          echo "Checking path"
+          dir_path="/var/www/html/react"
+
+          if [ -d "$dir_path" ]; then
+            echo "Directory exists. Replacing now..."
+            rm -rf "$dir_path"
+          else
+            echo "Directory does not exist. Creating"
+            mkdir "$dir_path"
+          fi
+
+          echo "Getting new contents..."
+          cp -r /root/actions-runner/_work/Matrix.Presentation.Layer/Matrix.Presentation.Layer/build/. "$dir_path"
+
+          echo "Finished"
+
