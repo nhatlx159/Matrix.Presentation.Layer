@@ -22,11 +22,11 @@ jobs:
       - name: Continuous Delivery
         run: |
           export RUNNER_ALLOW_RUNASROOT="1"
-          cd /root/actions-runner/_work/sampleappreact/sampleappreact
+          cd /root/actions-runner/_work/Matrix.Presentation.Layer/Matrix.Presentation.Layer
           echo "Getting content"
           git fetch
           git pull
           echo "Building project for production"
-          # npm install
-          # npm run build
-          # echo "Finished"
+          npm install
+          npm run build
+          echo "Finished"
