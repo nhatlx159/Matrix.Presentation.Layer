@@ -41,7 +41,7 @@ jobs:
         run: |
 
           echo "Checking path"
-          dir_path="/root/test"
+          dir_path="/var/www/html/testfolder"
 
           if [ -d "$dir_path" ]; then
             echo "Directory exists. Replacing now..."
@@ -52,8 +52,7 @@ jobs:
           fi
 
           echo "Getting new content..."
-          cp -r /root/actions-runner/_work/Matrix.Presentation.Layer/Matrix.Presentation.Layer/build* /root/test
+          cp -r /root/actions-runner/_work/Matrix.Presentation.Layer/Matrix.Presentation.Layer/build* "$dir_path"
 
           echo "Finished"
-
 
