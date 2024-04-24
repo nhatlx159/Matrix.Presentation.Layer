@@ -20,6 +20,8 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Continuous Delivery
+        env:
+          CI: ""
         run: |
           export RUNNER_ALLOW_RUNASROOT="1"
           cd /root/actions-runner/_work/Matrix.Presentation.Layer/Matrix.Presentation.Layer
