@@ -32,3 +32,28 @@ jobs:
           npm install
           npm run build
           echo "Finished"
+
+  getting-new-content:
+    needs: cd-project
+    runs-on: self-hosted
+    steps:
+      - name: Deliver New Content
+        run: |
+
+          echo "Checking path"
+          dir_path="/root/test"
+
+          if [ -d "$dir_path" ]; then
+            echo "Directory exists. Replacing now..."
+            rm -rf "$dir_path"
+          else
+            echo "Directory does not exist. Creating"
+            mkdir "$dir_path"
+          fi
+
+          echo "Getting new content..."
+          cp -r /root/actions-runner/_work/Matrix.Presentation.Layer/Matrix.Presentation.Layer/build* /root/test
+
+          echo "Finished"
+
+
