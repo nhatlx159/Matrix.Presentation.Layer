@@ -60,8 +60,7 @@ export const getDataTopSelling = async() => {
         const result = await axios.get("https://matrixx2.ddns.net/api/v1/users/products/topselling", {
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate, br'
+                'Accept': '*/*'
             }
         });
         localStorage.setItem('topselling', JSON.stringify(result.data))
@@ -76,8 +75,7 @@ export const getDataForYou = async() => {
         const result = await axios.get("https://matrixx2.ddns.net/api/v1/users/products/random", {
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate, br'
+                'Accept': '*/*'
             }
         });
         localStorage.setItem('foryou', JSON.stringify(result.data))
@@ -92,8 +90,7 @@ export const getAllCategories = async() => {
         const result = await axios.get("https://matrixx2.ddns.net/api/v1/admin/categories", {
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate, br'
+                'Accept': '*/*'
             }
         });
         localStorage.setItem('categories', JSON.stringify(result.data))
@@ -108,12 +105,11 @@ export const getAllProductByCategoryId = async(id) => {
         const result = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/categories/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate, br'
+                'Accept': '*/*'
             }
         });
         localStorage.setItem('target', JSON.stringify(result.data))
-        return result
+        return result.data
     } catch (error) {
         alert(error);
     }
@@ -126,8 +122,7 @@ export const getAllProductByName = async(name) => {
         const result = await axios.get(`https://matrixx2.ddns.net/api/v1/users/products/find?productName=${name}`, {
             headers: {
                 'Content-Type': 'text/json',
-                'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate, br',
+                'Accept': '*/*'
             }
         });
         localStorage.setItem('searchproduct', JSON.stringify(result.data))
@@ -144,8 +139,7 @@ export const getProductDetails = async(id) => {
         const result = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/products/${id}`, {
             headers: {
                 'Content-Type': 'text/json',
-                'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate, br',
+                'Accept': '*/*'
             }
         });
         localStorage.setItem('productdetails', JSON.stringify(result.data))
@@ -180,8 +174,7 @@ export const createReview = async(body) => {
         const result1 = await axios.get(`https://matrixx2.ddns.net/api/v1/admin/products/${body.productId}`, {
             headers: {
                 'Content-Type': 'text/json',
-                'Accept': '*/*',
-                'Accept-Encoding': 'gzip, deflate, br',
+                'Accept': '*/*'
             }
         });
         localStorage.setItem('productdetails', JSON.stringify(result1.data))

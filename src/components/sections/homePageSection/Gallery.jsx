@@ -41,20 +41,20 @@ function Gallery(props) {
                     <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Tai nghe')}>
                         <p>Tai nghe</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Đèn pin')}>
-                        <p>Đèn pin</p>
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Laptop')}>
+                        <p>Laptop</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Tivi')}>
-                        <p>Tivi</p>
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Amply')}>
+                        <p>Amply</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Loa')}>
-                        <p>Loa</p>
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Lót chuột')}>
+                        <p>Lót chuột</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Máy lạnh')}>
-                        <p>Máy lạnh</p>
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Lò')}>
+                        <p>Lò</p>
                     </div>
-                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Máy giặt')}>
-                        <p>Máy giặt</p>
+                    <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Samsung')}>
+                        <p>Samsung</p>
                     </div>
                     <div className="col-3 col-sm-3 col-lg-4 gallery-right-component py-1" onClick={e => redirectSearch(e, 'Nồi cơm')}>
                         <p>Nồi cơm điện</p>
