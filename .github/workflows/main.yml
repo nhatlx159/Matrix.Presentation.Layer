@@ -37,7 +37,7 @@ jobs:
     needs: cd-project
     runs-on: self-hosted
     steps:
-      - name: Deliver New Content
+      - name: Deliver New Content For NGINX To Reload
         run: |
 
           echo "Checking path"
@@ -52,7 +52,7 @@ jobs:
           fi
 
           echo "Getting new contents..."
-          cp -r /root/actions-runner/_work/Matrix.Presentation.Layer/Matrix.Presentation.Layer/build/* "$dir_path"
+          cp -r /root/actions-runner/_work/Matrix.Presentation.Layer/Matrix.Presentation.Layer/build/. "$dir_path"
 
           echo "Finished"
 
