@@ -41,7 +41,7 @@ jobs:
         run: |
 
           echo "Checking path"
-          dir_path="/var/www/html/testfolder"
+          dir_path="/var/www/html/react"
 
           if [ -d "$dir_path" ]; then
             echo "Directory exists. Replacing now..."
