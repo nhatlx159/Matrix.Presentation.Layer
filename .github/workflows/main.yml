@@ -3,3 +3,30 @@ name: CI-CD
 on:
   push:
     branches: [ master ]
+
+jobs:
+  test-project:
+    runs-on: self-hosted
+    steps:
+      - name: Test project
+        run: |
+          export RUNNER_ALLOW_RUNASROOT="1"
+          echo "Testing"
+          sleep 5
+          echo "Passed"
+
+  cd-project:
+    needs: test-project
+    runs-on: self-hosted
+    steps:
+      - name: Continuous Delivery
+        run: |
+          export RUNNER_ALLOW_RUNASROOT="1"
+          cd /root/actions-runner/_work/sampleappreact/sampleappreact
+          echo "Getting content"
+          git fetch
+          git pull
+          echo "Building project for production"
+          # npm install
+          # npm run build
+          # echo "Finished"
