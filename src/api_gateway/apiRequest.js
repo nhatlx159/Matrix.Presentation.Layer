@@ -65,7 +65,7 @@ export const getDataTopSelling = async() => {
             }
         });
         localStorage.setItem('topselling', JSON.stringify(result.data))
-        return result
+        return result.data
     } catch (error) {
         alert(error);
     }
@@ -81,7 +81,7 @@ export const getDataForYou = async() => {
             }
         });
         localStorage.setItem('foryou', JSON.stringify(result.data))
-        return result
+        return result.data
     } catch (error) {
         alert(error);
     }
@@ -97,7 +97,7 @@ export const getAllCategories = async() => {
             }
         });
         localStorage.setItem('categories', JSON.stringify(result.data))
-        return result
+        return result.data
     } catch (error) {
         alert(error);
     }

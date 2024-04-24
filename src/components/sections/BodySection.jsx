@@ -4,13 +4,14 @@ import BestSeller from './homePageSection/BestSeller';
 import '../styles/BodySection.css';
 import YouMightLike from './homePageSection/YouMightLike';
 import Gallery from './homePageSection/Gallery';
-import { getDataForYou, getDataTopSelling } from '../../api_gateway/apiRequest';
+import { getAllCategories, getDataForYou, getDataTopSelling } from '../../api_gateway/apiRequest';
 
 function BodySection(props) {
     window.scrollTo(0, 0)
     useEffect(()=> {
         getDataTopSelling()
         getDataForYou()
+        getAllCategories()
     }, [])
     const homePageContent = () => {
         return (

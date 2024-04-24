@@ -13,8 +13,16 @@ function SideBarHomePage(props) {
     }
 
     useEffect( () => {
-    getAllCategories()
-      setData(JSON.parse(localStorage.getItem('categories')))
+        const fetchData = async () => {
+            const categories = JSON.parse(localStorage.getItem('categories'));
+            if (categories) {
+              setData(categories);
+            } else {
+              const response = await getAllCategories();
+              setData(response);
+            }
+          };
+        fetchData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
