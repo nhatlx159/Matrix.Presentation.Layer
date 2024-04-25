@@ -446,9 +446,9 @@ export const unDeleteProduct = async(id, nav) => {
         alert(error);
     }
 }
-export const updateOrder = async(body, nav, id) => {
+export const updateOrder = async(data, nav, id) => {
     try {
-        const result = await axios.put(`https://matrixx2.ddns.net/api/v1/orders/${id}`, body, {
+        const result = await axios.put(`https://matrixx2.ddns.net/api/v1/orders/${id}`, data, {
             headers: {
                 'Accept': '*/*',
             }
@@ -458,8 +458,8 @@ export const updateOrder = async(body, nav, id) => {
                 'Accept': '*/*',
             }
         });
-        nav('/admin/order')
         localStorage.setItem('orders', JSON.stringify(resultProduct.data))
+        nav('/admin/order')
         window.location.reload()
         return result
     } catch (error) {

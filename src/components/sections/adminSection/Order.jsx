@@ -7,6 +7,9 @@ function Order(props) {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [keyword, setKeyword] = useState('');
     const [showCount, setShowCount] = useState(5);
+    const [billOfLadingCode , setbillOfLadingCode] = useState('');
+    const [paymentStatus , setpaymentStatus] = useState('');
+    const [deliveryDate , setdeliveryDate] = useState('');
     const nav = useNavigate();
 
 
@@ -56,15 +59,13 @@ function Order(props) {
                     {filteredProducts.length > 0 ? (
                         filteredProducts.map((order, index) => {
                             const data = {
-                                id: order.id,
-                                paymentStatus: order.paymentStatus,
-                                billOfLadingCode: order.billOfLadingCode,
-                                deliveryDate: order.deliveryDate,
-                                // estimatedDeliveryDate: order.estimatedDeliveryDate,
-                                // shippingUnit: order.shippingUnit
+                                id: order.id ,
+                                paymentStatus: '',
+                                billOfLadingCode: '',
+                                deliveryDate: '',
                             };
                             const handleUpdateOrder = () => {
-                                updateOrder(data, nav, order.id);
+                                updateOrder(data, nav, data.id);
                             }
                             return (
                                     <tr key={index}>
@@ -93,24 +94,15 @@ function Order(props) {
                                                     <div className="mb-4">
                                                         <div>Product id: {order?.id}</div> <br/>
                                                         <div>User id: {order?.userId}</div> <br/>
-
-                                                        <select defaultValue={order?.paymentStatus} onChange={(e) => { data.paymentStatus = e.target.value }}>
+                                                        <select defaultValue={order?.paymentStatus} onChange={(e) => {data.paymentStatus = e.target.value ; console.log(data.paymentStatus);}}>
                                                             <option value='Pending'>Pending</option>
                                                             <option value='Delivering'>Delivering</option>
                                                             <option value='Delivered'>Delivered</option>
                                                         </select><br />
-
-
-
                                                         <label htmlFor="billOfLadingCode">Bill Of Lading Code</label><br/>
-                                                        <textarea type="text" name="billOfLadingCode" defaultValue={order?.billOfLadingCode} onChange={(e)=> {data.billOfLadingCode = e.target.value}}/><br/>
-                                                        {/* <label htmlFor="estimatedDeliveryDate">Estimated Delivery Date</label><br/>
-                                                        <textarea type="text" name="estimatedDeliveryDate" defaultValue={order?.estimatedDeliveryDate} onChange={(e)=> {data.estimatedDeliveryDate = e.target.value}}/><br/> */}
+                                                        <textarea type="text" name="billOfLadingCode" defaultValue={order.billOfLadingCode != null ? order.billOfLadingCode : '' } onChange={(e)=> {data.billOfLadingCode = e.target.value; console.log(data.billOfLadingCode);}}/><br/>
                                                         <label htmlFor="deliveryDate">Delivery Date</label><br/>
-                                                        <textarea type="text" name="deliveryDate" defaultValue={order?.deliveryDate} onChange={(e)=> {data.deliveryDate = e.target.value}}/><br/>
-                                                        {/* <label htmlFor="shippingUnit">Shipping Unit</label><br/>
-                                                        <textarea type="text" name="shippingUnit" defaultValue={order?.shippingUnit} onChange={(e)=> {data.shippingUnit = e.target.value}}/><br/> */}
-                                                        
+                                                        <textarea type="text" name="deliveryDate" defaultValue={order.deliveryDate != null ? order.deliveryDate : '' } onChange={(e)=> {data.deliveryDate = e.target.value}}/><br/>
                                                     </div>
                                                 </div>
                                                 <div className="modal-footer">
